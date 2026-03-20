@@ -377,11 +377,17 @@ footer strong { color: #fff; }
       <button class="map-open-btn" onclick="openMapModal()">
         🗺️ 地図を開く（競合マップ）
       </button>
+      <a href="https://www.airbnb.com/s/%E6%B8%85%E5%B7%9D-%E7%A6%8F%E5%B2%A1/homes" target="_blank" class="map-open-btn" style="margin-top:10px;background:#FF5A5F;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px;">
+        🏠 周辺競合物件をAirbnbで見る
+      </a>
     </div>
 
     <!-- 物件リスト -->
     <div class="facility-section">
       <div class="facility-label">物件一覧 — クリックで地図移動</div>
+      <a href="https://www.airbnb.com/s/%E6%B8%85%E5%B7%9D-%E7%A6%8F%E5%B2%A1/homes" target="_blank" style="display:flex;align-items:center;justify-content:center;gap:8px;background:#FF5A5F;color:#fff;text-decoration:none;font-size:12px;font-weight:700;padding:10px;border-radius:8px;margin-bottom:10px;letter-spacing:0.03em;">
+        🏠 周辺競合物件をAirbnbで見る
+      </a>
       <div id="facility-list"></div>
     </div>
 
@@ -671,7 +677,7 @@ PLACES.forEach(p => {
       </div>
       <div class="facility-meta">${p.area} ｜ ${p.type}</div>
       <div class="facility-price">${p.price}</div>
-      ${p.airbnb ? `<a href="${p.airbnb}" target="_blank" class="airbnb-btn" onclick="event.stopPropagation()">Airbnbで確認 →</a>` : ''}
+      ${p.airbnb ? `` : ''}
     </div>
   `;
   item.addEventListener('click', () => {
