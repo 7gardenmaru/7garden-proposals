@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>競合調査マップ｜博多区祇園町1-18計画</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f0f2f5; color: #1a1a2e; display: flex; flex-direction: column; height: 100vh; }
+
+  /* ヘッダー */
+  .header {
+    background: linear-gradient(135deg, #1B5FA6 0%, #0d3d6e 100%);
+    color: white;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    flex-shrink: 0;
+  }
+  .header-left { display: flex; align-items: center; gap: 16px; }
+  .header-logo { font-family: 'DM Serif Display', serif; font-size: 20px; letter-spacing: 0.05em; opacity: 0.9; }
+  .header-title { font-size: 15px; font-weight: 700; line-height: 1.3; }
+  .header-sub { font-size: 11px; opacity: 0.8; margin-top: 2px; }
+  .header-badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  /* メインレイアウト */
+  .main { display: flex; flex: 1; overflow: hidden; }
+
+  /* サイドパネル */
+  .sidebar {
+    width: 340px;
+    background: white;
+    overflow-y: auto;
+    border-right: 1px solid #e0e4eb;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section { padding: 16px 18px; border-bottom: 1px solid #eef0f4; }
+  .section-title {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #8a94a6;
+    margin-bottom: 10px;
+  }
+
+  /* インサイトカード */
+  .insight-card {
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    border-left: 4px solid;
+  }
+  .insight-card.blue { background: #EBF3FF; border-color: #1B5FA6; }
+  .insight-card.green { background: #E8F5E9; border-color: #2E7D32; }
+  .insight-card h4 { font-size: 12px; font-weight: 700; margin-bottom: 5px; }
+  .insight-card.blue h4 { color: #1B5FA6; }
+  .insight-card.green h4 { color: #2E7D32; }
+  .insight-card p { font-size: 12px; line-height: 1.6; color: #444; }
+
+  /* 競合リスト */
+  .competitor-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 9px 0;
+    border-bottom: 1px solid #f2f4f8;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 6px;
+    padding: 8px;
+  }
+  .competitor-item:hover { background: #f7f9fc; }
+  .badge {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: white;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .badge.target { background: #1B5FA6; }
+  .badge.garden { background: #2E7D32; }
+  .badge.direct { background: #888780; }
+  .badge.premium { background: #BA7517; }
+
+  .competitor-info { flex: 1; min-width: 0; }
+  .competitor-name { font-size: 12px; font-weight: 700; color: #1a1a2e; }
+  .competitor-type { font-size: 10px; color: #8a94a6; margin-top: 1px; }
+  .competitor-price { font-size: 12px; font-weight: 700; color: #1B5FA6; margin-top: 2px; }
+
+  /* 価格ポジショニング */
+  .positioning-chart {
+    background: #f7f9fc;
+    border-radius: 10px;
+    padding: 14px;
+    position: relative;
+  }
+  .pos-title { font-size: 11px; font-weight: 700; color: #555; margin-bottom: 12px; text-align: center; }
+  .pos-axis {
+    position: relative;
+    height: 130px;
+  }
+  .pos-y-label {
+    position: absolute;
+    left: 0;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 9px;
+    color: #8a94a6;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .pos-grid {
+    margin-left: 18px;
+    height: 100%;
+    border-left: 2px solid #cdd2da;
+    border-bottom: 2px solid #cdd2da;
+    position: relative;
+  }
+  .pos-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    transform: translate(-50%, 50%);
+  }
+  .pos-dot-label {
+    position: absolute;
+    font-size: 9px;
+    white-space: nowrap;
+    transform: translate(-50%, 50%);
+    color: #444;
+    font-weight: 600;
+  }
+  .pos-zone {
+    position: absolute;
+    background: rgba(27,95,166,0.08);
+    border: 1.5px dashed #1B5FA6;
+    border-radius: 6px;
+  }
+  .pos-zone-label {
+    position: absolute;
+    font-size: 9px;
+    color: #1B5FA6;
+    font-weight: 700;
+  }
+  .x-labels { display: flex; justify-content: space-between; margin-left: 18px; margin-top: 4px; }
+  .x-labels span { font-size: 9px; color: #8a94a6; }
+
+  /* 凡例 */
+  .legend { display: flex; flex-wrap: wrap; gap: 8px; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #555; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+  /* 地図 */
+  #map { flex: 1; }
+
+  /* フッター */
+  .footer {
+    background: #1a1a2e;
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 8px;
+    font-size: 10px;
+    flex-shrink: 0;
+  }
+  .footer strong { color: rgba(255,255,255,0.85); }
+
+  /* スクロールバー */
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: #f0f2f5; }
+  .sidebar::-webkit-scrollbar-thumb { background: #c0c8d4; border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-logo">7garden</div>
+    <div>
+      <div class="header-title">競合調査マップ｜博多区祇園町1-18計画</div>
+      <div class="header-sub">福岡市博多区祇園町1丁目154番1・154番2｜地上11階・22室・延床1,478㎡</div>
+    </div>
+  </div>
+  <div class="header-badge">調査日：2026年3月</div>
+</div>
+
+<!-- メイン -->
+<div class="main">
+
+  <!-- サイドパネル -->
+  <div class="sidebar">
+
+    <!-- 市場インサイト -->
+    <div class="section">
+      <div class="section-title">Market Insights</div>
+      <div class="insight-card blue">
+        <h4>① 祇園駅直結エリアの空白地帯</h4>
+        <p>祇園駅600m圏内に大型一棟貸し・グループ向けホテルはほぼ存在しない。Rakuten STAY博多祇園（最大8名・60㎡）が唯一近いが、呉服町側で500m以上離れる。計画地は<strong>祇園駅徒歩圏内で最大規模</strong>の貸切型宿泊施設となりうる。</p>
+      </div>
+      <div class="insight-card green">
+        <h4>② 大型グループ需要×高単価の空白</h4>
+        <p>博多エリアの競合は2〜8名・低〜中単価が中心。計画地は22室・最大収容数十名規模で、<strong>10〜20名超のビジネス合宿・法人貸切需要</strong>に対応できる。東横INN（¥7,000〜/名）より高単価帯で差別化できる。</p>
+      </div>
+    </div>
+
+    <!-- 競合一覧 -->
+    <div class="section">
+      <div class="section-title">周辺施設一覧</div>
+
+      <div class="competitor-item" onclick="flyTo(33.5898, 130.4122, '【計画地】祇園町1-18計画', '地上11階 S造｜22室｜延床1,478㎡', '—')">
+        <div class="badge target">★</div>
+        <div class="competitor-info">
+          <div class="competitor-name">【計画地】祇園町1-18計画</div>
+          <div class="competitor-type">計画中｜11F・22室・延床1,478㎡</div>
+          <div class="competitor-price">—</div>
+        </div>
+      </div>
+
+      <div class="competitor-item" onclick="flyTo(33.5882, 130.4105, 'Rakuten STAY 博多祇園', '和モダン一棟貸し｜最大8名・60㎡｜無人チェックイン', '¥9,000〜/棟')">
+        <div class="badge direct">1</div>
+        <div class="competitor-info">
+          <div class="competitor-name">Rakuten STAY 博多祇園</div>
+          <div class="competitor-type">一棟貸し｜呉服町駅徒歩4分</div>
+          <div class="competitor-price">¥9,000〜/棟（最大8名）</div>
+        </div>
+      </div>
+
+      <div class="competitor-item" onclick="flyTo(33.5880, 130.4098, 'ホテル・トリフィート博多祇園', '和モダンデザインホテル｜大浴場完備｜朝食70種バイキング', '¥8,000〜/室')">
+        <div class="badge direct">2</div>
+        <div class="competitor-info">
+          <div class="competitor-name">ホテル・トリフィート博多祇園</div>
+          <div class="competitor-type">デザインホテル｜祇園駅徒歩5分</div>
+          <div class="competitor-price">¥8,000〜/室</div>
+        </div>
+      </div>
+
+      <div class="competitor-item" onclick="flyTo(33.5897, 130.4109, '東横INN博多駅前祇園', '祇園駅6番出口すぐ｜朝食無料｜330拠点展開', '¥6,500〜/室')">
+        <div class="badge direct">3</div>
+        <div class="competitor-info">
+          <div class="competitor-name">東横INN博多駅前祇園</div>
+          <div class="competitor-type">ビジネスホテル｜祇園駅直結</div>
+          <div class="competitor-price">¥6,500〜/室</div>
+        </div>
+      </div>
+
+      <div class="competitor-item" onclick="flyTo(33.5895, 130.4188, 'ヴィアイン博多口駅前', 'JR西日本系ビジネスホテル｜博多駅博多口徒歩3分', '¥7,500〜/室')">
+        <div class="badge direct">4</div>
+        <div class="competitor-info">
+          <div class="competitor-name">ヴィアイン博多口駅前</div>
+          <div class="competitor-type">ビジネスホテル｜博多駅徒歩3分</div>
+          <div class="competitor-price">¥7,500〜/室</div>
+        </div>
+      </div>
+
+      <div class="competitor-item" onclick="flyTo(33.5876, 130.4072, '彩（いろどり）ホテル 祇園エリア', '町家風一棟貸し｜最大8〜12名｜無人ホテル', '¥25,000〜/棟')">
+        <div class="badge premium">5</div>
+        <div class="competitor-info">
+          <div class="competitor-name">彩（いろどり）ホテル 祇園エリア</div>
+          <div class="competitor-type">一棟貸し（町家風）｜博多区内複数棟</div>
+          <div class="competitor-price">¥25,000〜/棟（最大12名）</div>
+        </div>
+      </div>
+
+      <div class="competitor-item" onclick="flyTo(33.5890, 130.4150, 'タビサイホテル グランデ博多', 'グループ向け民泊ホテル｜2023年OPEN', '¥20,000〜/棟')">
+        <div class="badge premium">6</div>
+        <div class="competitor-info">
+          <div class="competitor-name">タビサイホテル グランデ博多</div>
+          <div class="competitor-type">グループ向け民泊ホテル｜博多区</div>
+          <div class="competitor-price">¥20,000〜/棟</div>
+        </div>
+      </div>
+
+      <div class="competitor-item" onclick="flyTo(33.5920, 130.4200, 'ザ・ロイヤルパークホテル 福岡', '博多区役所前｜上級シティホテル', '¥15,000〜/室')">
+        <div class="badge premium">7</div>
+        <div class="competitor-info">
+          <div class="competitor-name">ザ・ロイヤルパークホテル 福岡</div>
+          <div class="competitor-type">シティホテル｜博多駅周辺</div>
+          <div class="competitor-price">¥15,000〜/室</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 価格ポジショニング -->
+    <div class="section">
+      <div class="section-title">Price Positioning</div>
+      <div class="positioning-chart">
+        <div class="pos-title">単価 × 収容規模マトリクス</div>
+        <div class="pos-axis">
+          <div class="pos-y-label">← 単価 低 ｜ 高 →</div>
+          <div class="pos-grid" id="posGrid">
+            <!-- ゾーン: 計画地の狙い目 -->
+            <div class="pos-zone" style="left:55%;bottom:55%;width:38%;height:38%;"></div>
+            <div class="pos-zone-label" style="left:57%;bottom:91%;">7garden 狙い目ゾーン</div>
+            <!-- ドット -->
+            <div class="pos-dot" style="background:#1B5FA6;left:70%;bottom:75%;" title="計画地"></div>
+            <div class="pos-dot-label" style="left:72%;bottom:75%;color:#1B5FA6;">計画地</div>
+            <div class="pos-dot" style="background:#888780;left:15%;bottom:20%;" title="東横INN"></div>
+            <div class="pos-dot-label" style="left:17%;bottom:20%;">東横INN</div>
+            <div class="pos-dot" style="background:#888780;left:25%;bottom:25%;" title="ヴィアイン"></div>
+            <div class="pos-dot-label" style="left:27%;bottom:25%;">ヴィアイン</div>
+            <div class="pos-dot" style="background:#888780;left:30%;bottom:35%;" title="トリフィート"></div>
+            <div class="pos-dot-label" style="left:32%;bottom:35%;">トリフィート</div>
+            <div class="pos-dot" style="background:#888780;left:40%;bottom:30%;" title="Rakuten STAY"></div>
+            <div class="pos-dot-label" style="left:42%;bottom:30%;">R.STAY</div>
+            <div class="pos-dot" style="background:#BA7517;left:50%;bottom:60%;" title="彩ホテル"></div>
+            <div class="pos-dot-label" style="left:52%;bottom:60%;">彩ホテル</div>
+            <div class="pos-dot" style="background:#BA7517;left:60%;bottom:55%;" title="タビサイ"></div>
+            <div class="pos-dot-label" style="left:62%;bottom:55%;">タビサイ</div>
+          </div>
+        </div>
+        <div class="x-labels">
+          <span>← 収容 小</span>
+          <span>収容 大 →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 凡例 -->
+    <div class="section">
+      <div class="section-title">Legend</div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#1B5FA6;"></div>計画地</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2E7D32;"></div>7garden運営</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#888780;"></div>直接競合</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#BA7517;"></div>高単価・大型競合</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 地図 -->
+  <div id="map"></div>
+</div>
+
+<!-- フッター -->
+<div class="footer">
+  <strong>7garden Inc.</strong>｜本資料は機密情報です。無断転用・転載を禁じます。｜作成：2026年3月
+</div>
+
+<script>
+// 地図初期化（計画地中心）
+const map = L.map('map', { zoomControl: true }).setView([33.5898, 130.4122], 15);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors',
+  maxZoom: 19
+}).addTo(map);
+
+// カスタムアイコン関数
+function makeIcon(color, label, size = 28) {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size+6}" viewBox="0 0 ${size} ${size+6}">
+    <circle cx="${size/2}" cy="${size/2}" r="${size/2-1}" fill="${color}" stroke="white" stroke-width="2"/>
+    <text x="${size/2}" y="${size/2+4}" text-anchor="middle" fill="white" font-size="${size < 28 ? 10 : 11}" font-weight="bold" font-family="sans-serif">${label}</text>
+    <polygon points="${size/2-4},${size} ${size/2+4},${size} ${size/2},${size+6}" fill="${color}"/>
+  </svg>`;
+  return L.divIcon({
+    html: svg,
+    iconSize: [size, size+6],
+    iconAnchor: [size/2, size+6],
+    popupAnchor: [0, -(size+6)],
+    className: ''
+  });
+}
+
+// 計画地マーカー（★）
+const starSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="42" viewBox="0 0 36 42">
+  <circle cx="18" cy="18" r="17" fill="#1B5FA6" stroke="white" stroke-width="2.5"/>
+  <text x="18" y="23" text-anchor="middle" fill="white" font-size="18" font-family="sans-serif">★</text>
+  <polygon points="14,35 22,35 18,42" fill="#1B5FA6"/>
+</svg>`;
+const starIcon = L.divIcon({ html: starSvg, iconSize:[36,42], iconAnchor:[18,42], popupAnchor:[0,-42], className:'' });
+
+// 計画地: 500m圏
+L.circle([33.5898, 130.4122], { radius: 500, color: '#1B5FA6', fillColor: '#1B5FA6', fillOpacity: 0.06, weight: 1.5, dashArray:'6,4' }).addTo(map);
+
+// マーカー追加
+const markers = [
+  { latlng:[33.5898, 130.4122], icon: starIcon, name:'【計画地】祇園町1-18計画', desc:'地上11階 S造｜22室｜延床1,478㎡', price:'—', type:'計画地' },
+  { latlng:[33.5882, 130.4105], icon: makeIcon('#888780','1'), name:'Rakuten STAY 博多祇園', desc:'和モダン一棟貸し｜最大8名・60㎡', price:'¥9,000〜/棟', type:'直接競合' },
+  { latlng:[33.5880, 130.4098], icon: makeIcon('#888780','2'), name:'ホテル・トリフィート博多祇園', desc:'和モダンデザインホテル｜大浴場完備', price:'¥8,000〜/室', type:'直接競合' },
+  { latlng:[33.5897, 130.4109], icon: makeIcon('#888780','3'), name:'東横INN博多駅前祇園', desc:'祇園駅6番出口すぐ｜朝食無料', price:'¥6,500〜/室', type:'直接競合' },
+  { latlng:[33.5895, 130.4188], icon: makeIcon('#888780','4'), name:'ヴィアイン博多口駅前', desc:'JR西日本系｜博多駅博多口徒歩3分', price:'¥7,500〜/室', type:'直接競合' },
+  { latlng:[33.5876, 130.4072], icon: makeIcon('#BA7517','5'), name:'彩（いろどり）ホテル 祇園エリア', desc:'町家風一棟貸し｜最大8〜12名', price:'¥25,000〜/棟', type:'高単価・大型競合' },
+  { latlng:[33.5890, 130.4150], icon: makeIcon('#BA7517','6'), name:'タビサイホテル グランデ博多', desc:'グループ向け民泊ホテル｜2023年OPEN', price:'¥20,000〜/棟', type:'高単価・大型競合' },
+  { latlng:[33.5920, 130.4200], icon: makeIcon('#BA7517','7'), name:'ザ・ロイヤルパークホテル 福岡', desc:'上級シティホテル｜博多駅周辺', price:'¥15,000〜/室', type:'シティホテル' },
+];
+
+markers.forEach(m => {
+  L.marker(m.latlng, { icon: m.icon })
+    .addTo(map)
+    .bindPopup(`
+      <div style="font-family:'Noto Sans JP',sans-serif;min-width:200px;">
+        <div style="font-weight:700;font-size:13px;color:#1a1a2e;margin-bottom:6px;">${m.name}</div>
+        <div style="font-size:11px;color:#555;margin-bottom:4px;">${m.desc}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;padding-top:8px;border-top:1px solid #eee;">
+          <span style="font-size:10px;background:#f0f4f8;color:#666;padding:2px 8px;border-radius:10px;">${m.type}</span>
+          <span style="font-size:13px;font-weight:700;color:#1B5FA6;">${m.price}</span>
+        </div>
+      </div>
+    `, { maxWidth: 250 });
+});
+
+// サイドパネルクリックで地図移動
+function flyTo(lat, lng, name, desc, price) {
+  map.flyTo([lat, lng], 16, { duration: 0.8 });
+  setTimeout(() => {
+    const m = markers.find(x => Math.abs(x.latlng[0]-lat) < 0.0002 && Math.abs(x.latlng[1]-lng) < 0.0002);
+    if (m) {
+      // ポップアップ開く
+    }
+  }, 900);
+}
+</script>
+</body>
+</html>
