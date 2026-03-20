@@ -78,15 +78,72 @@ main {
   .facility-section { order: 3; }
   .price-section    { order: 4; }
   #map {
-    width: 100%;
-    height: 300px;
-    flex: none;
+    display: none; /* スマホでは非表示、モーダル内に表示 */
+  }
+  .map-open-btn-wrap {
     order: 2;
-    margin: 12px 0;
-    border-radius: 12px;
-    overflow: hidden;
+    padding: 12px 14px;
+    display: block !important;
+    background: #fff;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .map-modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 9999;
+    flex-direction: column;
+  }
+  .map-modal.open {
+    display: flex;
+  }
+  .map-modal-header {
+    background: var(--blue);
+    color: #fff;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .map-modal-close {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  #map-modal-inner {
+    flex: 1;
+    width: 100%;
   }
 }
+/* ── 地図を開くボタン（PC非表示） ── */
+.map-open-btn-wrap { display: none; }
+.map-open-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Noto Sans JP', sans-serif;
+  letter-spacing: 0.05em;
+}
+.map-open-btn:active { opacity: 0.85; }
 
 /* ── インサイトカード ── */
 .insight-section { padding: 12px 14px; border-bottom: 3px solid var(--blue); background: #EBF2FA; }
@@ -325,6 +382,13 @@ footer strong { color: #fff; }
       </div>
     </div>
 
+    <!-- 地図を開くボタン（スマホのみ表示） -->
+    <div class="map-open-btn-wrap">
+      <button class="map-open-btn" onclick="openMapModal()">
+        🗺️ 地図を開く（競合マップ）
+      </button>
+    </div>
+
     <!-- 物件リスト -->
     <div class="facility-section">
       <div class="facility-label">物件一覧 — クリックで地図移動</div>
@@ -353,6 +417,15 @@ footer strong { color: #fff; }
   <div id="map"></div>
 
 </main>
+
+<!-- 全画面地図モーダル（スマホ用） -->
+<div class="map-modal" id="mapModal">
+  <div class="map-modal-header">
+    <span>🗺️ 競合マップ — 清川2丁目</span>
+    <button class="map-modal-close" onclick="closeMapModal()">✕ 閉じる</button>
+  </div>
+  <div id="map-modal-inner"></div>
+</div>
 
 <footer>
   <strong>7garden Inc.</strong> — 清川2丁目 投資提案 / 競合調査 2026年3月 ｜ 本資料はオーナー提案専用です。無断転用禁止。
@@ -647,6 +720,29 @@ PLACES.forEach(p => {
 // ============================================================
 // 地図クリックでサイドパネルのアクティブ解除
 // ============================================================
+// スマホ用：地図モーダル開閉
+function openMapModal() {
+  const modal = document.getElementById('mapModal');
+  const inner = document.getElementById('map-modal-inner');
+  const mapEl = document.getElementById('map');
+  mapEl.style.display = 'block';
+  mapEl.style.width = '100%';
+  mapEl.style.height = '100%';
+  inner.appendChild(mapEl);
+  modal.classList.add('open');
+  setTimeout(() => map.invalidateSize(), 100);
+}
+function closeMapModal() {
+  const modal = document.getElementById('mapModal');
+  const mapEl = document.getElementById('map');
+  const side = document.querySelector('.side');
+  mapEl.style.display = '';
+  mapEl.style.width = '';
+  mapEl.style.height = '';
+  side.appendChild(mapEl);
+  modal.classList.remove('open');
+}
+
 map.on('click', () => {
   document.querySelectorAll('.facility-item').forEach(el => el.classList.remove('active'));
 });
