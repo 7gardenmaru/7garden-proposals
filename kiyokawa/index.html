@@ -58,8 +58,8 @@ main { display: grid; grid-template-columns: 360px 1fr; gap: 0; overflow: hidden
 }
 
 /* ── インサイトカード ── */
-.insight-section { padding: 16px; border-bottom: 1px solid var(--border); }
-.insight-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.insight-section { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.insight-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
 .insight-card { border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; }
 .insight-card:last-child { margin-bottom: 0; }
 .insight-card.blue  { background: var(--blue-lt);  border: 1.5px solid var(--blue); }
@@ -69,12 +69,12 @@ main { display: grid; grid-template-columns: 360px 1fr; gap: 0; overflow: hidden
 .insight-num.blue  { background: var(--blue); }
 .insight-num.green { background: var(--green); }
 .insight-title { font-size: 12px; font-weight: 700; color: var(--dark); line-height: 1.35; }
-.insight-body { font-size: 11px; line-height: 1.7; color: #444; }
+.insight-body { font-size: 10.5px; line-height: 1.7; color: #444; }
 .insight-body .hl { display: inline-block; background: var(--blue); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 4px; margin-top: 4px; }
 .insight-card.green .insight-body .hl { background: var(--green); }
 
 /* ── 物件リスト ── */
-.facility-section { padding: 12px 16px; flex: 1; }
+.facility-section { padding: 10px 14px; border-bottom: 1px solid var(--border); }
 .facility-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
 .facility-item {
   display: flex;
@@ -170,6 +170,30 @@ footer strong { color: #fff; }
   transition: transform 0.15s;
 }
 .custom-pin:hover { transform: scale(1.15); }
+
+/* Airbnbリンク */
+.popup-airbnb {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  color: #FF5A5F;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 3px 8px;
+  background: #FFF0F0;
+  border-radius: 4px;
+  border: 1px solid #FFCDD2;
+}
+.popup-airbnb:hover { background: #FFE0E0; }
+.airbnb-link {
+  font-size: 11px;
+  text-decoration: none;
+  margin-left: 4px;
+  opacity: 0.7;
+  transition: opacity .15s;
+}
+.airbnb-link:hover { opacity: 1; }
+
 </style>
 </head>
 <body>
@@ -199,22 +223,21 @@ footer strong { color: #fff; }
       <div class="insight-card blue">
         <div class="insight-card-head">
           <div class="insight-num blue">①</div>
-          <div class="insight-title">清川エリアに<br>一棟2LDKは存在しない</div>
+          <div class="insight-title">清川清川エリアに<br>一棟2LDKは存在しない</div>
         </div>
         <div class="insight-body">
           徒歩500m圏内の宿泊施設は全てマンション1室貸し（35㎡・¥7,500〜）。
-          <br><span class="hl">一棟貸し2LDKは完全な空白地帯</span>
+          <br><span class="hl">一棟2LDKの競合ゼロ ← ここが勝機</span>
         </div>
       </div>
 
       <div class="insight-card green">
         <div class="insight-card-head">
           <div class="insight-num green">②</div>
-          <div class="insight-title">¥25K〜¥38Kの価格帯を<br>丸ごと取れる</div>
+          <div class="insight-title">¥31K〜¥38Kの<br>スイートスポット独占</div>
         </div>
         <div class="insight-body">
-          普及帯¥7,500〜と高級帯の間に広大な空白。7garden実績（TRIGON/Sante）が実現可能性の証左。
-          <br><span class="hl">競合ゼロのスイートスポット</span>
+          普及帯（¥7,500〜）と高級帯（¥45K〜）の間、¥31K〜¥38Kに広大な空白。7garden実績（TRIGON ADR¥45K / 合い宿ADR¥36K）が参入可能性の証左。<br><span class="hl">IRR 12〜19% ／ 回収4〜5年の投資水準</span>
         </div>
       </div>
     </div>
@@ -232,11 +255,11 @@ footer strong { color: #fff; }
         <div class="price-pins" id="price-pins"></div>
         <div class="price-track">
           <div class="price-gap">
-            <div class="price-gap-label">★ 空白 ¥25K〜¥38K</div>
+            <div class="price-gap-label">★ 空白地帯 ¥31K〜¥38K</div>
           </div>
         </div>
         <div class="price-axis-labels">
-          <span>¥5K</span><span>¥15K</span><span>¥25K</span><span>¥38K</span><span>¥50K+</span>
+          <span>¥5K</span><span>¥15K</span><span>¥31K</span><span>¥38K</span><span>¥50K+</span>
         </div>
       </div>
     </div>
@@ -268,9 +291,9 @@ const PLACES = [
     area: "清川2丁目",
     type: "一棟2LDK 参入予定",
     size: "66㎡ / 最大6〜8名",
-    price: "¥28,000〜¥38,000/泊（想定）",
-    price_min: 28000,
-    note: "TRIGONモデル準拠 標準シナリオGOP率38〜42%",
+    price: "¥31,000〜¥38,000/泊（想定）",
+    price_min: 31000,
+    note: "TRIGONモデル準拠 / GOP率45% / IRR 12〜19%",
     color: "#1B5FA6",
     tag: "target",
     tagLabel: "計画地",
@@ -292,6 +315,7 @@ const PLACES = [
     tagLabel: "直接競合",
     lat: 33.5810, lng: 130.4084,
     pricePos: 10,
+    airbnb: "https://www.airbnb.com/s/Kiyokawa--Fukuoka/homes",
   },
   {
     id: "kiyokawa",
@@ -308,6 +332,7 @@ const PLACES = [
     tagLabel: "高級帯",
     lat: 33.5818, lng: 130.4075,
     pricePos: 80,
+    airbnb: "https://www.airbnb.com/s/%E6%B8%85%E5%B7%9D1%E4%B8%81%E7%9B%AE--Fukuoka/homes",
   },
   {
     id: "randor",
@@ -324,6 +349,7 @@ const PLACES = [
     tagLabel: "普及帯",
     lat: 33.5820, lng: 130.4093,
     pricePos: 14,
+    airbnb: "https://www.airbnb.com/s/Kiyokawa--Fukuoka/homes",
   },
   {
     id: "tabisai_alley",
@@ -340,6 +366,7 @@ const PLACES = [
     tagLabel: "大型",
     lat: 33.5786, lng: 130.4081,
     pricePos: 90,
+    airbnb: "https://www.airbnb.com/rooms/836665236358714787",
   },
   {
     id: "trigon",
@@ -356,6 +383,7 @@ const PLACES = [
     tagLabel: "7garden",
     lat: 33.5818, lng: 130.4120,
     pricePos: 76,
+    airbnb: "https://www.airbnb.com/rooms/1343982032648358908",
   },
   {
     id: "aisyuku",
@@ -363,7 +391,7 @@ const PLACES = [
     name: "合い宿すみよし",
     area: "住吉5丁目",
     type: "7garden運営",
-    size: "14室一棟",
+    size: "1棟（一棟貸し）",
     price: "¥25,000〜/泊",
     price_min: 25000,
     note: "7garden運営実績 ★4.8 月売上¥85〜121万",
@@ -372,6 +400,7 @@ const PLACES = [
     tagLabel: "7garden",
     lat: 33.5823, lng: 130.4145,
     pricePos: 40,
+    airbnb: "https://www.airbnb.com/s/%E4%BD%8F%E5%90%895%E4%B8%81%E7%9B%AE--Fukuoka/homes",
   },
   {
     id: "sante",
@@ -388,6 +417,7 @@ const PLACES = [
     tagLabel: "7garden",
     lat: 33.5958, lng: 130.4107,
     pricePos: 77,
+    airbnb: "https://www.airbnb.com/s/Hakata--Fukuoka/homes?query=Sant%C3%A9+Hotel",
   },
   {
     id: "tabisai_suite",
@@ -404,6 +434,7 @@ const PLACES = [
     tagLabel: "アミューズ",
     lat: 33.5950, lng: 130.4148,
     pricePos: 88,
+    airbnb: "https://www.airbnb.com/s/Hakata--Fukuoka/homes?query=TABISAI+SUITE",
   },
 ];
 
