@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>競合マップ｜今泉1丁目ホテル計画 - 7garden</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Noto Sans JP', sans-serif; background: #f5f6f8; color: #222; height: 100vh; display: flex; flex-direction: column; }
+
+  /* ヘッダー */
+  .header {
+    background: #1B5FA6;
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .header-badge {
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .header-title { font-family: 'DM Serif Display', serif; font-size: 20px; }
+  .header-sub { font-size: 11px; opacity: 0.75; margin-top: 2px; }
+  .header-right { font-size: 11px; opacity: 0.7; text-align: right; }
+
+  /* メインレイアウト */
+  .main { display: flex; flex: 1; overflow: hidden; }
+
+  /* サイドパネル */
+  .sidebar {
+    width: 320px;
+    flex-shrink: 0;
+    background: white;
+    overflow-y: auto;
+    border-right: 1px solid #e0e4ea;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* インサイトカード */
+  .insight-card {
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    line-height: 1.65;
+  }
+  .insight-card.blue { background: #EBF3FD; border-left: 4px solid #1B5FA6; }
+  .insight-card.green { background: #E8F5E9; border-left: 4px solid #2E7D32; }
+  .insight-card h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 5px; text-transform: uppercase; }
+  .insight-card.blue h4 { color: #1B5FA6; }
+  .insight-card.green h4 { color: #2E7D32; }
+
+  /* セクションタイトル */
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #666;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+
+  /* 施設リスト */
+  .facility-list { display: flex; flex-direction: column; gap: 6px; }
+  .facility-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.15s;
+    border: 1px solid #eee;
+  }
+  .facility-item:hover { background: #f0f6ff; border-color: #c5d8f5; }
+  .facility-marker {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 10px; font-weight: 700; color: white;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .facility-info { flex: 1; min-width: 0; }
+  .facility-name { font-size: 12px; font-weight: 700; color: #222; line-height: 1.3; }
+  .facility-meta { font-size: 10.5px; color: #666; margin-top: 2px; line-height: 1.4; }
+  .facility-price { font-size: 11px; font-weight: 700; color: #1B5FA6; margin-top: 3px; }
+
+  /* 計画地 */
+  .plan-item {
+    background: #EBF3FD;
+    border: 1.5px solid #1B5FA6;
+    border-radius: 6px;
+    padding: 10px 12px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .plan-star {
+    font-size: 22px; line-height: 1;
+  }
+  .plan-info .name { font-size: 13px; font-weight: 700; color: #1B5FA6; }
+  .plan-info .meta { font-size: 11px; color: #555; margin-top: 2px; }
+
+  /* 価格ポジショニング */
+  .price-chart { padding: 4px 0 8px; }
+  .price-axis {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #888;
+    margin-bottom: 6px;
+  }
+  .price-bar-wrap { position: relative; height: 28px; background: #f0f2f5; border-radius: 4px; overflow: visible; margin-bottom: 18px; }
+  .price-bar-label { position: absolute; top: -16px; font-size: 10px; color: #555; white-space: nowrap; transform: translateX(-50%); }
+  .price-dot {
+    position: absolute;
+    top: 50%; transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  .price-zone {
+    position: absolute;
+    top: 0; height: 100%;
+    opacity: 0.12;
+    border-radius: 4px;
+  }
+  .price-bar-bottom-label {
+    position: absolute;
+    bottom: -15px;
+    font-size: 9.5px;
+    color: #888;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  /* 地図 */
+  #map { flex: 1; }
+
+  /* フッター */
+  .footer {
+    background: #1a1d24;
+    color: rgba(255,255,255,0.5);
+    font-size: 10.5px;
+    padding: 7px 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+
+  /* ポップアップカスタム */
+  .leaflet-popup-content-wrapper { border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.18); }
+  .popup-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .popup-type { font-size: 11px; color: #666; margin-bottom: 4px; }
+  .popup-price { font-size: 12px; font-weight: 700; color: #1B5FA6; }
+  .popup-note { font-size: 11px; color: #555; margin-top: 4px; padding-top: 4px; border-top: 1px solid #eee; }
+
+  /* 凡例 */
+  .legend { background: white; border: 1px solid #e0e4ea; border-radius: 6px; padding: 8px 10px; }
+  .legend-row { display: flex; align-items: center; gap: 6px; font-size: 11px; color: #444; margin-bottom: 4px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-badge">7garden</div>
+    <div>
+      <div class="header-title">今泉1丁目ホテル計画｜競合マップ</div>
+      <div class="header-sub">福岡市中央区今泉1丁目 ／ RC造8階 ／ 63室（シングル・ダブル）</div>
+    </div>
+  </div>
+  <div class="header-right">
+    調査日: 2026年3月20日<br>
+    天神南駅 徒歩圏
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- サイドパネル -->
+  <div class="sidebar">
+
+    <!-- インサイト① -->
+    <div class="insight-card blue">
+      <h4>📍 立地優位性</h4>
+      今泉1丁目は天神南駅から徒歩圏内でありながら、**大型ホテルの空白地帯**。同エリアに63室規模の独立ホテルは現時点で存在せず、先行取得の優位性が高い。
+    </div>
+
+    <!-- インサイト② -->
+    <div class="insight-card green">
+      <h4>💹 価格帯ポジショニング</h4>
+      周辺の既存ホテルはシングル¥5,000〜¥11,000/泊が中心。1階サウナ・8階ラウンジ等の付加価値で**¥12,000〜¥18,000帯**を狙う差別化余地あり。
+    </div>
+
+    <!-- 計画地 -->
+    <div>
+      <div class="section-title">計画地</div>
+      <div class="plan-item">
+        <div class="plan-star">★</div>
+        <div class="plan-info">
+          <div class="name">今泉1丁目ホテル計画（仮称）</div>
+          <div class="meta">福岡市中央区今泉1丁目 ／ RC8F ／ 63室<br>1F：サウナ・浴場 ／ 8F：ラウンジ・受付</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 競合一覧 -->
+    <div>
+      <div class="section-title">競合施設一覧</div>
+      <div class="facility-list" id="facilityList"></div>
+    </div>
+
+    <!-- 価格ポジショニング -->
+    <div>
+      <div class="section-title">価格帯ポジショニング</div>
+      <div class="price-chart">
+        <div class="price-axis"><span>¥3,000</span><span>¥9,000</span><span>¥18,000+</span></div>
+        <div class="price-bar-wrap">
+          <!-- ゾーン -->
+          <div class="price-zone" style="left:0;width:45%;background:#888780;"></div>
+          <div class="price-zone" style="left:45%;width:30%;background:#BA7517;"></div>
+          <!-- 競合ドット -->
+          <span class="price-bar-label" style="left:12%">mizuka</span>
+          <div class="price-dot" style="left:12%;background:#888780;"></div>
+          <span class="price-bar-label" style="left:28%">KOKO</span>
+          <div class="price-dot" style="left:28%;background:#888780;"></div>
+          <span class="price-bar-label" style="left:42%">BW+</span>
+          <div class="price-dot" style="left:42%;background:#BA7517;"></div>
+          <!-- 計画地 -->
+          <span class="price-bar-label" style="left:68%;color:#1B5FA6;font-weight:700;">★計画地</span>
+          <div class="price-dot" style="left:68%;background:#1B5FA6;width:18px;height:18px;"></div>
+          <!-- 下部ラベル -->
+          <span class="price-bar-bottom-label" style="left:12%">¥3,500〜</span>
+          <span class="price-bar-bottom-label" style="left:28%">¥5,640〜</span>
+          <span class="price-bar-bottom-label" style="left:42%">¥10,560〜</span>
+          <span class="price-bar-bottom-label" style="left:68%;color:#1B5FA6;font-weight:700;">¥12,000〜<br>¥18,000</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 凡例 -->
+    <div class="legend">
+      <div class="legend-row"><div class="legend-dot" style="background:#1B5FA6;"></div>計画地</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#888780;"></div>直接競合（今泉・天神エリア）</div>
+      <div class="legend-row"><div class="legend-dot" style="background:#BA7517;"></div>大型・高単価競合</div>
+    </div>
+
+  </div>
+
+  <!-- 地図 -->
+  <div id="map"></div>
+</div>
+
+<!-- フッター -->
+<div class="footer">
+  <span>© 7garden Inc. ／ 本資料は提案用途専用・無断転用禁止</span>
+  <span>作成: 2026-03-20</span>
+</div>
+
+<script>
+// ========== データ定義 ==========
+const planSite = {
+  name: "今泉1丁目ホテル計画（仮称）",
+  lat: 33.5878, lng: 130.3979,
+  spec: "RC造8階 ／ 63室（シングル・ダブル）",
+  note: "1F：サウナ・浴場 ／ 8F：ラウンジ・受付・バルコニー"
+};
+
+const competitors = [
+  {
+    id: 1,
+    name: "KOKO HOTEL 福岡天神",
+    address: "今泉1-22-14",
+    lat: 33.5882, lng: 130.4002,
+    type: "ビジネス・レジャーホテル",
+    rooms: "159室（263室説も）",
+    price: "¥5,640〜 / 泊",
+    note: "天神南駅徒歩4分。今泉で最も規模の大きい競合。全室禁煙、アメニティバー完備。",
+    color: "#888780"
+  },
+  {
+    id: 2,
+    name: "mizuka Imaizumi 1〜5（無人ホテル）",
+    address: "今泉1-17-16ほか",
+    lat: 33.5865, lng: 130.3987,
+    type: "デザイナーズ無人ホテル（全棟）",
+    rooms: "各5〜8室（全棟合計約25室）",
+    price: "¥3,500〜 / 名",
+    note: "SNS映えデザイナーズ。最大8名宿泊可能な部屋あり。BBQ・シアター付きテラスルームも。",
+    color: "#888780"
+  },
+  {
+    id: 3,
+    name: "THE BEDROOM Imaizumi",
+    address: "今泉2-5-6",
+    lat: 33.5855, lng: 130.3992,
+    type: "アパートメントホテル",
+    rooms: "2室",
+    price: "要確認（中価格帯）",
+    note: "天神南駅徒歩11分。小規模アパートメント型。評価4.3/5と高評価。",
+    color: "#888780"
+  },
+  {
+    id: 4,
+    name: "ベストウェスタンプラス福岡天神南",
+    address: "春吉3-13-19",
+    lat: 33.5840, lng: 130.4020,
+    type: "国際ブランドホテル",
+    rooms: "236室",
+    price: "¥10,560〜 / 泊",
+    note: "天神南駅徒歩5分。九州初のBW+ブランド。朝食ビュッフェ・全室Wi-Fi完備。高稼働。",
+    color: "#BA7517"
+  },
+  {
+    id: 5,
+    name: "ランプライトブックスホテル福岡",
+    address: "天神2丁目付近",
+    lat: 33.5910, lng: 130.3970,
+    type: "ライフスタイルホテル",
+    rooms: "約131室",
+    price: "¥8,000〜 / 泊",
+    note: "天神駅徒歩圏。書籍・カフェと融合したライフスタイル型。ラウンジ24時間OPEN。",
+    color: "#BA7517"
+  },
+  {
+    id: 6,
+    name: "ONE FUKUOKA HOTEL",
+    address: "天神1-11-1（18-19F）",
+    lat: 33.5925, lng: 130.3960,
+    type: "ハイエンドホテル",
+    rooms: "非公開",
+    price: "¥40,800〜 / 泊",
+    note: "天神駅直結。最上層ホテルで海・空一望。圧倒的高単価帯。直接競合外だが市場上限を示す。",
+    color: "#BA7517"
+  }
+];
+
+// ========== 地図初期化 ==========
+const map = L.map('map').setView([planSite.lat, planSite.lng], 15);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© OpenStreetMap contributors',
+  maxZoom: 19
+}).addTo(map);
+
+// 500m円
+L.circle([planSite.lat, planSite.lng], {
+  radius: 500,
+  color: '#1B5FA6', fillColor: '#1B5FA6',
+  fillOpacity: 0.06, weight: 1.5, dashArray: '5,5'
+}).addTo(map);
+
+// 計画地マーカー
+const planIcon = L.divIcon({
+  html: `<div style="background:#1B5FA6;color:white;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);">★</div>`,
+  className: '', iconSize: [32,32], iconAnchor: [16,16]
+});
+L.marker([planSite.lat, planSite.lng], { icon: planIcon })
+  .addTo(map)
+  .bindPopup(`
+    <div class="popup-title">★ ${planSite.name}</div>
+    <div class="popup-type">${planSite.spec}</div>
+    <div class="popup-note">${planSite.note}</div>
+  `);
+
+// ========== 競合マーカー & サイドリスト ==========
+const list = document.getElementById('facilityList');
+const markers = [];
+
+competitors.forEach((c, i) => {
+  // マーカー
+  const icon = L.divIcon({
+    html: `<div style="background:${c.color};color:white;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;border:2px solid white;box-shadow:0 2px 6px rgba(0,0,0,0.25);">${c.id}</div>`,
+    className: '', iconSize: [26,26], iconAnchor: [13,13]
+  });
+  const marker = L.marker([c.lat, c.lng], { icon })
+    .addTo(map)
+    .bindPopup(`
+      <div class="popup-title">${c.id}. ${c.name}</div>
+      <div class="popup-type">${c.type} ／ ${c.rooms}</div>
+      <div class="popup-price">${c.price}</div>
+      <div class="popup-note">${c.note}</div>
+    `);
+  markers.push(marker);
+
+  // サイドリスト
+  const item = document.createElement('div');
+  item.className = 'facility-item';
+  item.innerHTML = `
+    <div class="facility-marker" style="background:${c.color}">${c.id}</div>
+    <div class="facility-info">
+      <div class="facility-name">${c.name}</div>
+      <div class="facility-meta">${c.address} ／ ${c.rooms}</div>
+      <div class="facility-price">${c.price}</div>
+    </div>
+  `;
+  item.addEventListener('click', () => {
+    map.setView([c.lat, c.lng], 16);
+    marker.openPopup();
+  });
+  list.appendChild(item);
+});
+</script>
+</body>
+</html>
