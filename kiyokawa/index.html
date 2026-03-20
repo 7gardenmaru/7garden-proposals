@@ -71,23 +71,12 @@ main {
     height: auto;
     overflow: visible;
   }
-  .side {
-    display: contents;
-  }
+  .side { display: contents; }
   .insight-section { order: 1; }
+  .map-open-btn-wrap { order: 2; display: block; padding: 12px 14px; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
   .facility-section { order: 3; }
   .price-section    { order: 4; }
-  #map {
-    display: none; /* スマホでは非表示、モーダル内に表示 */
-  }
-  .map-open-btn-wrap {
-    order: 2;
-    padding: 12px 14px;
-    display: block !important;
-    background: #fff;
-    border-top: 1px solid var(--border);
-    border-bottom: 1px solid var(--border);
-  }
+  #map { display: none; }
   .map-modal {
     display: none;
     position: fixed;
@@ -95,9 +84,7 @@ main {
     z-index: 9999;
     flex-direction: column;
   }
-  .map-modal.open {
-    display: flex;
-  }
+  .map-modal.open { display: flex; }
   .map-modal-header {
     background: var(--blue);
     color: #fff;
@@ -119,14 +106,16 @@ main {
     border-radius: 6px;
     cursor: pointer;
   }
-  #map-modal-inner {
-    flex: 1;
-    width: 100%;
-  }
+  #map-modal-inner { flex: 1; width: 100%; }
 }
 /* ── 地図を開くボタン（PC非表示） ── */
 .map-open-btn-wrap { display: none; }
 .map-modal { display: none; }
+@media(max-width:900px){
+  .map-open-btn-wrap {
+    display: block !important;
+  }
+}
 .map-open-btn {
   display: flex;
   align-items: center;
