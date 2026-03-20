@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>清川2丁目 — 競合マップ | 7garden</title>
+<title>清川2丁目プロジェクト | 7garden</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -58,8 +58,9 @@ main { display: grid; grid-template-columns: 360px 1fr; gap: 0; overflow: hidden
 }
 
 /* ── インサイトカード ── */
-.insight-section { padding: 10px 14px; border-bottom: 1px solid var(--border); }
-.insight-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.insight-section { padding: 12px 14px; border-bottom: 3px solid var(--blue); background: #EBF2FA; }
+.insight-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--blue); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.insight-label::before { content: ''; display: inline-block; width: 3px; height: 12px; background: var(--blue); border-radius: 2px; }
 .insight-card { border-radius: 10px; padding: 14px 16px; margin-bottom: 8px; }
 .insight-card:last-child { margin-bottom: 0; }
 .insight-card.blue  { background: var(--blue-lt);  border: 1.5px solid var(--blue); }
@@ -74,8 +75,9 @@ main { display: grid; grid-template-columns: 360px 1fr; gap: 0; overflow: hidden
 .insight-card.green .insight-body .hl { background: var(--green); }
 
 /* ── 物件リスト ── */
-.facility-section { padding: 10px 14px; border-bottom: 1px solid var(--border); }
-.facility-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+.facility-section { padding: 10px 14px; border-bottom: 1px solid var(--border); background: #fff; }
+.facility-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+.facility-label::before { content: ''; display: inline-block; width: 3px; height: 12px; background: var(--muted); border-radius: 2px; }
 .facility-item {
   display: flex;
   align-items: flex-start;
@@ -156,6 +158,41 @@ footer {
 }
 footer strong { color: #fff; }
 
+/* ── 印刷ボタン ── */
+.print-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  color: var(--blue);
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 8px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all .15s;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+.print-btn:hover { background: var(--blue-lt); border-color: #fff; }
+
+/* ── 印刷スタイル ── */
+@media print {
+  @page { size: A4 landscape; margin: 10mm; }
+  body { background: #fff !important; }
+  header { padding: 12px 20px !important; }
+  .print-btn { display: none !important; }
+  .header-badges { display: none !important; }
+  main { grid-template-columns: 300px 1fr !important; height: calc(100vh - 80px); }
+  .side { overflow: visible !important; }
+  .insight-section { display: none !important; }
+  #map { min-height: 500px !important; }
+  .price-section { page-break-inside: avoid; }
+  footer { padding: 6px !important; font-size: 9px !important; }
+  .airbnb-btn { display: none !important; }
+}
+
 /* ── Leaflet カスタムピン ── */
 .custom-pin {
   display: flex; align-items: center; justify-content: center;
@@ -174,25 +211,35 @@ footer strong { color: #fff; }
 /* Airbnbリンク */
 .popup-airbnb {
   display: inline-block;
-  margin-top: 6px;
+  margin-top: 8px;
+  font-size: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  padding: 5px 14px;
+  background: #FF5A5F;
+  border-radius: 6px;
+  letter-spacing: 0.03em;
+}
+.popup-airbnb:hover { background: #E0484D; }
+.airbnb-btn {
+  display: inline-block;
+  margin-top: 5px;
   font-size: 11px;
+  font-weight: 700;
   color: #FF5A5F;
+  background: #FFF5F5;
+  border: 1.5px solid #FF5A5F;
+  border-radius: 5px;
+  padding: 3px 10px;
   text-decoration: none;
-  font-weight: 600;
-  padding: 3px 8px;
-  background: #FFF0F0;
-  border-radius: 4px;
-  border: 1px solid #FFCDD2;
+  transition: all .15s;
+  letter-spacing: 0.02em;
 }
-.popup-airbnb:hover { background: #FFE0E0; }
-.airbnb-link {
-  font-size: 11px;
-  text-decoration: none;
-  margin-left: 4px;
-  opacity: 0.7;
-  transition: opacity .15s;
+.airbnb-btn:hover {
+  background: #FF5A5F;
+  color: #fff;
 }
-.airbnb-link:hover { opacity: 1; }
 
 </style>
 </head>
@@ -201,14 +248,19 @@ footer strong { color: #fff; }
 
 <header>
   <div>
-    <div class="header-brand">7garden Inc. — 投資提案資料</div>
-    <div class="header-title">清川2丁目 — 競合マップ</div>
+    <div class="header-brand">7garden — 投資提案資料</div>
+    <div class="header-title">清川2丁目プロジェクト</div>
     <div class="header-sub">福岡市中央区清川2丁目9-37 ｜ 調査日: 2026年3月</div>
   </div>
-  <div class="header-badges">
-    <span class="badge">調査: 8施設</span>
-    <span class="badge">半径2km圏内</span>
-    <span class="badge">一棟2LDK 空白地帯</span>
+  <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px;">
+    <div class="header-badges">
+      <span class="badge">調査: 8施設</span>
+      <span class="badge">半径2km圏内</span>
+      <span class="badge">一棟2LDK 空白地帯</span>
+    </div>
+    <button class="print-btn" onclick="window.print()">
+      🖨️ PDF / 印刷
+    </button>
   </div>
 </header>
 
@@ -447,8 +499,9 @@ const map = L.map('map', {
   zoomControl: true,
 });
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors',
+L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors © <a href="https://carto.com/">CARTO</a>',
+  subdomains: 'abcd',
   maxZoom: 19,
 }).addTo(map);
 
@@ -523,6 +576,7 @@ PLACES.forEach(p => {
       </div>
       <div class="facility-meta">${p.area} ｜ ${p.type}</div>
       <div class="facility-price">${p.price}</div>
+      ${p.airbnb ? `<a href="${p.airbnb}" target="_blank" class="airbnb-btn" onclick="event.stopPropagation()">Airbnbで確認 →</a>` : ''}
     </div>
   `;
   item.addEventListener('click', () => {
