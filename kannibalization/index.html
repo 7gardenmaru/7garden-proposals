@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7garden 福岡カニバリ論点まとめ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=DM+Serif+Display&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:     #141210;
+    --ink2:    #2A2520;
+    --mid:     #6A6660;
+    --pale:    #A8A4A0;
+    --border:  #E4E0DA;
+    --cream:   #F7F4EF;
+    --white:   #FDFCFA;
+    --amber:   #C07A14;
+    --amber-lt:#F5A623;
+    --amber-bg:#FEF3E2;
+    --teal:    #1A8A6A;
+    --teal-lt: #E0F4ED;
+    --teal-dk: #0D5240;
+    --red:     #C13030;
+    --red-bg:  #FCEAEA;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--ink);
+    padding: 48px 48px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; right: 0;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(192,122,20,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .header-label {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--amber-lt);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+  .header-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(24px, 4vw, 38px);
+    color: #FAF8F4;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    font-weight: 400;
+  }
+  .header-title em {
+    color: var(--amber-lt);
+    font-style: normal;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: var(--pale);
+    max-width: 600px;
+    line-height: 1.7;
+  }
+  .header-meta {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    font-size: 11px;
+    color: var(--pale);
+    border: 1px solid #3A3530;
+    border-radius: 20px;
+    padding: 4px 14px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── CONCLUSION BOX ── */
+  .conclusion {
+    background: var(--ink2);
+    padding: 32px 40px;
+    margin: 0;
+  }
+  .conclusion-inner { max-width: 880px; margin: 0 auto; }
+  .conclusion-label {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--amber-lt);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .conclusion-text {
+    font-size: 15px;
+    color: #D8D4CE;
+    line-height: 1.9;
+  }
+  .conclusion-text strong { color: #FAF8F4; }
+
+  /* ── SECTION ── */
+  .section { padding: 40px 0 32px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-num {
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: var(--amber);
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 22px;
+    color: var(--ink);
+    font-weight: 400;
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+  p { color: var(--ink2); margin-bottom: 12px; }
+  p:last-child { margin-bottom: 0; }
+
+  /* ── STAT ROW ── */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+  }
+  @media (max-width: 600px) { .stat-row { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 14px;
+  }
+  .stat-val {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px;
+    color: var(--ink);
+    line-height: 1.1;
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+  .stat-val.amber { color: var(--amber); }
+  .stat-val.teal  { color: var(--teal); }
+  .stat-label { font-size: 11px; color: var(--mid); line-height: 1.4; }
+
+  /* ── TABLE ── */
+  .tbl-wrap { overflow-x: auto; margin: 16px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th {
+    background: var(--ink);
+    color: #D8D4CE;
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  td {
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--ink2);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: var(--white); }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .b-red    { background: var(--red-bg);   color: var(--red); }
+  .b-amber  { background: var(--amber-bg); color: #7A4A08; }
+  .b-teal   { background: var(--teal-lt);  color: var(--teal-dk); }
+  .b-gray   { background: #EEECEA;         color: var(--mid); }
+
+  /* ── POINT CARDS ── */
+  .point-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  @media (max-width: 560px) { .point-grid { grid-template-columns: 1fr; } }
+  .point-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 18px 16px;
+  }
+  .point-card.teal { border-left: 3px solid var(--teal); border-radius: 0 10px 10px 0; }
+  .point-card.amber { border-left: 3px solid var(--amber); border-radius: 0 10px 10px 0; }
+  .point-card.red { border-left: 3px solid var(--red); border-radius: 0 10px 10px 0; }
+  .point-card-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+  .point-card-body { font-size: 12px; color: var(--mid); line-height: 1.65; margin: 0; }
+
+  /* ── DORMY COMPARE ── */
+  .dormy-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 560px) { .dormy-row { grid-template-columns: 1fr; } }
+  .dormy-card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .dormy-head {
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .dormy-head.dark { background: var(--ink); color: #D8D4CE; }
+  .dormy-head.lite { background: var(--teal); color: #E0F4ED; }
+  .dormy-body { background: var(--white); padding: 14px 16px; }
+  .dormy-item {
+    font-size: 12px;
+    color: var(--mid);
+    padding: 3px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+  }
+  .dormy-item:last-child { border-bottom: none; }
+  .dormy-item strong { color: var(--ink); font-weight: 500; }
+
+  /* ── HIGHLIGHT ── */
+  .highlight {
+    background: var(--amber-bg);
+    border-left: 3px solid var(--amber);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #5A3808;
+    line-height: 1.75;
+  }
+  .highlight strong { color: #3A2004; }
+
+  .teal-box {
+    background: var(--teal-lt);
+    border-left: 3px solid var(--teal);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    margin: 14px 0;
+    font-size: 13px;
+    color: var(--teal-dk);
+    line-height: 1.75;
+  }
+  .teal-box strong { color: #0A3D2E; }
+
+  /* ── LOGIC LIST ── */
+  .logic-list { display: flex; flex-direction: column; gap: 12px; margin: 16px 0; }
+  .logic-item { display: flex; gap: 14px; align-items: flex-start; }
+  .logic-num {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--ink);
+    color: #F0EDE6;
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .logic-num.t { background: var(--teal); }
+  .logic-content-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .logic-content-body { font-size: 12px; color: var(--mid); line-height: 1.65; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--pale);
+    text-align: center;
+    padding: 24px;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    margin-top: 0;
+  }
+
+  /* ── DIVIDER ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+  /* ── PRINT ── */
+  @media print {
+    header { background: #141210 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .conclusion { background: #2A2520 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .dormy-head.dark { background: #141210 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <p class="header-label">7garden 社内共有資料 — 2026.04</p>
+  <h1 class="header-title">
+    カニバリ論点まとめ<br>
+    <em>今泉 × 大名、そして天神エリア戦略</em>
+  </h1>
+  <p class="header-sub">
+    今泉ホテルの投資家・オーナーから「他の7garden物件と食い合わないか」という懸念が提示された。<br>
+    この資料は、その論点を構造的に整理した社内向けサマリーです。
+  </p>
+  <div class="header-meta">
+    <span class="meta-chip">本件：今泉ホテル 63室・大浴場+サウナ</span>
+    <span class="meta-chip">比較対象：大名ホテル 111室・プール+大浴場</span>
+    <span class="meta-chip">参照事例：ドーミーイン博多2棟</span>
+  </div>
+</header>
+
+<!-- 結論 -->
+<div class="conclusion">
+  <div class="conclusion-inner">
+    <p class="conclusion-label">結論</p>
+    <p class="conclusion-text">
+      カニバリは<strong>限定的かつ管理可能</strong>。むしろ7gardenが天神エリアの「大浴場スパホテル市場」を<strong>2棟174室で先取り独占する戦略</strong>として捉えるべき。ドーミーインが祇園で308室2棟を共存させているのと同じ構造で、<strong>エリアブランド制圧</strong>が目標。運営者が7garden一社であるため、相互送客・価格調整・ブランド管理がすべて自在。
+    </p>
+  </div>
+</div>
+
+<div style="background: var(--white); padding: 0;">
+<div class="container">
+
+<!-- 1. ポートフォリオ全体像 -->
+<div class="section">
+  <p class="section-num">01 — ポートフォリオ全体像</p>
+  <h2 class="section-title">7garden 福岡6物件の立地と重複度</h2>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>物件</th>
+          <th>規模</th>
+          <th>主要施設</th>
+          <th>エリア文脈</th>
+          <th>開業予定</th>
+          <th>今泉との重複</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>今泉（本件）</strong></td>
+          <td>63室・8F</td>
+          <td>大浴場・サウナ・8Fラウンジ</td>
+          <td>カフェ・飲食街</td>
+          <td>2028年夏</td>
+          <td><span class="badge b-gray">基準</span></td>
+        </tr>
+        <tr>
+          <td>住吉</td>
+          <td>4室</td>
+          <td>80㎡×4室</td>
+          <td>博多駅側</td>
+          <td>2026年夏〜</td>
+          <td><span class="badge b-teal">低</span></td>
+        </tr>
+        <tr>
+          <td>祇園町</td>
+          <td>24室</td>
+          <td>最上階プール・1Fカフェ</td>
+          <td>博多・キャナル側</td>
+          <td>2026〜2027年</td>
+          <td><span class="badge b-amber">中</span></td>
+        </tr>
+        <tr>
+          <td>春吉①②</td>
+          <td>13室・15室</td>
+          <td>スタンダード</td>
+          <td>博多駅側</td>
+          <td>2026年〜</td>
+          <td><span class="badge b-amber">中</span></td>
+        </tr>
+        <tr>
+          <td><strong>大名</strong></td>
+          <td>111室・10F</td>
+          <td>1Fプール+大浴場・2Fラウンジ</td>
+          <td>天神・ショッピング</td>
+          <td>2028年夏頃</td>
+          <td><span class="badge b-red">要注意</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="highlight">
+    <strong>最大の論点は今泉×大名。</strong> 両者ともに大浴場・ラウンジ付き、コンパクト客室主力、2028年夏に同期開業という組み合わせが最もカニバリしやすい。ただし「だから問題」ではなく「だから戦略的に設計する」という話。
+  </div>
+</div>
+
+<!-- 2. 図面から読む実態 -->
+<div class="section">
+  <p class="section-num">02 — 図面から読む実態</p>
+  <h2 class="section-title">両物件の客室構成を比較する</h2>
+
+  <div class="dormy-row">
+    <div class="dormy-card">
+      <div class="dormy-head dark">今泉ホテル（本件）— 63室・8F</div>
+      <div class="dormy-body">
+        <div class="dormy-item"><span>Aタイプ 18.2㎡</span><strong>18室</strong></div>
+        <div class="dormy-item"><span>B/Cタイプ 19.2〜19.9㎡</span><strong>24室</strong></div>
+        <div class="dormy-item"><span>D〜Fタイプ 36〜39㎡</span><strong>21室</strong></div>
+        <div class="dormy-item"><span>コンパクト計（18〜19㎡）</span><strong style="color:var(--red);">42室 67%</strong></div>
+        <div class="dormy-item"><span>1F</span><strong>大浴場・サウナ（男女）</strong></div>
+        <div class="dormy-item"><span>8F</span><strong>ラウンジ・受付</strong></div>
+      </div>
+    </div>
+    <div class="dormy-card">
+      <div class="dormy-head dark">大名ホテル — 111室・10F</div>
+      <div class="dormy-body">
+        <div class="dormy-item"><span>客室A 16.82㎡</span><strong>98室</strong></div>
+        <div class="dormy-item"><span>客室B 33.64㎡</span><strong>12室</strong></div>
+        <div class="dormy-item"><span>客室C 62.35㎡（スイート）</span><strong>1室</strong></div>
+        <div class="dormy-item"><span>コンパクト計（16〜17㎡）</span><strong style="color:var(--red);">98室 88%</strong></div>
+        <div class="dormy-item"><span>1F</span><strong>プール・大浴場（男女）</strong></div>
+        <div class="dormy-item"><span>2F</span><strong>ラウンジ・フロント</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="teal-box">
+    <strong>差別化ポイント：</strong> 大名の1Fはプールがメインの「泳いで飲む」体験型。今泉は大浴場＋サウナ特化の「整う」体験型。施設の主役が異なるため、同じコンパクト客室でも選ばれる理由が変わる。また今泉はポートフォリオ内で唯一18〜19㎡台を持ち、価格帯の棲み分けが可能。
+  </div>
+</div>
+
+<!-- 3. ドーミーイン事例 -->
+<div class="section">
+  <p class="section-num">03 — ドーミーイン事例で証明する</p>
+  <h2 class="section-title">同一ブランド・450m・308室。それでも両棟高稼働。</h2>
+
+  <div class="dormy-row">
+    <div class="dormy-card">
+      <div class="dormy-head dark">ドーミーイン博多祇園</div>
+      <div class="dormy-body">
+        <div class="dormy-item"><span>客室数</span><strong>186室</strong></div>
+        <div class="dormy-item"><span>ブランド</span><strong>スタンダード</strong></div>
+        <div class="dormy-item"><span>温泉</span><strong>地下900m自家源泉</strong></div>
+        <div class="dormy-item"><span>アクセス</span><strong>地下鉄祇園駅1分</strong></div>
+        <div class="dormy-item"><span>朝食</span><strong>うまか丼・水炊き</strong></div>
+      </div>
+    </div>
+    <div class="dormy-card">
+      <div class="dormy-head lite">ドーミーインPREMIUM博多キャナルシティ前</div>
+      <div class="dormy-body">
+        <div class="dormy-item"><span>客室数</span><strong>122室</strong></div>
+        <div class="dormy-item"><span>ブランド</span><strong>PREMIUM（上位ライン）</strong></div>
+        <div class="dormy-item"><span>温泉</span><strong>祇園から運搬・浴場広め</strong></div>
+        <div class="dormy-item"><span>アクセス</span><strong>キャナルシティ隣接</strong></div>
+        <div class="dormy-item"><span>朝食</span><strong>もつ鍋・ローストビーフ</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:12px; color:var(--mid); margin-top:8px; margin-bottom:16px;">両棟とも<strong style="color:var(--ink);">株式会社共立メンテナンスの完全直営</strong>。建物オーナーが誰であれ、運営者が同一なので価格調整・相互送客・稼働配分が自在。7gardenと同じ構造。</p>
+
+  <div class="highlight">
+    <strong>7gardenへの示唆：</strong> 今泉63室＋大名111室＝<strong>174室</strong>は、ドーミーイン博多2棟計<strong>308室</strong>より少ない。「業界のトップランナーが証明した数字の半分以下のリスク」という言い方ができる。しかも公式サイトで「近隣にドーミーイン博多祇園がございます」と堂々と相互案内している。カニバリを恐れず、エリアシェア最大化を狙う戦略。
+  </div>
+</div>
+
+<!-- 4. 天神エリアの需給 -->
+<div class="section">
+  <p class="section-num">04 — 天神エリアの需給構造</p>
+  <h2 class="section-title">「祇園×ドーミーイン」の天神版をつくる。</h2>
+
+  <div class="stat-row">
+    <div class="stat">
+      <div class="stat-val amber">80.4%</div>
+      <div class="stat-label">2024年 福岡市ホテル稼働率<br>（2019年比で上回る）</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val teal">2,309万人</div>
+      <div class="stat-label">2023年 福岡市年間観光客数<br>（過去最高）</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val amber">+37%</div>
+      <div class="stat-label">2024年 外国人宿泊者数<br>前年比（2019年比+62%）</div>
+    </div>
+    <div class="stat">
+      <div class="stat-val teal">154室</div>
+      <div class="stat-label">CANDEO HOTELS 福岡天神<br>（天神で唯一のスカイスパ）</div>
+    </div>
+  </div>
+
+  <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>エリア</th>
+          <th>大浴場+サウナ付きホテル</th>
+          <th>合計室数</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>祇園エリア</strong>（博多駅側）</td>
+          <td>ドーミーイン博多祇園<br>ドーミーインPREMIUM博多キャナルシティ前<br>三井ガーデンホテル福岡祇園</td>
+          <td><strong>308室以上</strong></td>
+          <td>供給充実</td>
+        </tr>
+        <tr>
+          <td><strong>天神・今泉・大名</strong>（天神西側）</td>
+          <td>CANDEO HOTELS 福岡天神（スカイスパ）<br><span style="color:var(--mid);">その他：本格大浴場+サウナなし</span></td>
+          <td><strong>154室</strong></td>
+          <td><span class="badge b-red">構造的空白</span></td>
+        </tr>
+        <tr style="background:var(--teal-lt);">
+          <td><strong>天神エリア（2028年以降）</strong></td>
+          <td>CANDEO 154室<br>＋<strong>7garden 今泉63室</strong><br>＋<strong>7garden 大名111室</strong></td>
+          <td><strong>328室</strong></td>
+          <td><span class="badge b-teal">7gardenが市場形成</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="teal-box">
+    <strong>CANDEOが証明済み：</strong> 天神エリアで大浴場付きホテルの需要は確実に存在する。CANDEOは高稼働を維持している。7gardenはその「空白」に入るのではなく、CANDEOが作った需要をさらに拡大・深化させる立場。
+  </div>
+</div>
+
+<!-- 5. 投資家向け回答骨子 -->
+<div class="section">
+  <p class="section-num">05 — 投資家・オーナーへの回答骨子</p>
+  <h2 class="section-title">4つの論点でカニバリ懸念を解消する。</h2>
+
+  <div class="logic-list">
+    <div class="logic-item">
+      <div class="logic-num t">1</div>
+      <div>
+        <div class="logic-content-title">エリアが異なる = 顧客動線が重ならない</div>
+        <div class="logic-content-body">今泉・大名は天神西側の「カフェ・飲食・カルチャー」動線。住吉・祇園・春吉は博多駅側の「ビジネス・歴史」動線。福岡の宿泊客はエリアファーストで選ぶ。天神に来た人が祇園に泊まりに行くことは少ない。</div>
+      </div>
+    </div>
+    <div class="logic-item">
+      <div class="logic-num t">2</div>
+      <div>
+        <div class="logic-content-title">施設の主役が違う = 選ぶ理由が違う</div>
+        <div class="logic-content-body">大名はプール体験、今泉はサウナ深度。同じ大浴場でも「泳ぎたい人」と「整いたい人」は別人。今泉をサウナに全振りすることで、大名と明確な棲み分けができる。</div>
+      </div>
+    </div>
+    <div class="logic-item">
+      <div class="logic-num t">3</div>
+      <div>
+        <div class="logic-content-title">開業タイミングを分散 = リスクをコントロール</div>
+        <div class="logic-content-body">2026〜2027年に住吉・祇園・春吉が先行開業しブランド認知を醸成。2028年に今泉・大名が参入。さらに大名を先行させ今泉を数ヶ月後にするなど、タイミング調整で同時競合を回避できる。</div>
+      </div>
+    </div>
+    <div class="logic-item">
+      <div class="logic-num t">4</div>
+      <div>
+        <div class="logic-content-title">7garden一社運営 = 相互送客が仕組みになる</div>
+        <div class="logic-content-body">ドーミーインが共立メンテナンス直営2棟で実現しているように、運営者が同一なら「今泉満室→大名へ誘導」が自在。建物オーナーが別人格でも、7gardenブランドの傘の下で一元管理できる。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top:20px;">
+    <strong>投資家への一言：</strong>「ドーミーインは博多に450m離れた2棟・308室を同一ブランドで展開し、両棟とも高稼働を維持しています。彼らがやっているのはカニバリ回避ではなく、エリアブランド制圧です。7gardenも同じ考え方で、天神エリアを『大浴場スパホテル＝7garden』という状態にすることが目標。今泉と大名は競合ではなく、同じエリアを深く耕すネットワーク。」
+  </div>
+</div>
+
+<!-- 6. ブランド戦略 -->
+<div class="section">
+  <p class="section-num">06 — ブランド設計の方向性</p>
+  <h2 class="section-title">同じ傘の下で、色を分ける。</h2>
+
+  <div class="point-grid">
+    <div class="point-card teal">
+      <div class="point-card-title">ブランド名：同じ「7garden」で統一</div>
+      <p class="point-card-body">ブランドを分けると先行物件のブランド認知の恩恵が受けられない。7gardenの傘の下でサブ名称をつける構造が最善。「7garden 大名」「7garden 今泉」のように。</p>
+    </div>
+    <div class="point-card teal">
+      <div class="point-card-title">ターゲット属性は重ねて、選ぶ理由を変える</div>
+      <p class="point-card-body">同じ都市型ミドル層・インバウンドを狙いながら、大名は「スケール・プール」今泉は「サウナ・街への没入感」で棲み分け。ドーミーインのスタンダード/PREMIUM方式と同じ。</p>
+    </div>
+    <div class="point-card amber">
+      <div class="point-card-title">両オーナーの合意が必要かつチャンス</div>
+      <p class="point-card-body">「7gardenブランドを共有し相互送客する」合意を取ることで、両オーナーを同じテーブルに着かせられる。カニバリ懸念を解消しながら、7gardenの運営権限を強化する交渉でもある。</p>
+    </div>
+    <div class="point-card amber">
+      <div class="point-card-title">今泉の価格帯は大名より「高め」に設定</div>
+      <p class="point-card-body">63室という小規模を活かし、稼働率を絞りながらADRを高く維持。大名111室は稼働率重視の薄利。同一ブランド内でも価格帯で上下を設計することでポジションが分離する。</p>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+</div><!-- /white bg -->
+
+<footer>
+  7garden 社内資料 — カニバリ論点まとめ / 2026.04 &nbsp;|&nbsp; 作成：さとまる × Claude
+</footer>
+
+</body>
+</html>
