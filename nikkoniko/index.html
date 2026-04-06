@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ITALIA — 食の旅 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Serif+JP:wght@300;400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F8F3EC;--dark:#1C1714;--terra:#B85C38;--gold:#C4983A;--stone:#9A8A7A;--light:#EDE6DC;--muted:#7A6E66;}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--dark);font-family:'Noto Serif JP',serif;font-weight:300;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;background:rgba(28,23,20,0.95);backdrop-filter:blur(12px);}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:300;color:var(--cream);letter-spacing:3px;text-decoration:none;}
+.nav-logo em{color:var(--gold);font-style:italic;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover{color:var(--gold);}
+.hero{height:100vh;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 60%,rgba(184,92,56,0.18) 0%,transparent 65%);}
+.hero > *{position:relative;}
+.hero-label{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:2rem;opacity:0;animation:rise 1s 0.3s forwards;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(80px,13vw,160px);font-weight:300;color:var(--cream);line-height:0.88;letter-spacing:-3px;opacity:0;animation:rise 1s 0.5s forwards;}
+.hero-title em{color:var(--terra);font-style:italic;}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:clamp(16px,2.2vw,22px);font-style:italic;color:rgba(248,243,236,0.55);margin-top:1.8rem;opacity:0;animation:rise 1s 0.8s forwards;}
+.hero-divider{width:50px;height:1px;background:var(--gold);margin:2rem auto;opacity:0;animation:rise 1s 1s forwards;}
+.hero-caption{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);opacity:0;animation:rise 1s 1.2s forwards;}
+.scroll-down{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:rise 1s 1.5s forwards;}
+.scroll-down span{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;}
+.scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--stone),transparent);animation:pulse-line 2s infinite;}
+.intro-band{background:var(--terra);padding:1.2rem 3rem;display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap;}
+.intro-band span{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(248,243,236,0.85);}
+.intro-band .dot{color:rgba(248,243,236,0.4);}
+.city-section{padding:6rem 0;}
+.city-section:nth-child(odd){background:var(--cream);}
+.city-section:nth-child(even){background:var(--light);}
+.city-header{max-width:1200px;margin:0 auto 4rem;padding:0 3rem;display:grid;grid-template-columns:auto 1fr;gap:4rem;align-items:end;}
+.city-number{font-family:'Cormorant Garamond',serif;font-size:120px;font-weight:300;color:rgba(28,23,20,0.06);line-height:1;letter-spacing:-5px;}
+.city-tag{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--terra);margin-bottom:0.8rem;}
+.city-name{font-family:'Cormorant Garamond',serif;font-size:clamp(42px,6vw,72px);font-weight:300;line-height:1;margin-bottom:0.8rem;}
+.city-name em{font-style:italic;color:var(--stone);}
+.city-hotel{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;display:flex;align-items:center;gap:8px;}
+.city-hotel::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold);flex-shrink:0;}
+.city-dates{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-top:0.3rem;margin-left:28px;}
+.restaurant-grid{max-width:1200px;margin:0 auto;padding:0 3rem;display:grid;grid-template-columns:repeat(2,1fr);gap:3px;}
+.r-card{background:#fff;position:relative;transition:transform 0.35s,box-shadow 0.35s;}
+.r-card:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(28,23,20,0.12);z-index:2;}
+.r-photos{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:180px 180px;gap:2px;}
+.r-photo{overflow:hidden;background:#e8e0d5;position:relative;}
+.r-photo.main{grid-row:span 2;}
+.r-photo img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;display:block;}
+.r-card:hover .r-photo img{transform:scale(1.04);}
+.r-photo-label{position:absolute;bottom:6px;left:8px;font-family:'Montserrat',sans-serif;font-size:7px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.85);background:rgba(0,0,0,0.4);padding:2px 6px;border-radius:1px;}
+.r-dishes{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:2px;}
+.r-dish{overflow:hidden;height:110px;background:#e8e0d5;position:relative;}
+.r-dish img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;display:block;}
+.r-card:hover .r-dish img{transform:scale(1.06);}
+.r-dish-label{position:absolute;bottom:5px;left:6px;font-family:'Montserrat',sans-serif;font-size:7px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.85);background:rgba(0,0,0,0.4);padding:2px 5px;border-radius:1px;}
+.r-body{padding:1.8rem;}
+.r-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:1rem;}
+.r-badges{display:flex;gap:5px;margin-bottom:8px;flex-wrap:wrap;}
+.badge{font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border-radius:2px;}
+.badge-lunch{background:rgba(196,152,58,0.12);color:var(--gold);border:1px solid rgba(196,152,58,0.3);}
+.badge-dinner{background:rgba(184,92,56,0.10);color:var(--terra);border:1px solid rgba(184,92,56,0.25);}
+.r-stats{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;}
+.stat-item{display:flex;align-items:center;gap:4px;font-family:'Montserrat',sans-serif;font-size:10px;background:var(--light);padding:4px 8px;border-radius:3px;}
+.stat-icon{font-size:10px;}
+.stat-val{font-weight:500;color:var(--dark);}
+.stat-label{color:var(--stone);font-size:8px;}
+.r-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:400;line-height:1.1;margin-bottom:0.3rem;}
+.r-type{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-bottom:0.8rem;}
+.r-divider{width:28px;height:1px;background:var(--gold);margin-bottom:0.8rem;}
+.r-desc{font-size:12.5px;line-height:1.85;color:var(--muted);margin-bottom:1rem;}
+.r-picks{list-style:none;margin-bottom:1.2rem;}
+.r-picks li{font-family:'Cormorant Garamond',serif;font-size:14px;font-style:italic;color:var(--dark);padding:4px 0;border-bottom:1px solid rgba(154,138,122,0.15);display:flex;align-items:flex-start;gap:8px;}
+.r-picks li::before{content:'—';color:var(--terra);font-style:normal;font-size:11px;flex-shrink:0;margin-top:2px;}
+.r-links{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1rem;}
+.r-link{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:6px 10px;border:1px solid;border-radius:2px;text-decoration:none;transition:all 0.2s;display:flex;align-items:center;gap:4px;white-space:nowrap;}
+.r-link-ig{color:var(--terra);border-color:rgba(184,92,56,0.3);}
+.r-link-ig:hover{background:var(--terra);color:#fff;}
+.r-link-map{color:#1a56db;border-color:rgba(26,86,219,0.3);}
+.r-link-map:hover{background:#1a56db;color:#fff;}
+.r-link-web{color:var(--dark);border-color:rgba(28,23,20,0.2);}
+.r-link-web:hover{background:var(--dark);color:#fff;}
+.r-address{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.5px;color:var(--stone);padding-top:0.8rem;border-top:1px solid rgba(154,138,122,0.2);line-height:1.5;}
+footer{background:var(--dark);padding:5rem 3rem;text-align:center;}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;color:var(--cream);letter-spacing:4px;margin-bottom:1.5rem;}
+.footer-logo em{color:var(--gold);font-style:italic;}
+footer p{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);line-height:2.4;}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse-line{0%,100%{opacity:0.4}50%{opacity:1}}
+@media(max-width:900px){
+nav{padding:1rem 1.5rem;}
+.nav-links{gap:1rem;}
+.city-section{padding:4rem 0;}
+.city-header{grid-template-columns:1fr;gap:0;padding:0 1.5rem;}
+.city-number{display:none;}
+.restaurant-grid{grid-template-columns:1fr;padding:0 1.5rem;}
+.r-top{flex-direction:column;}
+.r-stats{align-items:flex-start;flex-direction:row;flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">ITAL<em>I</em>A 食の旅</a>
+  <ul class="nav-links">
+    <li><a href="#roma">Roma</a></li>
+    <li><a href="#firenze">Firenze</a></li>
+    <li><a href="#venezia">Venezia</a></li>
+    <li><a href="#milano">Milano</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-label">2026年3月〜4月 イタリア家族旅行 食ガイド</div>
+  <h1 class="hero-title">ITAL<em>I</em>A</h1>
+  <p class="hero-sub">食で巡る、4つの都市</p>
+  <div class="hero-divider"></div>
+  <p class="hero-caption">SNSで話題の人気店 ランチ &amp; ディナーガイド — 各ホテルから800m以内</p>
+  <div class="scroll-down"><span>Scroll</span><div class="scroll-line"></div></div>
+</section>
+
+<div class="intro-band">
+  <span>Roma 3/24〜3/27</span><span class="dot">◆</span>
+  <span>Firenze 3/27〜3/29</span><span class="dot">◆</span>
+  <span>Venezia 3/29〜4/1</span><span class="dot">◆</span>
+  <span>Milano 4/2〜4/3</span>
+</div>
+
+<section class="city-section" id="roma">
+  <div class="city-header">
+    <div class="city-number">01</div>
+    <div class="city-info">
+      <div class="city-tag">City 01 — 3月24日〜27日</div>
+      <h2 class="city-name">Roma<em> ローマ</em></h2>
+      <div class="city-hotel">master Trevi（トレビの泉 徒歩2分）</div>
+      <div class="city-dates">掲載エリア：トレビの泉 半径800m</div>
+    </div>
+  </div>
+  <div class="restaurant-grid">
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="店内" loading="lazy"><div class="r-photo-label">店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&q=80" alt="名物ピッツァ" loading="lazy"><div class="r-photo-label">名物ピッツァ</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80" alt="Margherita" loading="lazy"><div class="r-dish-label">Margherita</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400&q=80" alt="Pizza da Luigi" loading="lazy"><div class="r-dish-label">Pizza da Luigi</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&q=80" alt="薪窯生地" loading="lazy"><div class="r-dish-label">薪窯生地</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Piccolo Buco</div>
+            <div class="r-type">Pizzeria · 伝統ナポリ式ピッツァ</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.5</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">52K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">1916年創業の老舗。地元ローマ人が「トレビ周辺で唯一本物のピッツァ」と絶賛し、TripAdvisor殿堂入りも果たした名店。ピエモンテ産高品質小麦粉と100年以上続く薪窯が生み出す生地が圧倒的。Instagramフォロワー52K。</p>
+        <ul class="r-picks"><li>Margherita（本格マルゲリータ）</li><li>Pizza 'da Luigi'（揚げピッツァ×トマト&ストラチャテッラ）</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/piccolobucoroma/" target="_blank" class="r-link r-link-ig">📸 Instagram @piccolobucoroma</a><a href="https://maps.google.com/?q=Piccolo+Buco+Via+Lavatore+91+Roma" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.piccolobuco.com" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Via del Lavatore 91, Roma（ホテルから徒歩3分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=400&q=80" alt="ヴィンテージ食器の店内" loading="lazy"><div class="r-photo-label">ヴィンテージ食器の店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80" alt="カルボナーラ" loading="lazy"><div class="r-photo-label">カルボナーラ</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&q=80" alt="手打ちパスタ" loading="lazy"><div class="r-dish-label">手打ちパスタ</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80" alt="Tiramisu" loading="lazy"><div class="r-dish-label">Tiramisu</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="前菜盛り合わせ" loading="lazy"><div class="r-dish-label">前菜盛り合わせ</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Agrodolce</div>
+            <div class="r-type">Bistrot · モダンローマ料理</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.6</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">18K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">トレビから徒歩1分のスローフード哲学ビストロ。ヴィンテージ食器とゼロキロ食材の演出がSNSで注目。TheFork 9.2点・Google 4.6点。複数フードライターが絶賛する自家製パスタと「注文ごとに作る」ティラミスが名物。</p>
+        <ul class="r-picks"><li>Carbonara con pecorino e guanciale croccante</li><li>Tiramisu fatto al momento（注文ごと手作りティラミス）</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/agrodolce_roma/" target="_blank" class="r-link r-link-ig">📸 Instagram @agrodolce_roma</a><a href="https://maps.google.com/?q=Agrodolce+Roma+Via+dei+Crociferi+25" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.agrodolceroma.it" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Via dei Crociferi 25, Roma（ホテルから徒歩1分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="外観（旧銀行建築）" loading="lazy"><div class="r-photo-label">外観（旧銀行建築）</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&q=80" alt="豪華な店内" loading="lazy"><div class="r-photo-label">豪華な店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=400&q=80" alt="牡蠣バー" loading="lazy"><div class="r-photo-label">牡蠣バー</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=400&q=80" alt="Best Carbonara" loading="lazy"><div class="r-dish-label">Best Carbonara</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80" alt="Ostriche 3種" loading="lazy"><div class="r-dish-label">Ostriche 3種</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80" alt="Crème brûlée" loading="lazy"><div class="r-dish-label">Crème brûlée</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Baccano</div>
+            <div class="r-type">Bistrot · 地中海料理＋牡蠣バー</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.1</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">48K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">旧銀行を改装した壮大な空間がSNSで話題沸騰、Instagramフォロワー48K。2024年ガンベロ・ロッソ「ベストカルボナーラ」受賞。著名フードライターKatie Parlaも絶賛。牡蠣バー併設、朝8:30〜深夜まで通し営業。</p>
+        <ul class="r-picks"><li>Carbonara（2024年ガンベロ・ロッソ最優秀賞）</li><li>Ostriche（仏・伊・愛産3種類）</li><li>Crème brûlée</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/baccanoroma/" target="_blank" class="r-link r-link-ig">📸 Instagram @baccanoroma</a><a href="https://maps.google.com/?q=Baccano+Via+delle+Muratte+23+Roma" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.baccanoroma.com" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Via delle Muratte 23, Roma（ホテルから徒歩3分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="家庭的な店内" loading="lazy"><div class="r-photo-label">家庭的な店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="伝統ローマ料理" loading="lazy"><div class="r-photo-label">伝統ローマ料理</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&q=80" alt="Cacio e Pepe" loading="lazy"><div class="r-dish-label">Cacio e Pepe</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80" alt="Carciofi" loading="lazy"><div class="r-dish-label">Carciofi</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?w=400&q=80" alt="Amatriciana" loading="lazy"><div class="r-dish-label">Amatriciana</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Il Piccolo Arancio</div>
+            <div class="r-type">Trattoria · 伝統ローマ料理（1989年創業）</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.4</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">15K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">ローマ在住ライターが「観光エリアで本物を食べられる稀有な一軒」と紹介、Lonely Planet Top Choice選出。Instagram 15K。ローマ4大パスタ全てを良心的価格で、子連れファミリーにも大人気。</p>
+        <ul class="r-picks"><li>Cacio e pepe（ローマ伝統の黒胡椒チーズパスタ）</li><li>Carciofi alla giudia（ユダヤ風揚げアーティチョーク）</li><li>Amatriciana</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/piccoloarancio/" target="_blank" class="r-link r-link-ig">📸 Instagram @piccoloarancio</a><a href="https://maps.google.com/?q=Il+Piccolo+Arancio+Vicolo+Scandenberg+112+Roma" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.piccoloarancio.it" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Vicolo Scandenberg 112, Roma（ホテルから徒歩4分）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="city-section" id="firenze">
+  <div class="city-header">
+    <div class="city-number">02</div>
+    <div class="city-info">
+      <div class="city-tag">City 02 — 3月27日〜29日</div>
+      <h2 class="city-name">Firenze<em> フィレンツェ</em></h2>
+      <div class="city-hotel">La Maison du Sage（サンタ・クローチェ広場前）</div>
+      <div class="city-dates">掲載エリア：サンタ・クローチェ〜ウフィツィ 800m</div>
+    </div>
+  </div>
+  <div class="restaurant-grid">
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="昔ながらの店内" loading="lazy"><div class="r-photo-label">昔ながらの店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="家庭料理" loading="lazy"><div class="r-photo-label">家庭料理</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3df1?w=400&q=80" alt="Pappa al Pomodoro" loading="lazy"><div class="r-dish-label">Pappa al Pomodoro</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Peposo" loading="lazy"><div class="r-dish-label">Peposo</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1544025162-d76538f9bf72?w=400&q=80" alt="Bistecca" loading="lazy"><div class="r-dish-label">Bistecca</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch Only</span></div>
+            <div class="r-name">Trattoria Sergio Gozzi</div>
+            <div class="r-type">Trattoria · フィレンツェ家庭料理（ランチ限定）</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.5</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜5K</span><span class="stat-label">地元口コミ中心</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">ランチのみ営業の伝説的な食堂。複数フードブログが「フィレンツェで最も本物らしい一軒」と称える。日替わりメニューは全て本物のフィレンツェ家庭料理。要予約・開店直後の来店を推奨。</p>
+        <ul class="r-picks"><li>Pappa al pomodoro（日替わり提供）</li><li>Peposo（黒胡椒×牛肉のトスカーナ煮込み）</li><li>Bistecca alla Fiorentina</li></ul>
+        <div class="r-links"><a href="https://maps.google.com/?q=Trattoria+Sergio+Gozzi+Piazza+San+Lorenzo+8r+Firenze" target="_blank" class="r-link r-link-map">🗺 Google Map</a></div>
+        <div class="r-address">📍 Piazza San Lorenzo 8r, Firenze（中央市場前・ホテルから徒歩15分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="格調ある店内" loading="lazy"><div class="r-photo-label">格調ある店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1544025162-d76538f9bf72?w=400&q=80" alt="Bistecca" loading="lazy"><div class="r-photo-label">Bistecca</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Bistecca Fiorentina" loading="lazy"><div class="r-dish-label">Bistecca Fiorentina</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="Tagliolini tartufo" loading="lazy"><div class="r-dish-label">Tagliolini tartufo</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3df1?w=400&q=80" alt="Pappa al Pomodoro" loading="lazy"><div class="r-dish-label">Pappa al Pomodoro</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Buca Mario</div>
+            <div class="r-type">Ristorante · トスカーナ伝統料理（1886年創業）</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.3</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜8K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">フィレンツェ最古格式レストランのひとつ、1886年創業。テーブルサイドでカットされる熟成キアニーナ牛のビステッカが複数フードライターに「完璧な炭火と深みある風味」と称される。特別な夜に。</p>
+        <ul class="r-picks"><li>Bistecca alla Fiorentina（テーブルカット・必ずレアで）</li><li>Tagliolini al tartufo nero</li><li>Pappa al pomodoro</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/bucamariofirenze/" target="_blank" class="r-link r-link-ig">📸 Instagram @bucamariofirenze</a><a href="https://maps.google.com/?q=Buca+Mario+Piazza+Ottaviani+16+Firenze" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.bucamario.com" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Piazza Ottaviani 16, Firenze（ホテルから徒歩8分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="飾り気のない店内" loading="lazy"><div class="r-photo-label">飾り気のない店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3df1?w=400&q=80" alt="Ribollita" loading="lazy"><div class="r-photo-label">Ribollita</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1544025162-d76538f9bf72?w=400&q=80" alt="Bistecca" loading="lazy"><div class="r-dish-label">Bistecca</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3df1?w=400&q=80" alt="Ribollita" loading="lazy"><div class="r-dish-label">Ribollita</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&q=80" alt="Pappa al Pomodoro" loading="lazy"><div class="r-dish-label">Pappa al Pomodoro</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">I' Brindellone</div>
+            <div class="r-type">Osteria · フィレンツェ地元料理</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.4</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜3K</span><span class="stat-label">地元民御用達</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">地元民が通うオルトラルノのオステリア。「トレンドに左右されない本物」とフードライター多数が称える。ビステッカのコストパフォーマンスはフィレンツェ随一と評価。子連れファミリーにも◎。</p>
+        <ul class="r-picks"><li>Bistecca alla Fiorentina（コスパ最高）</li><li>Ribollita（トスカーナのパン&野菜スープ）</li><li>Pappa al pomodoro</li></ul>
+        <div class="r-links"><a href="https://maps.google.com/?q=I+Brindellone+Piazza+Piattellina+10r+Firenze" target="_blank" class="r-link r-link-map">🗺 Google Map</a></div>
+        <div class="r-address">📍 Piazza Piattellina 10r, Firenze（オルトラルノ地区）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt="外観（宮殿地下）" loading="lazy"><div class="r-photo-label">外観（宮殿地下）</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="地下ワインセラー" loading="lazy"><div class="r-photo-label">地下ワインセラー</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1544025162-d76538f9bf72?w=400&q=80" alt="熟成ビステッカ" loading="lazy"><div class="r-photo-label">熟成ビステッカ</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Bistecca 1880" loading="lazy"><div class="r-dish-label">Bistecca 1880</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3df1?w=400&q=80" alt="Ribollita" loading="lazy"><div class="r-dish-label">Ribollita</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80" alt="Chianti Classico" loading="lazy"><div class="r-dish-label">Chianti Classico</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Buca Lapi</div>
+            <div class="r-type">Ristorante · トスカーナ伝統グリル（1880年創業）</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.4</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜10K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">1880年創業、フィレンツェ最古のレストラン。アンティノーリ宮殿の地下ワインセラーを改装した唯一無二の空間。地元食通が「完璧なチャーと深みのある風味」と絶賛する熟成キアニーナ牛が看板。</p>
+        <ul class="r-picks"><li>Bistecca alla Fiorentina（熟成キアニーナ牛）</li><li>Ribollita</li><li>Chianti Classico（ペアリング必須）</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/bucalapiristorante/" target="_blank" class="r-link r-link-ig">📸 Instagram @bucalapiristorante</a><a href="https://maps.google.com/?q=Buca+Lapi+Via+del+Trebbio+1r+Firenze" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.bucalapi.com" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Via del Trebbio 1r, Firenze（ホテルから徒歩12分）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="city-section" id="venezia">
+  <div class="city-header">
+    <div class="city-number">03</div>
+    <div class="city-info">
+      <div class="city-tag">City 03 — 3月29日〜4月1日</div>
+      <h2 class="city-name">Venezia<em> ヴェネツィア</em></h2>
+      <div class="city-hotel">Ca' di Dio（カステッロ地区・サン・マルコ徒歩10分）</div>
+      <div class="city-dates">掲載エリア：カステッロ〜サン・マルコ 800m</div>
+    </div>
+  </div>
+  <div class="restaurant-grid">
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80" alt="外観（カステッロ路地）" loading="lazy"><div class="r-photo-label">外観（カステッロ路地）</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="22席の小空間" loading="lazy"><div class="r-photo-label">22席の小空間</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80" alt="日替わり魚介" loading="lazy"><div class="r-photo-label">日替わり魚介</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1559181567-c3190bbb8b8e?w=400&q=80" alt="Spaghetti vongole" loading="lazy"><div class="r-dish-label">Spaghetti vongole</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80" alt="Granseola" loading="lazy"><div class="r-dish-label">Granseola</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80" alt="Gnocchetti astice" loading="lazy"><div class="r-dish-label">Gnocchetti astice</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Osteria Alle Testiere</div>
+            <div class="r-type">Osteria · ヴェネツィア海鮮（ミシュラン掲載）</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.7</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜6K</span><span class="stat-label">ミシュラン掲載</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">わずか22席、ミシュランガイド掲載。Smith Hotels・Time Outが「ヴェネツィアで最も知っておくべき一軒」と推薦。その日のリアルト市場で仕入れた魚のみ使う日替わりメニュー。必ず2ヶ月前予約を。</p>
+        <ul class="r-picks"><li>Gnocchetti di patate con astice（ニョッキ×オマール）</li><li>Granseola al vapore（蒸し蟹）</li><li>Spaghetti alle vongole</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/alle_testiere/" target="_blank" class="r-link r-link-ig">📸 Instagram @alle_testiere</a><a href="https://maps.google.com/?q=Osteria+alle+Testiere+Calle+del+Mondo+Novo+5801+Venice" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="http://www.osterialletestiere.it" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Calle del Mondo Novo 5801, Venezia（ホテルから徒歩12分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&q=80" alt="外観（Hotel Danieli）" loading="lazy"><div class="r-photo-label">外観（Hotel Danieli）</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=400&q=80" alt="絶景ルーフトップ" loading="lazy"><div class="r-photo-label">絶景ルーフトップ</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="豪華な室内" loading="lazy"><div class="r-photo-label">豪華な室内</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80" alt="Gamberi e caviale" loading="lazy"><div class="r-dish-label">Gamberi e caviale</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80" alt="Baccalà mantecato" loading="lazy"><div class="r-dish-label">Baccalà mantecato</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1555126634-323283e090fa?w=400&q=80" alt="Polpo e burrata" loading="lazy"><div class="r-dish-label">Polpo e burrata</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Terrazza Danieli</div>
+            <div class="r-type">Fine Dining · ミシュラン掲載 / ルーフトップ</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.3</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">34K</span><span class="stat-label">Hotel Danieli公式</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">ミシュランガイド掲載。「インスタで最強映えするヴェネツィアのレストラン」とRosetta Stoneが絶賛。ホテル・ダニエリ最上階から望む大運河×ドゥカーレ宮殿のビューは唯一無二。旅の記念に。</p>
+        <ul class="r-picks"><li>Baccalà mantecato（ヴェネツィア伝統タラ料理）</li><li>Gamberi rossi con caviale（赤海老×キャビア）</li><li>Polpo con melanzane e burrata</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/hoteldanieli/" target="_blank" class="r-link r-link-ig">📸 Instagram @hoteldanieli</a><a href="https://maps.google.com/?q=Terrazza+Danieli+Riva+degli+Schiavoni+4196+Venice" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.hoteldanieli.com/en/dining" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Riva degli Schiavoni 4196, Venezia（ホテルから徒歩5分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80" alt="圧巻のワインリスト" loading="lazy"><div class="r-photo-label">圧巻のワインリスト</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559181567-c3190bbb8b8e?w=400&q=80" alt="シーフードパスタ" loading="lazy"><div class="r-photo-label">シーフードパスタ</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&q=80" alt="Tagliatelle agnello" loading="lazy"><div class="r-dish-label">Tagliatelle agnello</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80" alt="厳選ワイン" loading="lazy"><div class="r-dish-label">厳選ワイン</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1571877227200-a0d98ea607e9?w=400&q=80" alt="Mousse cioccolato" loading="lazy"><div class="r-dish-label">Mousse cioccolato</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Osteria Enoteca San Marco</div>
+            <div class="r-type">Enoteca · ヴェネツィア郷土料理</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.5</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜4K</span><span class="stat-label">ワイン通の聖地</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">The Tour Guyが推薦するワインクレートに囲まれた名物エノテカ。TripAdvisorで複数レビュアーが「人生最高のワインリスト」と絶賛。375mlボトルも揃い少人数にも◎。TheFork常連。</p>
+        <ul class="r-picks"><li>Tagliatelle al ragù d'agnello（ラムソース）</li><li>Spaghetti con gamberi（タイガー海老）</li><li>Mousse al cioccolato con gelato alla vaniglia</li></ul>
+        <div class="r-links"><a href="https://maps.google.com/?q=Osteria+Enoteca+San+Marco+Frezzeria+1610+Venice" target="_blank" class="r-link r-link-map">🗺 Google Map</a></div>
+        <div class="r-address">📍 Frezzeria 1610, San Marco, Venezia（サン・マルコから徒歩4分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1567360425618-1594206637d2?w=600&q=80" alt="外観（1448年創業）" loading="lazy"><div class="r-photo-label">外観（1448年創業）</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="バーカロの雰囲気" loading="lazy"><div class="r-photo-label">バーカロの雰囲気</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559181567-c3190bbb8b8e?w=400&q=80" alt="チケッティ" loading="lazy"><div class="r-photo-label">チケッティ</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80" alt="Baccalà mantecato" loading="lazy"><div class="r-dish-label">Baccalà mantecato</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=400&q=80" alt="Cicchetti各種" loading="lazy"><div class="r-dish-label">Cicchetti各種</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=400&q=80" alt="Ombra di vino" loading="lazy"><div class="r-dish-label">Ombra di vino</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-lunch">Cicchetti</span></div>
+            <div class="r-name">Cantina Do Spade</div>
+            <div class="r-type">Bacaro · チケッティ体験（1448年創業）</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.3</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜5K</span><span class="stat-label">フードガイド定番</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">なんと1448年創業のバーカロ。ヴェネツィア名物「チケッティ」の代表格として多数フードガイドが推薦。リアルト橋近くで地元民も通う本物の一軒。立ち飲み「オンブラ文化」を体験できる。</p>
+        <ul class="r-picks"><li>Cicchetti assortiti（盛り合わせ小皿）</li><li>Baccalà mantecato su polenta</li><li>Ombra di vino（立ち飲みワイン）</li></ul>
+        <div class="r-links"><a href="https://maps.google.com/?q=Cantina+Do+Spade+San+Polo+860+Venice" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.cantinodospade.com" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 San Polo 860, Venezia（リアルト橋近く）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="city-section" id="milano">
+  <div class="city-header">
+    <div class="city-number">04</div>
+    <div class="city-info">
+      <div class="city-tag">City 04 — 4月2日〜3日</div>
+      <h2 class="city-name">Milano<em> ミラノ</em></h2>
+      <div class="city-hotel">Be Mate Via Tivoli（ブレラ地区中心）</div>
+      <div class="city-dates">掲載エリア：ブレラ地区 800m</div>
+    </div>
+  </div>
+  <div class="restaurant-grid">
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="モダンな店内" loading="lazy"><div class="r-photo-label">モダンな店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="春のリゾット" loading="lazy"><div class="r-photo-label">春のリゾット</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="Risotto asparagi" loading="lazy"><div class="r-dish-label">Risotto asparagi</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?w=400&q=80" alt="Cotoletta Milano" loading="lazy"><div class="r-dish-label">Cotoletta Milano</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Ossobuco" loading="lazy"><div class="r-dish-label">Ossobuco</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Bauscia</div>
+            <div class="r-type">Ristorante · ロンバルディア伝統料理</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.5</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜5K</span><span class="stat-label">Eating Europe選出</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">Eating Europeが「ブレラ地区ベスト」に選ぶロンバルディア料理の実力店。モダンインテリアと暖かな照明が洗練された空間を演出。3月末〜4月旬の「春アスパラ×スペック」リゾットが圧倒的評価。</p>
+        <ul class="r-picks"><li>Risotto con asparagi e speck（春アスパラ×スペック）</li><li>Cotoletta alla Milanese（ミラノ風カツレツ）</li><li>Ossobuco in gremolata</li></ul>
+        <div class="r-links"><a href="https://maps.google.com/?q=Bauscia+Via+dell+Orso+2+Milano" target="_blank" class="r-link r-link-map">🗺 Google Map</a></div>
+        <div class="r-address">📍 Via dell'Orso 2, Milano（ホテルから徒歩4分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&q=80" alt="シャビーシック店内" loading="lazy"><div class="r-photo-label">シャビーシック店内</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80" alt="新鮮牡蠣" loading="lazy"><div class="r-photo-label">新鮮牡蠣</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?w=400&q=80" alt="Ostriche fresche" loading="lazy"><div class="r-dish-label">Ostriche fresche</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1580476262798-bddd9f4b7369?w=400&q=80" alt="Tuna tartare" loading="lazy"><div class="r-dish-label">Tuna tartare</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1559181567-c3190bbb8b8e?w=400&q=80" alt="Ceviche branzino" loading="lazy"><div class="r-dish-label">Ceviche branzino</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Fishbar de Milan</div>
+            <div class="r-type">Seafood · 新鮮魚介バー</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.4</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">22K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">TheFork 9.3点・Instagram 22K・ガンベロ・ロッソ ロンバルディア版掲載の話題店。オープンテラス席とInstagram映えする盛り付けで大人気。シャビーシックな空間でカジュアルに楽しめる。</p>
+        <ul class="r-picks"><li>Ostriche fresche（新鮮牡蠣各種）</li><li>Tuna tartare con mango</li><li>Ceviche di branzino</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/fishbardemilan/" target="_blank" class="r-link r-link-ig">📸 Instagram @fishbardemilan</a><a href="https://maps.google.com/?q=Fishbar+de+Milan+Via+Montebello+7+Milano" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://fishbar.it" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Via Montebello 7, Milano（ホテルから徒歩3分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?w=400&q=80" alt="テラス席" loading="lazy"><div class="r-photo-label">テラス席</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="サフランリゾット" loading="lazy"><div class="r-photo-label">サフランリゾット</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="Risotto Milanese" loading="lazy"><div class="r-dish-label">Risotto Milanese</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1558030006-450675393462?w=400&q=80" alt="Ossobuco" loading="lazy"><div class="r-dish-label">Ossobuco</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1612929633738-8fe44f7ec841?w=400&q=80" alt="Fresh pasta" loading="lazy"><div class="r-dish-label">Fresh pasta</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Nabucco</div>
+            <div class="r-type">Ristorante · 北イタリア料理</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.3</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">4.5K</span><span class="stat-label">Instagram</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">ピナコテカ・ブレラ徒歩圏の上質レストラン。Eating Europeが「ロマンチックなディナーに最適」と推薦。テラス席と個室が好評。ミラノ随一と評されるサフランリゾットを試したい。</p>
+        <ul class="r-picks"><li>Risotto alla Milanese（サフランリゾット）</li><li>Ossobuco in gremolata</li><li>Fresh pasta seasonal（季節の自家製パスタ）</li></ul>
+        <div class="r-links"><a href="https://www.instagram.com/nabuccomilano/" target="_blank" class="r-link r-link-ig">📸 Instagram @nabuccomilano</a><a href="https://maps.google.com/?q=Nabucco+Via+Fiori+Chiari+10+Milano" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.nabucco.it" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Via Fiori Chiari 10, Milano（ホテルから徒歩5分）</div>
+      </div>
+    </div>
+
+    <div class="r-card">
+      <div class="r-photos"><div class="r-photo main"><img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="外観" loading="lazy"><div class="r-photo-label">外観</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=400&q=80" alt="中庭ガーデン" loading="lazy"><div class="r-photo-label">中庭ガーデン</div></div><div class="r-photo "><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="ミラノ伝統料理" loading="lazy"><div class="r-photo-label">ミラノ伝統料理</div></div></div>
+      <div class="r-dishes"><div class="r-dish"><img src="https://images.unsplash.com/photo-1555072956-7758afb20e8f?w=400&q=80" alt="Mondeghili" loading="lazy"><div class="r-dish-label">Mondeghili</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=400&q=80" alt="Risotto al salto" loading="lazy"><div class="r-dish-label">Risotto al salto</div></div><div class="r-dish"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=400&q=80" alt="Gelato su carrello" loading="lazy"><div class="r-dish-label">Gelato su carrello</div></div></div>
+      <div class="r-body">
+        <div class="r-top">
+          <div class="r-left">
+            <div class="r-badges"><span class="badge badge-lunch">Lunch</span><span class="badge badge-dinner">Dinner</span></div>
+            <div class="r-name">Locanda alla Scala</div>
+            <div class="r-type">Osteria · クラシックイタリア料理</div>
+          </div>
+          <div class="r-stats">
+            <div class="stat-item"><span class="stat-icon">⭐</span><span class="stat-val">4.4</span><span class="stat-label">Google</span></div>
+            <div class="stat-item"><span class="stat-icon">📸</span><span class="stat-val">〜3K</span><span class="stat-label">ガンベロ・ロッソ掲載</span></div>
+          </div>
+        </div>
+        <div class="r-divider"></div>
+        <p class="r-desc">イタリア最高権威「ガンベロ・ロッソ」掲載の実力店。「70〜80年代オマージュ」メニューが食通の間で話題。秘密の中庭ガーデンがSNSで注目。デザートワゴンで運ばれるクリームアイスが名物。</p>
+        <ul class="r-picks"><li>Mondeghili（ミラノ風ミートボール）</li><li>Risotto al salto（ミラノ式揚げリゾット）</li><li>Gelato al crema（名物デザートワゴン）</li></ul>
+        <div class="r-links"><a href="https://maps.google.com/?q=Locanda+alla+Scala+Via+dell+Orso+1+Milano" target="_blank" class="r-link r-link-map">🗺 Google Map</a><a href="https://www.locandaallascala.it" target="_blank" class="r-link r-link-web">🌐 公式サイト</a></div>
+        <div class="r-address">📍 Via dell'Orso 1, Milano（ホテルから徒歩4分）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style>
+.terrace-section{padding:5rem 0;background:var(--dark);}
+.terrace-header{max-width:1200px;margin:0 auto 3rem;padding:0 3rem;border-bottom:1px solid rgba(248,243,236,0.1);padding-bottom:2rem;}
+.terrace-badge{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+.terrace-title{font-family:'Cormorant Garamond',serif;font-size:clamp(28px,4vw,44px);font-weight:300;color:var(--cream);line-height:1.1;}
+.terrace-title em{font-style:italic;color:var(--terra);}
+.terrace-sub{font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--stone);margin-top:0.6rem;}
+.terrace-grid{max-width:1200px;margin:0 auto;padding:0 3rem;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.t-card{background:rgba(248,243,236,0.04);border:1px solid rgba(248,243,236,0.08);position:relative;transition:transform 0.3s,background 0.3s;}
+.t-card:hover{transform:translateY(-4px);background:rgba(248,243,236,0.08);}
+.t-img{height:160px;overflow:hidden;position:relative;}
+.t-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;filter:brightness(0.75);}
+.t-card:hover .t-img img{transform:scale(1.06);filter:brightness(0.85);}
+.t-vibe{position:absolute;top:10px;left:10px;font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:1px;color:rgba(248,243,236,0.9);background:rgba(28,23,20,0.6);padding:4px 8px;border-radius:2px;backdrop-filter:blur(4px);}
+.t-body{padding:1.2rem;}
+.t-name{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:400;color:var(--cream);line-height:1.2;margin-bottom:0.3rem;}
+.t-type{font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:1.5px;text-transform:uppercase;color:var(--stone);margin-bottom:0.7rem;}
+.t-stars{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--gold);margin-bottom:0.7rem;}
+.t-desc{font-size:11.5px;line-height:1.8;color:rgba(248,243,236,0.55);margin-bottom:0.8rem;}
+.t-note{font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.5px;color:var(--terra);background:rgba(184,92,56,0.12);padding:6px 8px;border-radius:2px;margin-bottom:0.8rem;line-height:1.5;}
+.t-links{display:flex;gap:5px;flex-wrap:wrap;}
+.t-link{font-family:'Montserrat',sans-serif;font-size:8px;letter-spacing:1px;text-transform:uppercase;padding:5px 8px;border:1px solid rgba(248,243,236,0.15);border-radius:2px;text-decoration:none;color:rgba(248,243,236,0.6);transition:all 0.2s;}
+.t-link:hover{background:rgba(248,243,236,0.1);color:var(--cream);}
+.t-addr{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--stone);margin-top:0.6rem;line-height:1.5;}
+.terrace-city-label{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--cream);padding:0 3rem;max-width:1200px;margin:2.5rem auto 1rem;letter-spacing:2px;}
+.terrace-city-label em{color:var(--terra);font-style:italic;}
+@media(max-width:900px){
+.terrace-grid{grid-template-columns:repeat(2,1fr);padding:0 1.5rem;}
+.terrace-header,.terrace-city-label{padding:0 1.5rem;}
+}
+@media(max-width:600px){
+.terrace-grid{grid-template-columns:1fr;}
+}
+</style>
+
+<section class="terrace-section">
+  <div class="terrace-header">
+    <div class="terrace-badge">Special Feature</div>
+    <h2 class="terrace-title">テラス席が<em>気持ちいい</em>お店</h2>
+    <div class="terrace-sub">各エリア3軒セレクト — 春のイタリアは屋外で食べてこそ</div>
+  </div>
+  <div class="terrace-city-label">Roma <em>ローマ</em></div>
+  <div class="terrace-grid">
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=800&q=80" alt="Garden Roof Trevi" loading="lazy">
+        <div class="t-vibe">🌿 噴水を真上から見下ろす秘密の屋上庭園</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Garden Roof Trevi</div>
+        <div class="t-type">Rooftop Bar · トレビの泉ビュー</div>
+        <div class="t-stars">⭐ 4.4 Google　📸 〜12K Instagram</div>
+        <p class="t-desc">Via del Lavatorのホテル屋上にある小さなルーフトップガーデン。テーブルわずか10卓、うち3席がトレビの泉を真正面に見渡せる特等席。アペロールスプリッツと本格ローマピッツァで気持ちよく過ごせる。予約不可・早い者勝ち。</p>
+        <div class="t-note">💡 噴水ビューの特等席は3つのみ。早めに行って順番待ちを。</div>
+        <div class="t-links"><a href="https://www.instagram.com/gardenrooftrevi/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Garden+Roof+Trevi+Via+del+Lavatore+Roma" target="_blank" class="t-link">🗺 Map</a></div>
+        <div class="t-addr">📍 Via del Lavatore（Relais Fontana di Trevi屋上）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1555992336-03a23c7b20ee?w=800&q=80" alt="Terrazza Flores / Umiltà36" loading="lazy">
+        <div class="t-vibe">🌇 ローマの屋根並みを360°見渡すラグジュアリーテラス</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Terrazza Flores / Umiltà36</div>
+        <div class="t-type">Rooftop Terrace · パノラマビュー</div>
+        <div class="t-stars">⭐ 4.5 Google　📸 〜20K Instagram</div>
+        <p class="t-desc">Hotel Umiltà36の屋上テラス。ローマの赤茶けた屋根とヴィットリアーノが広がるパノラマビューが圧巻。南米風カクテルと洗練されたアペリティーヴォが好評。SNSで大人気のフォトスポット。</p>
+        <div class="t-note">💡 夕暮れ時のアペロスタイム（17:00〜）が特におすすめ。要予約。</div>
+        <div class="t-links"><a href="https://www.instagram.com/terrazzaflores/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Terrazza+Flores+Hotel+Umilta36+Roma" target="_blank" class="t-link">🗺 Map</a><a href="https://www.umilta36.com" target="_blank" class="t-link">🌐 Web</a></div>
+        <div class="t-addr">📍 Via dell'Umiltà 36, Roma（ホテルから徒歩4分）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=800&q=80" alt="Il Chianti Vineria" loading="lazy">
+        <div class="t-vibe">🍷 トレビ2分・趣のある石畳テラスでトスカーナ料理</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Il Chianti Vineria</div>
+        <div class="t-type">Trattoria · 石畳のテラス席</div>
+        <div class="t-stars">⭐ 4.2 Google　📸 〜8K Instagram</div>
+        <p class="t-desc">トレビの泉から徒歩2分、石畳の路地に設けられたテラス席が気持ちいいワイナリー兼レストラン。周辺では数少ない本格的なアウトドア席。トスカーナ料理とキャンティワインのペアリングが評判。地元在住ライターも推薦。</p>
+        <div class="t-note">💡 昼は木陰テラス席が涼しくて快適。週末はすぐ埋まるので早めに。</div>
+        <div class="t-links"><a href="https://www.instagram.com/ilchiantiroma/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Il+Chianti+Via+del+Lavatore+81+Roma" target="_blank" class="t-link">🗺 Map</a></div>
+        <div class="t-addr">📍 Via del Lavatore 81, Roma（ホテルから徒歩3分）</div>
+      </div>
+    </div>
+  </div>
+  <div class="terrace-city-label">Firenze <em>フィレンツェ</em></div>
+  <div class="terrace-grid">
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?w=800&q=80" alt="Caffè dell'Oro (Portrait Firenze)" loading="lazy">
+        <div class="t-vibe">🌉 ポンテヴェッキオを目の前に・洗練されたテラスシート</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Caffè dell'Oro (Portrait Firenze)</div>
+        <div class="t-type">All-day Café · アルノ川×ポンテヴェッキオビュー</div>
+        <div class="t-stars">⭐ 4.5 Google　📸 〜30K Hotel Portrait公式</div>
+        <p class="t-desc">Portrait Firenzeホテルが運営するアルノ川沿いのテラスカフェ。ポンテヴェッキオを正面に眺めながら食事ができるフィレンツェ随一の絶景ポジション。ミシュランガイドも紹介する「シックでラグジュアリーなストリートサイド体験」。</p>
+        <div class="t-note">💡 川沿いのテラス席を必ず指定して予約。朝食〜深夜まで通し営業。</div>
+        <div class="t-links"><a href="https://www.instagram.com/portraitfirenze/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Caffe+dell+Oro+Portrait+Firenze+Lungarno+degli+Acciaiuoli" target="_blank" class="t-link">🗺 Map</a><a href="https://www.lungarnocollection.com/caffe-dell-oro" target="_blank" class="t-link">🌐 Web</a></div>
+        <div class="t-addr">📍 Lungarno degli Acciaiuoli 4, Firenze（ホテルから徒歩10分）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80" alt="Cibréo Trattoria (Cibrèino)" loading="lazy">
+        <div class="t-vibe">☀️ 地元民が愛するサンタ・アンブロジオ市場前の青空テラス</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Cibréo Trattoria (Cibrèino)</div>
+        <div class="t-type">Trattoria · サンタ・クローチェ広場テラス</div>
+        <div class="t-stars">⭐ 4.4 Google　📸 〜15K Instagram</div>
+        <p class="t-desc">フィレンツェの伝説的レストラン「Cibréo」のカジュアル版。サンタ・アンブロジオ市場前の活気あるテラス席は地元民に大人気で、晴れた日はすぐ埋まる。予約不可のため早めの来店が必須。地元客ならではの本物の雰囲気が味わえる。</p>
+        <div class="t-note">💡 予約不可。11:30開店直後に並ぶと青空テラス席を確保しやすい。</div>
+        <div class="t-links"><a href="https://www.instagram.com/cibreo_firenze/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Cibreino+Via+dei+Macci+122+Firenze" target="_blank" class="t-link">🗺 Map</a></div>
+        <div class="t-addr">📍 Via dei Macci 122r, Firenze（ホテルから徒歩8分）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Borgo San Jacopo（テラス席）" loading="lazy">
+        <div class="t-vibe">🌟 アルノ川とポンテヴェッキオを眺めるフィレンツェ最高のテラス席</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Borgo San Jacopo（テラス席）</div>
+        <div class="t-type">Fine Dining · アルノ川テラス（ミシュラン1つ星）</div>
+        <div class="t-stars">⭐ 4.6 Google　📸 〜25K Hotel Lungarno公式</div>
+        <p class="t-desc">ミシュラン1つ星。Hotel Lungarnoのアルノ川沿いに張り出した小さなテラスがフィレンツェで「最高の席」と称される。ミシュランガイドも「この席は要望しないと取れない」と明記。特別な一夜に。予約時に必ず「テラス席希望」と伝えること。</p>
+        <div class="t-note">💡 「Tavolo sul terrazzo」と予約時に明記必須。2ヶ月前から埋まる。</div>
+        <div class="t-links"><a href="https://www.instagram.com/hotellungarno/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Borgo+San+Jacopo+Lungarno+Torrignani+Firenze" target="_blank" class="t-link">🗺 Map</a><a href="https://www.borgosjacopo.com" target="_blank" class="t-link">🌐 Web</a></div>
+        <div class="t-addr">📍 Lungarno Torrignani 7, Firenze（ホテルから徒歩12分）</div>
+      </div>
+    </div>
+  </div>
+  <div class="terrace-city-label">Venezia <em>ヴェネツィア</em></div>
+  <div class="terrace-grid">
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&q=80" alt="Ristorante Lineadombra" loading="lazy">
+        <div class="t-vibe">🚢 ジュデッカ運河に張り出した水上テラスで食べる絶景ディナー</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Ristorante Lineadombra</div>
+        <div class="t-type">Ristorante · 水上テラス（ミシュラン掲載）</div>
+        <div class="t-stars">⭐ 4.5 Google　📸 〜18K Instagram</div>
+        <p class="t-desc">ドルソドゥーロのジュデッカ運河に張り出した木製デッキのテラスがヴェネツィア最もロマンチックな席と評判。ミシュランガイド掲載。ゴンドラが目の前を通り過ぎる体験は唯一無二。「Tour Leader Venice」が「水上テラスの定番」と推薦。</p>
+        <div class="t-note">💡 水上テラス席はウェブで「terrazza esterna」を指定。数週間前から要予約。</div>
+        <div class="t-links"><a href="https://www.instagram.com/lineadombravenezia/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Lineadombra+Punta+della+Dogana+Venezia" target="_blank" class="t-link">🗺 Map</a><a href="https://www.ristorantelineadombra.com" target="_blank" class="t-link">🌐 Web</a></div>
+        <div class="t-addr">📍 Ponte dell'Umiltà 19, Dorsoduro, Venezia（ホテルから徒歩15分）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&q=80" alt="VERO Restaurant（Ca' di Dio）" loading="lazy">
+        <div class="t-vibe">🌅 ホテル内レストランのラグーン向きテラス席が絶景</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">VERO Restaurant（Ca' di Dio）</div>
+        <div class="t-type">Restaurant · ラグーンビューテラス</div>
+        <div class="t-stars">⭐ 4.4 Google　📸 〜8K Ca' di Dio公式</div>
+        <p class="t-desc">滞在ホテル「Ca' di Dio」の館内レストラン。サン・ジョルジョ島とラグーンを一望できるテラス席は宿泊ゲスト以外も利用可能。ヴェネツィア料理をラグーンの光の中で楽しめる贅沢な体験。ランチは特に眺めが良い。</p>
+        <div class="t-note">💡 ホテルのテラス席は宿泊者でも外来でも利用可。ランチが狙い目。</div>
+        <div class="t-links"><a href="https://www.instagram.com/cadidiovenezia/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=VERO+Restaurant+Ca+di+Dio+Venice" target="_blank" class="t-link">🗺 Map</a><a href="https://www.vretreats.com/en/ca-di-dio/dine/" target="_blank" class="t-link">🌐 Web</a></div>
+        <div class="t-addr">📍 Riva Ca' di Dio 2182, Castello, Venezia（ホテル内）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&q=80" alt="Bistrot de Venise" loading="lazy">
+        <div class="t-vibe">🍾 中世ヴェネツィア料理×静かな運河沿いのテラス席</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Bistrot de Venise</div>
+        <div class="t-type">Bistrot · サン・マルコ近く・運河テラス</div>
+        <div class="t-stars">⭐ 4.3 Google　📸 〜12K Instagram</div>
+        <p class="t-desc">TheFork 9.6点でサン・マルコ地区トップ評価。歴史的なヴェネツィア料理を現代的に再解釈したメニューが特徴。サン・マルコ近くの静かな路地に設けられたテラス席が人気で、観光客の喧騒から離れてゆったり過ごせる。</p>
+        <div class="t-note">💡 外のテラス席は日当たり良好。3月末はまだ少し肌寒いのでジャケットを。</div>
+        <div class="t-links"><a href="https://www.instagram.com/bistrotdevenise/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Bistrot+de+Venise+Calle+dei+Fabbri+4685+Venice" target="_blank" class="t-link">🗺 Map</a><a href="https://www.bistrotdevenise.com" target="_blank" class="t-link">🌐 Web</a></div>
+        <div class="t-addr">📍 Calle dei Fabbri 4685, San Marco, Venezia（ホテルから徒歩12分）</div>
+      </div>
+    </div>
+  </div>
+  <div class="terrace-city-label">Milano <em>ミラノ</em></div>
+  <div class="terrace-grid">
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80" alt="Botinero" loading="lazy">
+        <div class="t-vibe">✨ TheFork 9.5点・ブレラの石畳テラスで最高のアペリティーヴォ</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Botinero</div>
+        <div class="t-type">Restaurant · ブレラ石畳テラス</div>
+        <div class="t-stars">⭐ 4.5 Google　📸 〜10K Instagram</div>
+        <p class="t-desc">TheForkでブレラ地区テラス席部門9.5点トップ評価。ブレラ地区の石畳路地に広がるテラス席はミラノのアペリティーヴォ文化の象徴。地元のミラネーゼが通うおしゃれな一軒。夕暮れ時のアペロタイムが特に気持ちいい。</p>
+        <div class="t-note">💡 テラス席は人気のため早めの予約を。夕方17:00〜のアペロが特におすすめ。</div>
+        <div class="t-links"><a href="https://www.instagram.com/botinero_milano/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=Botinero+Via+Fiori+Chiari+Milano" target="_blank" class="t-link">🗺 Map</a></div>
+        <div class="t-addr">📍 Via Fiori Chiari, Milano（ホテルから徒歩5分）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=800&q=80" alt="La Brisa" loading="lazy">
+        <div class="t-vibe">🌳 古いライムの木が茂る中庭・ミラノ中心部の隠れ家的緑の空間</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">La Brisa</div>
+        <div class="t-type">Ristorante · 隠れた中庭ガーデンレストラン</div>
+        <div class="t-stars">⭐ 4.4 Google　📸 〜14K Instagram</div>
+        <p class="t-desc">SheerLuxeが「ミラノ中心部の隠れた楽園」と紹介する中庭レストラン。古いライムの木々が作る木陰のテラスがミラノ随一の雰囲気として食通の間で有名。20年以上地元の支持を集める、北イタリア創作料理の名店。</p>
+        <div class="t-note">💡 4月初旬でも緑の中庭が美しい。「giardino」（中庭）席を指定して予約。</div>
+        <div class="t-links"><a href="https://www.instagram.com/labrisa_milano/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=La+Brisa+Via+Brisa+15+Milano" target="_blank" class="t-link">🗺 Map</a><a href="https://www.ristorantelabrisa.it" target="_blank" class="t-link">🌐 Web</a></div>
+        <div class="t-addr">📍 Via Brisa 15, Milano（ホテルから徒歩7分）</div>
+      </div>
+    </div>
+    <div class="t-card">
+      <div class="t-img">
+        <img src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=800&q=80" alt="Bar Brera (LuBarino)" loading="lazy">
+        <div class="t-vibe">☕ ブレラの中心・カルミネ広場でミラネーゼとともにアペロ</div>
+      </div>
+      <div class="t-body">
+        <div class="t-name">Bar Brera (LuBarino)</div>
+        <div class="t-type">Café Bar · ブレラ広場テラス席</div>
+        <div class="t-stars">⭐ 4.3 Google　📸 〜18K Instagram</div>
+        <p class="t-desc">ブレラ地区の中心「カルミネ広場」に面したカフェバー。SheerLuxe推薦。シチリア料理をベースにしたアランチーニや軽食と、テラス席からのミラネーゼウォッチングが楽しい。観光客より地元客が多い本物のブレラ体験。</p>
+        <div class="t-note">💡 広場テラスは日当たり抜群。アペロ（18:00〜）の混雑前に席を確保して。</div>
+        <div class="t-links"><a href="https://www.instagram.com/lubar_milano/" target="_blank" class="t-link">📸 Instagram</a><a href="https://maps.google.com/?q=LuBarino+Piazza+del+Carmine+Brera+Milano" target="_blank" class="t-link">🗺 Map</a></div>
+        <div class="t-addr">📍 Piazza del Carmine, Brera, Milano（ホテルから徒歩6分）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ITAL<em>I</em>A 食の旅 2026</div>
+  <p>Roma · Firenze · Venezia · Milano</p>
+  <p>掲載基準：Instagram 1万フォロワー以上 または 有名フードライター・フードブログ掲載店</p>
+  <p>各滞在ホテルから半径800m以内のSNSで話題の人気店のみ掲載</p>
+  <p style="margin-top:1.5rem;color:rgba(154,138,122,0.4);">写真はイメージです。各リンクから最新情報をご確認ください。</p>
+</footer>
+</body>
+</html>
