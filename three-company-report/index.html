@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3社比較レポート | 7garden</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Hiragino Sans","Yu Gothic UI",sans-serif;background:#f8f7f4;color:#1a1917;font-size:14px;line-height:1.7}
+
+/* HERO */
+.hero{background:#1a1917;padding:36px 40px 28px;border-top:4px solid #1D9E75}
+.hero h1{color:#fff;font-size:22px;font-weight:700;margin-bottom:6px}
+.hero .sub{color:#9FE1CB;font-size:12px}
+.hero .dt{color:#888;font-size:11px;margin-top:8px}
+
+/* NAV TABS */
+.tabs{background:#fff;border-bottom:1px solid #e0ded8;display:flex;gap:0;position:sticky;top:0;z-index:100}
+.tab{padding:12px 24px;font-size:13px;font-weight:600;cursor:pointer;border-bottom:3px solid transparent;color:#888;white-space:nowrap}
+.tab.active{color:#1D9E75;border-bottom-color:#1D9E75}
+.tab:hover{color:#1a1917}
+
+/* PAGES */
+.page{display:none;padding:32px 40px 60px;max-width:1100px;margin:0 auto}
+.page.active{display:block}
+
+/* SECTION */
+.sec{margin-bottom:36px}
+.sec-bar{display:flex;align-items:center;gap:10px;padding:10px 14px;background:#fff;border-radius:6px;border-left:3px solid #1D9E75;margin-bottom:16px}
+.sec-no{font-size:10px;font-weight:700;color:#1D9E75;letter-spacing:.08em}
+.sec-ttl{font-size:15px;font-weight:700}
+
+/* METRIC CARDS */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:8px}
+.metric{background:#fff;border-radius:10px;padding:14px 16px;border:.5px solid #d3d1c7}
+.metric .lbl{font-size:11px;color:#888;margin-bottom:4px}
+.metric .val{font-size:22px;font-weight:700}
+.metric .note{font-size:11px;margin-top:2px}
+.up{color:#1D9E75}.down{color:#D85A30}.warn{color:#BA7517}.blue{color:#185FA5}
+
+/* CO CARDS */
+.co3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.co-card{background:#fff;border-radius:12px;border:.5px solid #d3d1c7;overflow:hidden}
+.co-card.k{border-top:3px solid #BA7517}
+.co-card.s{border-top:3px solid #185FA5}
+.co-card.g{border-top:3px solid #1D9E75;box-shadow:0 0 0 1.5px #1D9E75}
+.co-head{padding:14px 16px 10px}
+.badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.bk{background:#FAEEDA;color:#633806}.bs{background:#E6F1FB;color:#0C447C}.bg{background:#E1F5EE;color:#085041}
+.co-name{font-size:13px;font-weight:700}
+.ck{color:#BA7517}.cs{color:#185FA5}.cg{color:#1D9E75}
+.co-tag{font-size:11px;color:#888;margin-top:2px}
+.co-body{padding:0 16px 14px}
+.kv{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:.5px solid #e8e6e0;font-size:12px}
+.kv:last-child{border-bottom:none}
+.kv .k{color:#888}.kv .v{font-weight:600}
+
+/* TABLE */
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{padding:8px 12px;text-align:center;font-size:11px;font-weight:700}
+.tbl td{padding:8px 12px;border-bottom:.5px solid #e8e6e0}
+.tbl tr:nth-child(even) td{background:#fafaf8}
+.tbl .ax{color:#888;font-weight:600;font-size:11px}
+.tbl .tk{background:#633806;color:#fff}.tbl .ts{background:#0C447C;color:#fff}.tbl .tg{background:#085041;color:#fff}.tbl .ta{background:#1a1917;color:#fff}
+.vk{color:#BA7517}.vs{color:#185FA5}.vg{color:#1D9E75;font-weight:700}.vr{color:#D85A30}
+
+/* HIGHLIGHT */
+.hi{background:#E1F5EE;border-radius:10px;border-left:4px solid #1D9E75;padding:16px 20px;margin-bottom:12px}
+.hi h3{font-size:13px;font-weight:700;color:#1D9E75;margin-bottom:6px}
+.hi p{font-size:12px;line-height:1.7}
+.warn-box{background:#FAECE7;border-left:4px solid #D85A30;border-radius:10px;padding:16px 20px;margin-bottom:12px}
+.warn-box h3{font-size:13px;font-weight:700;color:#D85A30;margin-bottom:6px}
+.warn-box p{font-size:12px}
+
+/* 2/3 col */
+.col2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.col3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+
+/* ISSUE */
+.issue{background:#fff;border-radius:10px;border:.5px solid #d3d1c7;padding:16px}
+.issue h3{font-size:12px;font-weight:700;margin-bottom:8px}
+.issue li{font-size:11px;color:#666;padding:3px 0 3px 14px;position:relative;line-height:1.5;list-style:none}
+.issue li::before{content:"・";position:absolute;left:0}
+.issue li.g{color:#1D9E75}.issue li.r{color:#D85A30}
+
+/* TIMELINE */
+.tl4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tl{background:#fff;border-radius:10px;padding:14px;border:.5px solid #d3d1c7}
+.tl .period{font-size:10px;font-weight:700;color:#1D9E75;margin-bottom:4px}
+.tl .ttl{font-size:12px;font-weight:700;margin-bottom:4px}
+.tl .body{font-size:11px;color:#666;line-height:1.6}
+
+/* SVG MAP */
+.map-wrap{background:#fff;border-radius:12px;border:.5px solid #d3d1c7;padding:24px;margin-bottom:12px}
+
+.note{font-size:10.5px;color:#888;margin-top:8px;line-height:1.6}
+.divider{border:none;border-top:.5px solid #d3d1c7;margin:20px 0}
+
+footer{background:#1a1917;color:#888;font-size:11px;text-align:center;padding:20px}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>ホテル運営会社 3社比較レポート</h1>
+  <p class="sub">カソク株式会社 ／ 株式会社SQUEEZE ／ 株式会社7garden</p>
+  <div class="dt">TDB調査（2025〜2026年）＋7garden令8.3期試算表｜7garden Strategy Team｜2026.04.06｜社外秘</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="show('overview',this)">概要・比較</div>
+  <div class="tab" onclick="show('kasoku',this)">カソク分析</div>
+  <div class="tab" onclick="show('squeeze',this)">SQUEEZE分析</div>
+  <div class="tab" onclick="show('garden',this)">7garden分析</div>
+  <div class="tab" onclick="show('position',this)">ポジショニング</div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: 概要 ═══════════════════════ -->
+<div id="overview" class="page active">
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">KEY NUMBERS</span><span class="sec-ttl">令8.3期で7gardenのフェーズが変わった</span></div>
+    <div class="metrics">
+      <div class="metric"><div class="lbl">7garden 売上高（令8.3期）</div><div class="val up">7.50億円</div><div class="note up">前期比 +95.4%（ほぼ2倍）</div></div>
+      <div class="metric"><div class="lbl">営業利益率</div><div class="val up">25.4%</div><div class="note">カソク3.7%・SQUEEZE7.1%を大きく上回る</div></div>
+      <div class="metric"><div class="lbl">経常利益</div><div class="val up">1.81億円</div><div class="note up">前期2,590万円から約7倍</div></div>
+      <div class="metric"><div class="lbl">純資産（令8.3期）</div><div class="val up">2.32億円</div><div class="note up">前期5,131万円から4.5倍</div></div>
+    </div>
+    <p class="note">※7garden数値は令8.3期試算表（2025年4月〜2026年3月）より。法人税等未確定のため税引前当期純利益＝1億8,070万円として計上。カソク・SQUEEZEはTDB調査報告書の最新期数値（推定値含む）。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">PROFILE</span><span class="sec-ttl">3社プロファイル比較</span></div>
+    <div class="co3">
+      <div class="co-card k">
+        <div class="co-head">
+          <div class="badge bk">TDB評点57点</div>
+          <div class="co-name ck">カソク株式会社</div>
+          <div class="co-tag">量産型 運営受託 ／ 令7.4調査</div>
+        </div>
+        <div class="co-body">
+          <div class="kv"><span class="k">売上高</span><span class="v">18.3億円</span></div>
+          <div class="kv"><span class="k">営業利益率</span><span class="v down">3.7%▼</span></div>
+          <div class="kv"><span class="k">粗利率</span><span class="v warn">32.5%</span></div>
+          <div class="kv"><span class="k">自己資本比率</span><span class="v down">15%</span></div>
+          <div class="kv"><span class="k">正社員</span><span class="v">40名</span></div>
+          <div class="kv"><span class="k">運営実績</span><span class="v">1,700室・11都市</span></div>
+          <div class="kv"><span class="k">損益分岐点/売上</span><span class="v down">88%（警戒域）</span></div>
+          <div class="kv"><span class="k">宅建</span><span class="v">令7.6月取得（グループ依存歴）</span></div>
+        </div>
+      </div>
+      <div class="co-card s">
+        <div class="co-head">
+          <div class="badge bs">TDB評点47点</div>
+          <div class="co-name cs">株式会社SQUEEZE</div>
+          <div class="co-tag">テック×借上げ運営 ／ 令7.4調査</div>
+        </div>
+        <div class="co-body">
+          <div class="kv"><span class="k">売上高</span><span class="v">30.7億円</span></div>
+          <div class="kv"><span class="k">営業利益率</span><span class="v">7.1%</span></div>
+          <div class="kv"><span class="k">粗利率</span><span class="v">34.7%（推定）</span></div>
+          <div class="kv"><span class="k">自己資本比率</span><span class="v">33%（推定）</span></div>
+          <div class="kv"><span class="k">正社員</span><span class="v">16名＋パート120名</span></div>
+          <div class="kv"><span class="k">運営施設</span><span class="v">38施設・全国展開</span></div>
+          <div class="kv"><span class="k">テック</span><span class="v blue">suitebook（3,700室導入）</span></div>
+          <div class="kv"><span class="k">課題</span><span class="v down">4期連続欠損歴・後継者なし</span></div>
+        </div>
+      </div>
+      <div class="co-card g">
+        <div class="co-head">
+          <div class="badge bg">TDB評点51点 → 令8期で急伸中</div>
+          <div class="co-name cg">株式会社7garden</div>
+          <div class="co-tag">設計×AM×DX一体型 ／ 令8.3期試算</div>
+        </div>
+        <div class="co-body">
+          <div class="kv"><span class="k">売上高（令8.3期）</span><span class="v up">7.50億円（前期比+95%）</span></div>
+          <div class="kv"><span class="k">営業利益率</span><span class="v up">25.4%（3社最高）</span></div>
+          <div class="kv"><span class="k">粗利率</span><span class="v up">95.2%</span></div>
+          <div class="kv"><span class="k">自己資本比率</span><span class="v up">28.6%</span></div>
+          <div class="kv"><span class="k">正社員</span><span class="v">14名（高生産性）</span></div>
+          <div class="kv"><span class="k">運営施設</span><span class="v">7施設（東京・福岡・箱根等）</span></div>
+          <div class="kv"><span class="k">新展開</span><span class="v up">土地3.6億取得・開発フェーズへ</span></div>
+          <div class="kv"><span class="k">宅建・DX</span><span class="v up">内製済み（競合優位）</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">COMPARE</span><span class="sec-ttl">財務・事業指標 詳細比較</span></div>
+    <table class="tbl">
+      <thead>
+        <tr>
+          <th class="ta" style="text-align:left;width:22%">比較軸</th>
+          <th class="tk">カソク（令7.5期）</th>
+          <th class="ts">SQUEEZE（令6.12期）</th>
+          <th class="tg">7garden（令8.3期試算）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="ax">売上高</td><td>18.3億円</td><td>30.7億円</td><td class="vg">7.50億円（前期比+95.4%）</td></tr>
+        <tr><td class="ax">営業利益</td><td>6,817万円</td><td>2億400万円</td><td class="vg">1億9,018万円</td></tr>
+        <tr><td class="ax">営業利益率</td><td class="vr">3.7%▼</td><td>7.1%</td><td class="vg">25.4%（3社最高）</td></tr>
+        <tr><td class="ax">経常利益率</td><td class="vr">3.7%</td><td>7.1%</td><td class="vg">24.1%</td></tr>
+        <tr><td class="ax">粗利率</td><td>32.5%</td><td>34.7%（推定）</td><td class="vg">95.2%</td></tr>
+        <tr><td class="ax">総資産</td><td>4.85億円</td><td>27.5億円（推定）</td><td class="vg">8.12億円（前期比3.3倍）</td></tr>
+        <tr><td class="ax">純資産</td><td>7,276万円</td><td>9億円（推定）</td><td class="vg">2.32億円（前期4.5倍）</td></tr>
+        <tr><td class="ax">自己資本比率</td><td class="vr">15%</td><td>33%（推定）</td><td class="vg">28.6%</td></tr>
+        <tr><td class="ax">有利子負債</td><td>2.06億円</td><td>2.5億円</td><td>4.58億円（土地取得用途）</td></tr>
+        <tr><td class="ax">正社員1人当り売上</td><td>4,575万円</td><td>1,919万円</td><td class="vg">5,360万円（14名換算）</td></tr>
+        <tr><td class="ax">設計・企画関与</td><td>なし</td><td>なし</td><td class="vg">用地選定〜設計〜運営まで一貫</td></tr>
+        <tr><td class="ax">不動産保有</td><td>なし</td><td>なし（借上げ）</td><td class="vg">土地3.6億取得（令8期）</td></tr>
+        <tr><td class="ax">宅建免許</td><td>令7.6月取得</td><td>なし</td><td class="vg">H28.9取得・内製済み</td></tr>
+        <tr><td class="ax">自社テック</td><td>なし（OTA依存）</td><td>suitebook</td><td>tuna（LINE活用）</td></tr>
+        <tr><td class="ax">TDB評価コメント</td><td>—</td><td>長期欠損歴、定期観察要</td><td class="vg">「競争優位性を有している」</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: カソク ═══════════════════════ -->
+<div id="kasoku" class="page">
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#BA7517">KASOKU</span><span class="sec-ttl">カソク株式会社 — 企業分析</span></div>
+    <div class="metrics">
+      <div class="metric"><div class="lbl">売上高（令7.5期）</div><div class="val warn">18.3億円</div><div class="note up">前期比+48.8%</div></div>
+      <div class="metric"><div class="lbl">経常利益率</div><div class="val down">3.7%</div><div class="note down">前期比▲44.8%</div></div>
+      <div class="metric"><div class="lbl">自己資本比率</div><div class="val down">15%</div><div class="note down">コロナ禍で一時債務超過</div></div>
+      <div class="metric"><div class="lbl">損益分岐点/売上</div><div class="val down">88%</div><div class="note down">安全余裕率わずか12%</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#BA7517">PROFILE</span><span class="sec-ttl">基本情報</span></div>
+    <div class="col2">
+      <div>
+        <table class="tbl">
+          <tr><td class="ax">TDBコード</td><td>127015687</td></tr>
+          <tr><td class="ax">調査日</td><td>令和7年4月4日</td></tr>
+          <tr><td class="ax">本社</td><td>東京都新宿区高田馬場</td></tr>
+          <tr><td class="ax">資本金</td><td>3,000万円</td></tr>
+          <tr><td class="ax">設立</td><td>平成27年6月</td></tr>
+          <tr><td class="ax">TDB評点</td><td>57点</td></tr>
+          <tr><td class="ax">主要株主</td><td>新井恵介51%・姫宮光一COO46%</td></tr>
+          <tr><td class="ax">取引銀行</td><td>三菱UFJ・東日本銀行 他</td></tr>
+        </table>
+      </div>
+      <div>
+        <table class="tbl">
+          <tr><td class="ax">正社員</td><td>40名</td></tr>
+          <tr><td class="ax">運営実績</td><td>1,700室・11都市＋米テキサス州</td></tr>
+          <tr><td class="ax">主な運営ブランド</td><td>Sumuブランド（CCC協業）</td></tr>
+          <tr><td class="ax">将来目標</td><td>年20棟・売上100億円宣言</td></tr>
+          <tr><td class="ax">宅建免許</td><td>令7.6月取得（エステートワン依存歴）</td></tr>
+          <tr><td class="ax">長期借入金</td><td>2億617万円</td></tr>
+          <tr><td class="ax">粗利率</td><td>32.5%（OTA手数料等が原価）</td></tr>
+          <tr><td class="ax">主業</td><td>アパートメントホテル運営受託</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#BA7517">ISSUES</span><span class="sec-ttl">構造的課題の分析</span></div>
+    <div class="col3">
+      <div class="issue">
+        <h3 style="color:#BA7517">① フィー天井の罠</h3>
+        <ul>
+          <li class="r">粗利率32%は物件数に比例した天井</li>
+          <li class="r">OTA手数料が増え続け交渉力ゼロ</li>
+          <li class="r">利益率改善には量産か単価UPしかない</li>
+          <li>フィー単層モデルの限界が数字に出た</li>
+        </ul>
+      </div>
+      <div class="issue">
+        <h3 style="color:#BA7517">② 固定費膨張の構造</h3>
+        <ul>
+          <li class="r">販管費が売上と同速（+109.7%）で増加</li>
+          <li class="r">損益分岐点が売上比88%（危険水域）</li>
+          <li class="r">人員先行採用→開業遅延で即赤字化</li>
+          <li>売上増収でも利益率が3.7%に急落</li>
+        </ul>
+      </div>
+      <div class="issue">
+        <h3 style="color:#BA7517">③ グループ分散リスク</h3>
+        <ul>
+          <li class="r">宅建をエステートワンに依存（令7.6月にやっと取得）</li>
+          <li class="r">開発収益がグループ他社に計上され単体目標未達</li>
+          <li class="r">自己資本比率15%（財務体質が脆弱）</li>
+          <li>テック投資への言及なし→スケールメリット出ない</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#BA7517">DEEP DIVE</span><span class="sec-ttl">業績・財務の詳細分析</span></div>
+
+    <div class="sec-bar" style="border-left-color:#BA7517;margin-bottom:8px"><span class="sec-no" style="color:#BA7517">業績推移</span><span class="sec-ttl" style="font-size:13px">令3〜令7.5期</span></div>
+    <table class="tbl" style="margin-bottom:16px">
+      <thead><tr>
+        <th class="ta" style="text-align:left">決算期</th>
+        <th class="tk">売上高</th><th class="tk">増加率</th>
+        <th class="tk">経常利益</th><th class="tk">当期純利益</th>
+        <th class="tk">評価</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="ax">令3.6期</td><td>1.09億円</td><td>—</td><td>359万円</td><td>268万円</td><td style="font-size:11px">黎明期</td></tr>
+        <tr><td class="ax">令4.6期</td><td>1.69億円</td><td>+54.4%</td><td>150万円</td><td>99万円</td><td style="font-size:11px">拡大初期</td></tr>
+        <tr><td class="ax">令5.6期</td><td>4.57億円</td><td class="vg">+170%</td><td>不明</td><td>不明</td><td style="font-size:11px">急拡大</td></tr>
+        <tr><td class="ax">令6.6期</td><td>10.1億円</td><td class="vg">+122%</td><td>不明</td><td>不明</td><td style="font-size:11px">成長加速</td></tr>
+        <tr><td class="ax">令7.5期（最新）</td><td>18.3億円</td><td class="vg">+48.8%</td><td>6,817万円</td><td>不明</td><td style="font-size:11px;color:#D85A30">利益率急落3.7%</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-bottom:16px">※令5〜6期は業績推移グラフからの推計。正式数値はTDB調査の「業績推移」項目より。令7.5期は調査報告書記載の公式数値。</p>
+
+    <div class="sec-bar" style="border-left-color:#BA7517;margin-bottom:8px"><span class="sec-no" style="color:#BA7517">財務分析</span><span class="sec-ttl" style="font-size:13px">3つの罠 — 数字で読む</span></div>
+    <table class="tbl" style="margin-bottom:16px">
+      <thead><tr>
+        <th class="ta" style="text-align:left;width:22%">指標</th>
+        <th class="tk">カソク令7.5期</th>
+        <th class="tk">業界平均（参考）</th>
+        <th class="tk">評価・意味</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="ax">売上高</td><td>18.3億円（+48.8%）</td><td>—</td><td>増収は続くが…</td></tr>
+        <tr><td class="ax">経常利益率</td><td class="vr">3.7%（前期比▲44.8%）</td><td>5〜8%</td><td class="vr">増収なのに大幅減益の逆説</td></tr>
+        <tr><td class="ax">粗利率</td><td class="vr">32.5%</td><td>40〜50%</td><td class="vr">OTA手数料両建てで天井固定</td></tr>
+        <tr><td class="ax">販管費増加率</td><td class="vr">+109.7%（売上+48.8%を大幅超過）</td><td>—</td><td class="vr">固定費先行採用の代償</td></tr>
+        <tr><td class="ax">損益分岐点/売上</td><td class="vr">88%（安全余裕率わずか12%）</td><td>70〜80%</td><td class="vr">売上12%減で即赤字転落</td></tr>
+        <tr><td class="ax">自己資本比率</td><td class="vr">15%</td><td>25〜35%</td><td class="vr">コロナ禍で一時大幅債務超過</td></tr>
+        <tr><td class="ax">借入金</td><td>2億617万円（返済中）</td><td>—</td><td>担保：信用・保証協会</td></tr>
+        <tr><td class="ax">TDB資金現況</td><td>支払能力：あり</td><td>—</td><td>現時点で支払危機はないが余裕なし</td></tr>
+        <tr><td class="ax">1人当り売上</td><td>4,575万円（40名）</td><td>—</td><td>採用継続でさらに希薄化リスク</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-bar" style="border-left-color:#BA7517;margin-bottom:8px"><span class="sec-no" style="color:#BA7517">事業モデル</span><span class="sec-ttl" style="font-size:13px">OTA両建て計上問題と宅建依存の構造</span></div>
+    <div class="col2" style="margin-bottom:16px">
+      <div class="warn-box" style="margin-bottom:0">
+        <h3>OTA手数料の「両建て計上」</h3>
+        <p>Airbnb等OTAを通じた予約は、手数料をオーナーへの支払額にも自社売上にも計上する「両建て」構造とTDBは示唆。これが粗利率32%の主因で、売上が増えるほどOTA手数料が膨らみ利益が食われる。カソクがOTA交渉力を持てない間、この構造は変わらない。</p>
+      </div>
+      <div class="warn-box" style="margin-bottom:0">
+        <h3>宅建内製化の遅れとグループ依存</h3>
+        <p>カソクは長年、不動産売買・仲介業務をグループ会社「エステートワン」に依存してきた。令7.6月にやっと自社で宅建免許を取得したが、それまでの開発・仲介収益は単体計上できず。「7garden×宅建内製H28.9」との比較では約9年の遅れ。開発収益の単体集約は令8期以降の課題。</p>
+      </div>
+    </div>
+
+    <div class="sec-bar" style="border-left-color:#BA7517;margin-bottom:8px"><span class="sec-no" style="color:#BA7517">将来性</span><span class="sec-ttl" style="font-size:13px">「量産→後で考える」戦略の条件付き評価</span></div>
+    <div class="hi" style="background:#FAEEDA;border-left-color:#BA7517;margin-bottom:0">
+      <h3 style="color:#BA7517">量産戦略が機能する唯一の条件：テック転換ができるか</h3>
+      <p>Airbnb・SQUEEZEのフライホイール（量→データ→テック優位）を参照すると、「量産」が有効なのは大量の運営データがテック投資に転換できる場合のみ。カソクの現状ではOTA手数料交渉力もなく、標準化できない業態のためデータ活用が進まない。年20棟・100億宣言は投資家向けの宣言として機能しているが、利益率を改善しないまま量産すれば赤字がスケールする。7gardenにとっては、カソクが拡大している間に「プレミアム×AM」ゾーンを先に確立する時間的猶予でもある。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#BA7517">STRATEGY</span><span class="sec-ttl">7gardenから見たカソクとの競合整理</span></div>
+    <div class="hi">
+      <h3>カソクが量産を続けるほど「プレミアムゾーン」の希少性が上がる</h3>
+      <p>カソクは「量産×標準仕様」で低〜中価格帯の市場を追う。フィー相場が下がれば下がるほど、7gardenが提供する「設計品質×AM統合×体験設計」という付加価値の希少性が際立つ。両社は競合しているようで、実際は異なる顧客層を狙っている。カソクの弱点（テックなし・設計関与なし・固定費先行）は、7gardenの強みと完全に裏返しの関係にある。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: SQUEEZE ═══════════════════════ -->
+<div id="squeeze" class="page">
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#185FA5">SQUEEZE</span><span class="sec-ttl">株式会社SQUEEZE — 企業分析</span></div>
+    <div class="metrics">
+      <div class="metric"><div class="lbl">売上高（令6.12期）</div><div class="val blue">30.7億円</div><div class="note up">前期比+37.0%</div></div>
+      <div class="metric"><div class="lbl">経常利益率</div><div class="val">7.1%</div><div class="note up">前期比+39.0%</div></div>
+      <div class="metric"><div class="lbl">自己資本比率</div><div class="val">33%（推定）</div><div class="note">VC増資で財務安定</div></div>
+      <div class="metric"><div class="lbl">suitebook導入実績</div><div class="val blue">3,700室</div><div class="note">JR東日本・パソナ等</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#185FA5">PROFILE</span><span class="sec-ttl">基本情報</span></div>
+    <div class="col2">
+      <div>
+        <table class="tbl">
+          <tr><td class="ax">TDBコード</td><td>351013224</td></tr>
+          <tr><td class="ax">調査日</td><td>令和7年4月17日</td></tr>
+          <tr><td class="ax">本社</td><td>東京都渋谷区神山町</td></tr>
+          <tr><td class="ax">資本金</td><td>1億円</td></tr>
+          <tr><td class="ax">設立</td><td>平成26年9月</td></tr>
+          <tr><td class="ax">TDB評点</td><td>47点（業界下位）</td></tr>
+          <tr><td class="ax">代表</td><td>舘林真一（ゴールドマン→TripAdvisor出身）</td></tr>
+          <tr><td class="ax">後継者</td><td>いない</td></tr>
+        </table>
+      </div>
+      <div>
+        <table class="tbl">
+          <tr><td class="ax">正社員</td><td>16名＋パート120名</td></tr>
+          <tr><td class="ax">運営施設</td><td>38施設・全国（Minn・シアテル・KARIO等）</td></tr>
+          <tr><td class="ax">運営形態</td><td>借上げ型（物件を借り上げてホテル運営）</td></tr>
+          <tr><td class="ax">自社システム</td><td>suitebook（クラウド型ホテル運営）</td></tr>
+          <tr><td class="ax">主な株主</td><td>日本エスコン・ケネディクス・JR東日本スタートアップ等</td></tr>
+          <tr><td class="ax">累計調達</td><td>9億円超（第三者割当増資）</td></tr>
+          <tr><td class="ax">黒字転換</td><td>令5年12月期（令1〜4期は連続欠損）</td></tr>
+          <tr><td class="ax">借入金</td><td>2.5億円（令6.12期）</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#185FA5">HISTORY</span><span class="sec-ttl">業績推移</span></div>
+    <table class="tbl">
+      <thead><tr><th class="ta" style="text-align:left">決算期</th><th class="ts">売上高</th><th class="ts">経常利益</th><th class="ts">当期純利益</th><th class="ts">評価</th></tr></thead>
+      <tbody>
+        <tr><td class="ax">令1.12期</td><td>5.0億円</td><td class="vr">欠損</td><td class="vr">▲5.4億円</td><td style="font-size:11px;color:#D85A30">民泊新法・コロナ前夜</td></tr>
+        <tr><td class="ax">令2.12期</td><td>3.8億円</td><td class="vr">欠損</td><td class="vr">▲4.7億円</td><td style="font-size:11px;color:#D85A30">コロナ禍で大幅減収</td></tr>
+        <tr><td class="ax">令3.12期</td><td>3.6億円</td><td class="vr">欠損</td><td class="vr">▲2.0億円</td><td style="font-size:11px;color:#D85A30">回復基調も欠損継続</td></tr>
+        <tr><td class="ax">令4.12期</td><td>4.0億円</td><td class="vr">欠損</td><td class="vr">▲1.1億円</td><td style="font-size:11px;color:#D85A30">新規開設10拠点も赤字</td></tr>
+        <tr><td class="ax">令5.12期</td><td>22.3億円</td><td>1.57億円</td><td>1.84億円</td><td style="font-size:11px;color:#1D9E75">黒字転換（458%増収）</td></tr>
+        <tr><td class="ax">令6.12期</td><td>30.7億円</td><td>2.18億円</td><td>3.01億円</td><td style="font-size:11px;color:#1D9E75">増収増益継続</td></tr>
+      </tbody>
+    </table>
+    <p class="note">累計欠損（令1〜4期）：約13億2,000万円。令5期に9億超の増資を得て黒字転換。TDBコメント：「長期にわたり多額の欠損計上を継続してきた。定期的に動向を見守る必要がある」</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#185FA5">ISSUES</span><span class="sec-ttl">構造的課題の分析</span></div>
+    <div class="col3">
+      <div class="issue">
+        <h3 style="color:#185FA5">① 借上げ型の固定負債リスク</h3>
+        <ul>
+          <li class="r">物件賃料が固定負債化（稼働率低下で即赤字）</li>
+          <li class="r">インバウンド減少・円高時に一気に収益悪化</li>
+          <li>38施設の賃料総額は売上の相当部分を占める</li>
+          <li>借上げ型をやめると事業の根幹が揺らぐ</li>
+        </ul>
+      </div>
+      <div class="issue">
+        <h3 style="color:#185FA5">② 長期累積欠損の歴史</h3>
+        <ul>
+          <li class="r">TDB評点47点（業界下位）</li>
+          <li class="r">令1〜4期4期連続欠損・累計約13億超</li>
+          <li class="r">黒字化は令5期（わずか2期前）</li>
+          <li>TDB「定期的に見守る必要がある」と明記</li>
+        </ul>
+      </div>
+      <div class="issue">
+        <h3 style="color:#185FA5">③ 人材・ガバナンスリスク</h3>
+        <ul>
+          <li class="r">正社員16名でパート120名管理</li>
+          <li class="r">後継者なし（TDB記載）</li>
+          <li class="r">VC支配構造（日本エスコン・ケネディクス等）</li>
+          <li>suitebookは資産だが自社開発依存リスクも</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#185FA5">DEEP DIVE</span><span class="sec-ttl">財務・事業モデルの詳細分析</span></div>
+
+    <div class="sec-bar" style="border-left-color:#185FA5;margin-bottom:8px"><span class="sec-no" style="color:#185FA5">財務分析</span><span class="sec-ttl" style="font-size:13px">推定バランスシートと財務体質</span></div>
+    <table class="tbl" style="margin-bottom:16px">
+      <thead><tr>
+        <th class="ta" style="text-align:left;width:22%">指標</th>
+        <th class="ts">SQUEEZE令6.12期</th>
+        <th class="ts">業界平均（参考）</th>
+        <th class="ts">評価・意味</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="ax">売上高</td><td>30.7億円（+37.0%）</td><td>—</td><td>2期連続黒字で急成長</td></tr>
+        <tr><td class="ax">営業利益</td><td>2億400万円</td><td>—</td><td>前期比+38.0%</td></tr>
+        <tr><td class="ax">経常利益率</td><td>7.1%</td><td>5〜8%</td><td>業界平均水準に達した</td></tr>
+        <tr><td class="ax">当期純利益</td><td>3億100万円（+64.0%）</td><td>—</td><td>純利益が経常利益を上回る（税務メリット等）</td></tr>
+        <tr><td class="ax">推定総資産</td><td>27.5億円</td><td>—</td><td>現預金16億円・長期借入2.5億円</td></tr>
+        <tr><td class="ax">推定自己資本比率</td><td>33%（推定）</td><td>25〜35%</td><td>VC増資で財務的に安定</td></tr>
+        <tr><td class="ax">有利子負債月商倍率</td><td>約1倍</td><td>—</td><td>健全水準。銀行融資も可能</td></tr>
+        <tr><td class="ax">累計欠損（令1〜4期）</td><td class="vr">約13.2億円</td><td>—</td><td class="vr">VC資金9億超が欠損補填に</td></tr>
+        <tr><td class="ax">TDB評点</td><td class="vr">47点（業界下位水準）</td><td>50〜60点</td><td class="vr">欠損履歴が評点を押し下げ</td></tr>
+        <tr><td class="ax">資金現況</td><td>業況：増加／支払能力：あり</td><td>—</td><td>財務的には現時点で安定</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-bar" style="border-left-color:#185FA5;margin-bottom:8px"><span class="sec-no" style="color:#185FA5">事業モデル</span><span class="sec-ttl" style="font-size:13px">suitebookフライホイールの構造と限界</span></div>
+    <div class="col2" style="margin-bottom:16px">
+      <div class="issue" style="border-color:#185FA5;border-width:1px">
+        <h3 style="color:#185FA5">suitebookフライホイールの正しさ</h3>
+        <ul>
+          <li class="g">自社ホテル（38施設）がsuitebookのショールーム</li>
+          <li class="g">実運営データがシステムの信頼性を証明</li>
+          <li class="g">JR東日本・パソナ・かりゆし等大手が導入</li>
+          <li class="g">全国3,700室超に導入済み（令7.4時点）</li>
+          <li class="g">人手不足ホテルからの引き合いが急増</li>
+        </ul>
+      </div>
+      <div class="warn-box" style="margin-bottom:0">
+        <h3>フライホイールの代償と限界</h3>
+        <p style="font-size:12px">このモデルを作るためにVC資金9億円＋4期連続欠損という代償を払った。suitebookの外販が進むにつれホテル収益（借上げ）比率が90%に高止まりし、SaaS化の比率が10%に後退しているのは矛盾。テック企業として評価されるにはSaaS比率を高める必要があるが、そのためには借上げ型ホテルを縮小しなければならないというジレンマを抱える。</p>
+      </div>
+    </div>
+
+    <div class="sec-bar" style="border-left-color:#185FA5;margin-bottom:8px"><span class="sec-no" style="color:#185FA5">株主構成</span><span class="sec-ttl" style="font-size:13px">VC支配と出口戦略の現実</span></div>
+    <table class="tbl" style="margin-bottom:16px">
+      <thead><tr>
+        <th class="ta" style="text-align:left">株主</th>
+        <th class="ts">属性</th>
+        <th class="ts">投資時期・目的</th>
+        <th class="ts">7gardenへの示唆</th>
+      </tr></thead>
+      <tbody>
+        <tr><td class="ax">日本エスコン（上場）</td><td style="font-size:11px">不動産デベ</td><td style="font-size:11px">令2年・開発連携目的</td><td style="font-size:11px;color:#185FA5">IPO or M&A出口を想定</td></tr>
+        <tr><td class="ax">ケネディクス</td><td style="font-size:11px">不動産AM</td><td style="font-size:11px">令2年・AM連携</td><td style="font-size:11px;color:#185FA5">不動産AMノウハウが裏側に</td></tr>
+        <tr><td class="ax">JR東日本スタートアップ</td><td style="font-size:11px">鉄道CVC</td><td style="font-size:11px">令3年・駅近ホテル連携</td><td style="font-size:11px">SQUEEZEを取り込み戦略も</td></tr>
+        <tr><td class="ax">インキュベイトファンド</td><td style="font-size:11px">VC</td><td style="font-size:11px">令2年・テック投資</td><td style="font-size:11px">EXIT pressureが今後高まる</td></tr>
+        <tr><td class="ax">ジャフコ・FFG等</td><td style="font-size:11px">VC複数</td><td style="font-size:11px">令3年</td><td style="font-size:11px">IPO要求or資金回収</td></tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-bottom:16px">VC・事業会社が多数入っており、創業者・舘林氏の持株比率は相対的に低い。後継者なしと組み合わさると、M&A or IPOが既定路線である可能性が高い。7gardenとの競合よりも「運営受託の相手先候補」になりうる。</p>
+
+    <div class="sec-bar" style="border-left-color:#185FA5;margin-bottom:8px"><span class="sec-no" style="color:#185FA5">借上げリスク</span><span class="sec-ttl" style="font-size:13px">固定負債化する38施設の賃料構造</span></div>
+    <div class="col2" style="margin-bottom:0">
+      <div class="warn-box" style="margin-bottom:0">
+        <h3>借上げ型の構造的脆弱性</h3>
+        <p style="font-size:12px">38施設すべてを「借り上げ」でホテル運営している。各物件の賃料は固定コストとして毎月発生し、稼働率が落ちても支払い義務が残る。令2〜4期のコロナ禍で3期連続欠損となった主因はまさにこの固定賃料負担。現在は円安インバウンド追い風で稼働率が高いが、外部環境が悪化した場合のバッファが薄い。なおSQUEEZEは「担保：信用・保証協会」との記載があり、不動産担保を持たない。</p>
+      </div>
+      <div class="hi" style="margin-bottom:0">
+        <h3>令7.12期（最新期）の見通し</h3>
+        <p style="font-size:12px">TDBは令7.12期について「詳細は開示が得られないが増収増益を目標」としている。円安継続・外国人観光客増加という追い風は続いており、稼働率は良好な状態を維持。ただしホテル新設に伴う経費増加が継続するため、費用合計も増加見込み。増収効果が経費増を上回れば、3期連続増益となる。「定期的に見守る必要がある」とのTDB評価は当面継続。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no" style="color:#185FA5">STRATEGY</span><span class="sec-ttl">SQUEEZEから7gardenが学べること</span></div>
+    <div class="hi">
+      <h3>suitebookのフライホイール発想は正しい — しかし9億円と4年の赤字を要した</h3>
+      <p>「自社ホテルをショールームにしてシステムを外販する」という構造は本質的に正しい。ただしSQUEEZEはそのためにVC資金9億円を調達し4期連続欠損という代償を払った。7gardenがtuna等のDX展開を進める際は、SQUEEZE型の「先行投資→後回収」ではなく、既存オーナー向けのアドオンサービスとして初期コストを最小化するアプローチが有効。借上げ型は回避し続けること。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: 7garden ═══════════════════════ -->
+<div id="garden" class="page">
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">7GARDEN</span><span class="sec-ttl">株式会社7garden — 令8.3期 詳細分析</span></div>
+    <div class="metrics">
+      <div class="metric"><div class="lbl">売上高</div><div class="val up">7.50億円</div><div class="note up">+95.4%（前期3.84億）</div></div>
+      <div class="metric"><div class="lbl">営業利益</div><div class="val up">1.90億円</div><div class="note up">営業利益率25.4%</div></div>
+      <div class="metric"><div class="lbl">経常利益</div><div class="val up">1.81億円</div><div class="note up">経常利益率24.1%</div></div>
+      <div class="metric"><div class="lbl">純資産</div><div class="val up">2.32億円</div><div class="note up">前期5,131万から4.5倍</div></div>
+    </div>
+    <div class="metrics" style="margin-top:12px">
+      <div class="metric"><div class="lbl">総資産</div><div class="val">8.12億円</div><div class="note">前期2.44億から3.3倍</div></div>
+      <div class="metric"><div class="lbl">長期借入金</div><div class="val">4.58億円</div><div class="note warn">土地取得に伴う増加</div></div>
+      <div class="metric"><div class="lbl">土地（新規）</div><div class="val up">3.60億円</div><div class="note up">自社開発の布石</div></div>
+      <div class="metric"><div class="lbl">自己資本比率</div><div class="val up">28.6%</div><div class="note up">前期21%から改善</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">HISTORY</span><span class="sec-ttl">業績推移（令3〜令8.3期）— 5期の成長軌跡</span></div>
+    <table class="tbl" style="margin-bottom:8px">
+      <thead>
+        <tr>
+          <th class="ta" style="text-align:left;width:13%">決算期</th>
+          <th class="tg">売上高</th><th class="tg">前期比</th>
+          <th class="tg">営業利益</th><th class="tg">経常利益</th><th class="tg">当期純利益</th>
+          <th class="tg">経常利益率</th><th class="tg">トピック</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ax">令3.3期</td><td>1.09億円</td><td>—</td>
+          <td>4,652万円</td><td>359万円</td><td>268万円</td><td>3.3%</td>
+          <td style="font-size:11px;color:#888">コロナ禍・黎明期</td>
+        </tr>
+        <tr>
+          <td class="ax">令4.3期</td><td>1.69億円</td><td style="color:#1D9E75">+54.4%</td>
+          <td>351万円</td><td>150万円</td><td>99万円</td><td>0.9%</td>
+          <td style="font-size:11px;color:#888">拡大初期・利益は薄い</td>
+        </tr>
+        <tr>
+          <td class="ax">令5.3期</td><td>2.48億円</td><td style="color:#1D9E75">+46.5%</td>
+          <td>2,380万円</td><td>1,258万円</td><td>824万円</td><td>5.1%</td>
+          <td style="font-size:11px;color:#1D9E75">宅建・tuna内製化</td>
+        </tr>
+        <tr>
+          <td class="ax">令6.3期</td><td>2.67億円</td><td style="color:#888">+7.7%</td>
+          <td>555万円</td><td>734万円</td><td>338万円</td><td>2.8%</td>
+          <td style="font-size:11px;color:#BA7517">人員増で販管費先行・一時減速</td>
+        </tr>
+        <tr>
+          <td class="ax">令7.3期</td><td>3.84億円</td><td style="color:#1D9E75">+43.9%</td>
+          <td>2,816万円</td><td>2,590万円</td><td>1,746万円</td><td>6.8%</td>
+          <td style="font-size:11px;color:#1D9E75">TDB「競争優位性を有する」</td>
+        </tr>
+        <tr style="background:#E1F5EE">
+          <td class="ax" style="font-weight:700;color:#04342C">令8.3期（試算）</td>
+          <td style="font-weight:700;color:#1D9E75">7.50億円</td>
+          <td style="font-weight:700;color:#1D9E75">+95.4%</td>
+          <td style="font-weight:700;color:#1D9E75">1億9,018万円</td>
+          <td style="font-weight:700;color:#1D9E75">1億8,070万円</td>
+          <td style="font-weight:700;color:#1D9E75">1億8,070万円※</td>
+          <td style="font-weight:700;color:#1D9E75">24.1%</td>
+          <td style="font-size:11px;color:#085041;font-weight:700">土地3.6億取得・開発フェーズへ</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">※令8.3期当期純利益は税引前純利益と同額（法人税等未確定）。令3〜7期はTDB調査報告書記載の確定値。令8.3期は試算表（2025年4月〜2026年3月）より。</p>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px">
+      <div style="background:#fff;border-radius:10px;border:.5px solid #d3d1c7;padding:14px 16px">
+        <div style="font-size:10px;color:#888;margin-bottom:8px">売上高の推移</div>
+        <svg viewBox="0 0 200 84" style="width:100%;overflow:visible">
+          <rect x="5"  y="72" width="22" height="8"  fill="#d3d1c7" rx="2"/>
+          <rect x="37" y="65" width="22" height="15" fill="#d3d1c7" rx="2"/>
+          <rect x="69" y="53" width="22" height="27" fill="#9FE1CB" rx="2"/>
+          <rect x="101" y="51" width="22" height="29" fill="#9FE1CB" rx="2"/>
+          <rect x="133" y="38" width="22" height="42" fill="#5DCAA5" rx="2"/>
+          <rect x="165" y="4"  width="22" height="76" fill="#1D9E75" rx="2"/>
+          <text x="16"  y="82" text-anchor="middle" font-size="8" fill="#888">令3</text>
+          <text x="48"  y="82" text-anchor="middle" font-size="8" fill="#888">令4</text>
+          <text x="80"  y="82" text-anchor="middle" font-size="8" fill="#888">令5</text>
+          <text x="112" y="82" text-anchor="middle" font-size="8" fill="#888">令6</text>
+          <text x="144" y="82" text-anchor="middle" font-size="8" fill="#888">令7</text>
+          <text x="176" y="82" text-anchor="middle" font-size="8" fill="#085041" font-weight="700">令8</text>
+          <text x="176" y="2"  text-anchor="middle" font-size="8" fill="#1D9E75" font-weight="700">7.5億</text>
+        </svg>
+      </div>
+      <div style="background:#fff;border-radius:10px;border:.5px solid #d3d1c7;padding:14px 16px">
+        <div style="font-size:10px;color:#888;margin-bottom:8px">経常利益率の推移（%）</div>
+        <svg viewBox="0 0 200 84" style="width:100%;overflow:visible">
+          <polyline points="16,62 48,74 80,52 112,64 144,48 176,8"
+            fill="none" stroke="#d3d1c7" stroke-width="1.5" stroke-dasharray="3 2"/>
+          <polyline points="144,48 176,8" fill="none" stroke="#1D9E75" stroke-width="2.5"/>
+          <circle cx="16"  cy="62" r="3" fill="#d3d1c7"/>
+          <circle cx="48"  cy="74" r="3" fill="#d3d1c7"/>
+          <circle cx="80"  cy="52" r="3" fill="#9FE1CB"/>
+          <circle cx="112" cy="64" r="3" fill="#9FE1CB"/>
+          <circle cx="144" cy="48" r="4" fill="#5DCAA5"/>
+          <circle cx="176" cy="8"  r="5" fill="#1D9E75"/>
+          <text x="16"  y="82" text-anchor="middle" font-size="8" fill="#888">令3</text>
+          <text x="48"  y="82" text-anchor="middle" font-size="8" fill="#888">令4</text>
+          <text x="80"  y="82" text-anchor="middle" font-size="8" fill="#888">令5</text>
+          <text x="112" y="82" text-anchor="middle" font-size="8" fill="#888">令6</text>
+          <text x="144" y="82" text-anchor="middle" font-size="8" fill="#888">令7</text>
+          <text x="176" y="82" text-anchor="middle" font-size="8" fill="#085041" font-weight="700">令8</text>
+          <text x="188" y="10" text-anchor="start" font-size="8" fill="#1D9E75" font-weight="700">24%</text>
+        </svg>
+      </div>
+      <div style="background:#fff;border-radius:10px;border:.5px solid #d3d1c7;padding:14px 16px">
+        <div style="font-size:10px;color:#888;margin-bottom:8px">純資産の推移</div>
+        <svg viewBox="0 0 200 84" style="width:100%;overflow:visible">
+          <rect x="5"  y="70" width="22" height="10" fill="#d3d1c7" rx="2"/>
+          <rect x="37" y="68" width="22" height="12" fill="#d3d1c7" rx="2"/>
+          <rect x="69" y="58" width="22" height="22" fill="#9FE1CB" rx="2"/>
+          <rect x="101" y="55" width="22" height="25" fill="#9FE1CB" rx="2"/>
+          <rect x="133" y="50" width="22" height="30" fill="#5DCAA5" rx="2"/>
+          <rect x="165" y="6"  width="22" height="74" fill="#1D9E75" rx="2"/>
+          <text x="16"  y="82" text-anchor="middle" font-size="8" fill="#888">令3</text>
+          <text x="48"  y="82" text-anchor="middle" font-size="8" fill="#888">令4</text>
+          <text x="80"  y="82" text-anchor="middle" font-size="8" fill="#888">令5</text>
+          <text x="112" y="82" text-anchor="middle" font-size="8" fill="#888">令6</text>
+          <text x="144" y="82" text-anchor="middle" font-size="8" fill="#888">令7</text>
+          <text x="176" y="82" text-anchor="middle" font-size="8" fill="#085041" font-weight="700">令8</text>
+          <text x="176" y="4"  text-anchor="middle" font-size="8" fill="#1D9E75" font-weight="700">2.32億</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">BS</span><span class="sec-ttl">貸借対照表 主要項目（令8.3期末）</span></div>
+    <div class="col2">
+      <div>
+        <p style="font-size:12px;font-weight:700;color:#1D9E75;margin-bottom:8px">資産の部</p>
+        <table class="tbl">
+          <tr><td class="ax">現預金合計（推計）</td><td class="vg">約3.5億円</td></tr>
+          <tr><td class="ax">売掛金</td><td>4,136万円</td></tr>
+          <tr><td class="ax">仮払消費税</td><td>3,049万円（還付見込み）</td></tr>
+          <tr><td class="ax">流動資産合計</td><td>3億9,988万円（49.3%）</td></tr>
+          <tr><td class="ax">土地（新規取得）</td><td class="vg">3億6,000万円</td></tr>
+          <tr><td class="ax">有形固定資産合計</td><td>3億7,117万円</td></tr>
+          <tr><td class="ax">出資金</td><td>2,001万円</td></tr>
+          <tr><td class="ax">固定資産合計</td><td>4億1,168万円（50.7%）</td></tr>
+          <tr><td class="ax">資産合計</td><td class="vg">8億1,157万円</td></tr>
+        </table>
+      </div>
+      <div>
+        <p style="font-size:12px;font-weight:700;color:#D85A30;margin-bottom:8px">負債・純資産の部</p>
+        <table class="tbl">
+          <tr><td class="ax">未払金</td><td>2,650万円</td></tr>
+          <tr><td class="ax">仮受消費税</td><td>6,671万円（未払消費税）</td></tr>
+          <tr><td class="ax">流動負債合計</td><td>1億2,187万円（15.0%）</td></tr>
+          <tr><td class="ax">長期借入金</td><td class="warn">4億5,768万円（56.4%）</td></tr>
+          <tr><td class="ax">固定負債合計</td><td class="warn">4億5,768万円</td></tr>
+          <tr><td class="ax">負債合計</td><td>5億7,955万円</td></tr>
+          <tr><td class="ax">資本金</td><td>1,730万円</td></tr>
+          <tr><td class="ax">利益剰余金</td><td class="vg">2億1,472万円</td></tr>
+          <tr><td class="ax">純資産合計</td><td class="vg">2億3,202万円（28.6%）</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="warn-box" style="margin-top:12px">
+      <h3>財務上の留意点：長期借入金4.58億円</h3>
+      <p>前期1.35億→本期4.58億円に増加。主因は土地3.6億取得のための開発資金調達。土地は資産として計上されるため純資産は増加しているが、返済原資の確保（当期純利益＋減価償却≒2億円超）と売上水準の維持が重要。来期以降の損益分岐点を現状売上7.5億水準以上に引き上げる取り組みが急務。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">TDB METRICS</span><span class="sec-ttl">TDB財務指標比較 — 7garden vs 競合・業界</span></div>
+    <table class="tbl" style="margin-bottom:8px">
+      <thead>
+        <tr>
+          <th class="ta" style="text-align:left;width:22%">TDB評価軸</th>
+          <th class="tk">カソク（令7.5期）</th>
+          <th class="ts">SQUEEZE（令6.12期）</th>
+          <th class="tg" style="width:26%">7garden 令7.3期（TDB）</th>
+          <th class="tg" style="background:#085041">7garden 令8.3期（試算）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ax">売上高経常利益率</td>
+          <td class="vr">3.7%<br><span style="font-size:10px">業界Dランク相当</span></td>
+          <td>7.1%<br><span style="font-size:10px">業界Bランク相当</span></td>
+          <td>6.8%<br><span style="font-size:10px;color:#1D9E75">業界Bランク</span></td>
+          <td class="vg">24.1%<br><span style="font-size:10px">業界Aランク（上位20%）</span></td>
+        </tr>
+        <tr>
+          <td class="ax">売上総利益（粗利）率</td>
+          <td>32.5%<br><span style="font-size:10px">業界Dランク相当</span></td>
+          <td>34.7%（推定）<br><span style="font-size:10px">業界Cランク相当</span></td>
+          <td>99.6%<br><span style="font-size:10px;color:#1D9E75">業界Aランク</span></td>
+          <td class="vg">95.2%<br><span style="font-size:10px">業界Aランク維持</span></td>
+        </tr>
+        <tr>
+          <td class="ax">自己資本比率</td>
+          <td class="vr">15%<br><span style="font-size:10px">業界Cランク相当</span></td>
+          <td>33%（推定）<br><span style="font-size:10px">業界Bランク相当</span></td>
+          <td>21.1%<br><span style="font-size:10px;color:#888">業界Cランク</span></td>
+          <td class="vg">28.6%<br><span style="font-size:10px">業界B〜Cランク</span></td>
+        </tr>
+        <tr>
+          <td class="ax">有利子負債月商倍率</td>
+          <td>1.35倍<br><span style="font-size:10px">業界Bランク相当</span></td>
+          <td>約1倍<br><span style="font-size:10px">業界Aランク相当</span></td>
+          <td>4.22倍<br><span style="font-size:10px;color:#BA7517">業界Bランク</span></td>
+          <td><span style="color:#BA7517">約7.3倍</span><br><span style="font-size:10px;color:#BA7517">土地取得で増加（一時的）</span></td>
+        </tr>
+        <tr>
+          <td class="ax">流動比率</td>
+          <td>—</td>
+          <td>—</td>
+          <td>310.8%<br><span style="font-size:10px;color:#1D9E75">業界Bランク</span></td>
+          <td class="vg">327%（推計）<br><span style="font-size:10px">流動資産3.99億 / 流動負債1.22億</span></td>
+        </tr>
+        <tr>
+          <td class="ax">固定比率</td>
+          <td>—</td>
+          <td>—</td>
+          <td>127.1%<br><span style="font-size:10px;color:#888">業界Bランク</span></td>
+          <td><span style="color:#BA7517">177%（推計）</span><br><span style="font-size:10px;color:#BA7517">土地取得で固定資産増加</span></td>
+        </tr>
+        <tr>
+          <td class="ax">総資本経常利益率</td>
+          <td>—</td>
+          <td>—</td>
+          <td>10.6%<br><span style="font-size:10px;color:#1D9E75">業界Aランク</span></td>
+          <td class="vg">22.3%（推計）<br><span style="font-size:10px">経常利益1.81億÷総資産8.12億</span></td>
+        </tr>
+        <tr>
+          <td class="ax">1人当り売上（生産性）</td>
+          <td>4,575万円<br><span style="font-size:10px">40名換算</span></td>
+          <td>1,919万円<br><span style="font-size:10px">正社員16名換算</span></td>
+          <td>2,741万円<br><span style="font-size:10px">14名換算</span></td>
+          <td class="vg">5,360万円<br><span style="font-size:10px">14名換算・3社最高</span></td>
+        </tr>
+        <tr>
+          <td class="ax">損益分岐点安全余裕率</td>
+          <td class="vr">12%<br><span style="font-size:10px">危険水域</span></td>
+          <td>—</td>
+          <td>6.8%<br><span style="font-size:10px;color:#888">業界Cランク</span></td>
+          <td class="vg">約27%<br><span style="font-size:10px">販管費5.24億÷粗利率95%で試算</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note">TDBランクはTDB調査報告書「財務諸表分析表」記載の業界内ランク（A=上位20%、B=20〜40%、C=40〜60%、D=60〜80%、E=下位20%）をもとに記載。令8.3期の指標は試算表からの推計値。</p>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">TDB SCORE SIM</span><span class="sec-ttl">TDB評点シミュレーション — 令8.3期の数字で何点になるか</span></div>
+
+    <div class="hi" style="margin-bottom:16px">
+      <h3>現在51点 → 令8.3期の数字で65〜68点水準が視野に入る</h3>
+      <p>TDB評点は100点満点で「業歴・資本構成・規模・損益・資金現況・経営者・企業活力」の7軸で採点される。令7.3期の51点は売上3.84億・経常利益2,590万の数字に基づく。令8.3期（売上7.5億・経常利益1.81億・純資産2.32億）が反映されれば、規模・損益・資本構成の3軸が同時に改善し、カソク（57点）を上回る水準が実現可能。</p>
+    </div>
+
+    <table class="tbl" style="margin-bottom:8px">
+      <thead>
+        <tr>
+          <th class="ta" style="text-align:left;width:18%">評価軸（満点）</th>
+          <th class="tg">令7.3期<br>（TDB確定）</th>
+          <th class="tg" style="background:#085041">令8.3期<br>（シミュレーション）</th>
+          <th class="ta" style="width:14%">変化</th>
+          <th class="ta" style="width:34%">改善理由</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="ax">業歴（最大5点）</td>
+          <td style="text-align:center">4点</td>
+          <td class="vg" style="text-align:center">4点</td>
+          <td style="text-align:center;color:#888">±0</td>
+          <td style="font-size:11px;color:#888">設立令和元年→業歴10年未満、変化なし</td>
+        </tr>
+        <tr>
+          <td class="ax">資本構成（最大12点）</td>
+          <td style="text-align:center">6点</td>
+          <td class="vg" style="text-align:center"><b>8〜9点</b></td>
+          <td style="text-align:center;color:#1D9E75">+2〜3点</td>
+          <td style="font-size:11px">自己資本比率21%→28.6%、純資産5,131万→2.32億（4.5倍）</td>
+        </tr>
+        <tr>
+          <td class="ax">規模（最大19点）</td>
+          <td style="text-align:center">4点</td>
+          <td class="vg" style="text-align:center"><b>7〜8点</b></td>
+          <td style="text-align:center;color:#1D9E75">+3〜4点</td>
+          <td style="font-size:11px">売上3.84億→7.5億（約2倍）。従業員・総資産も大幅拡大</td>
+        </tr>
+        <tr>
+          <td class="ax">損益（最大10点）</td>
+          <td style="text-align:center">7点</td>
+          <td class="vg" style="text-align:center"><b>9〜10点</b></td>
+          <td style="text-align:center;color:#1D9E75">+2〜3点</td>
+          <td style="font-size:11px">経常利益率6.8%→24.1%、3期連続黒字継続、利益剰余金積み上げ</td>
+        </tr>
+        <tr>
+          <td class="ax">資金現況（最大20点）</td>
+          <td style="text-align:center">10点</td>
+          <td style="text-align:center"><b>9〜11点</b></td>
+          <td style="text-align:center;color:#BA7517">±0〜▲1</td>
+          <td style="font-size:11px;color:#BA7517">有利子負債月商倍率が土地取得で上昇（一時的なマイナス要因）</td>
+        </tr>
+        <tr>
+          <td class="ax">経営者（最大15点）</td>
+          <td style="text-align:center">10点</td>
+          <td class="vg" style="text-align:center"><b>10〜11点</b></td>
+          <td style="text-align:center;color:#1D9E75">±0〜+1</td>
+          <td style="font-size:11px">実績積み上げで微増見込み</td>
+        </tr>
+        <tr>
+          <td class="ax">企業活力（最大19点）</td>
+          <td style="text-align:center">10点</td>
+          <td class="vg" style="text-align:center"><b>12〜13点</b></td>
+          <td style="text-align:center;color:#1D9E75">+2〜3点</td>
+          <td style="font-size:11px">土地取得・自社開発計画・引き合い増加・DX事業拡大が評価される</td>
+        </tr>
+        <tr style="background:#E1F5EE;font-weight:700">
+          <td class="ax" style="font-weight:700;color:#04342C">合計（100点）</td>
+          <td style="text-align:center;color:#888">51点</td>
+          <td class="vg" style="text-align:center;font-size:16px"><b>65〜68点</b></td>
+          <td style="text-align:center;color:#1D9E75;font-weight:700">+14〜17点</td>
+          <td style="font-size:11px;color:#085041">カソク57点・SQUEEZE47点を大きく上回る水準</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="note" style="margin-bottom:16px">※TDB評点の各軸の点数はTDB調査報告書の記載値と算定ロジックをもとにした推計。実際の評点はTDBの再調査・ヒアリング内容によって変動する。有利子負債月商倍率の上昇は土地という実資産の裏付けがあるため、資金現況への影響は限定的と推定。</p>
+
+    <div class="col2">
+      <div style="background:#fff;border-radius:10px;border:.5px solid #d3d1c7;padding:16px">
+        <div style="font-size:10px;color:#888;margin-bottom:12px;font-weight:700">評点レーダーチャート（推計）</div>
+        <svg viewBox="0 0 240 220" style="width:100%">
+          <defs>
+            <polygon id="hex" points="120,20 208,68 208,152 120,200 32,152 32,68" fill="none"/>
+          </defs>
+          <!-- グリッド -->
+          <polygon points="120,60 172,90 172,150 120,180 68,150 68,90" fill="none" stroke="#e8e6e0" stroke-width="0.8"/>
+          <polygon points="120,40 188,78 188,142 120,178 52,142 52,78" fill="none" stroke="#e8e6e0" stroke-width="0.8"/>
+          <polygon points="120,20 208,68 208,152 120,200 32,152 32,68" fill="none" stroke="#e8e6e0" stroke-width="0.8"/>
+          <!-- 軸 -->
+          <line x1="120" y1="20" x2="120" y2="200" stroke="#d3d1c7" stroke-width="0.5"/>
+          <line x1="120" y1="110" x2="208" y2="68" stroke="#d3d1c7" stroke-width="0.5"/>
+          <line x1="120" y1="110" x2="208" y2="152" stroke="#d3d1c7" stroke-width="0.5"/>
+          <line x1="120" y1="110" x2="120" y2="200" stroke="#d3d1c7" stroke-width="0.5"/>
+          <line x1="120" y1="110" x2="32" y2="152" stroke="#d3d1c7" stroke-width="0.5"/>
+          <line x1="120" y1="110" x2="32" y2="68" stroke="#d3d1c7" stroke-width="0.5"/>
+          <!-- 令7期（現在） -->
+          <!-- 業歴4/5=80%, 資本構成6/12=50%, 規模4/19=21%, 損益7/10=70%, 資金10/20=50%, 経営者10/15=67%, 企業活力10/19=53% -->
+          <!-- 6軸: 上=業歴, 右上=資本, 右下=規模, 下=損益, 左下=資金, 左上=経営 -->
+          <polygon
+            points="120,36 172,90 186,142 120,152 52,142 56,80"
+            fill="#9FE1CB" fill-opacity="0.2" stroke="#5DCAA5" stroke-width="1.5" stroke-dasharray="4 2"/>
+          <!-- 令8期シミュ -->
+          <polygon
+            points="120,28 182,80 196,148 120,140 44,148 46,72"
+            fill="#1D9E75" fill-opacity="0.25" stroke="#1D9E75" stroke-width="2"/>
+          <!-- 軸ラベル -->
+          <text x="120" y="14" text-anchor="middle" font-size="9" fill="#5f5e5a">業歴</text>
+          <text x="216" y="66" text-anchor="start" font-size="9" fill="#5f5e5a">資本構成</text>
+          <text x="216" y="156" text-anchor="start" font-size="9" fill="#5f5e5a">規模</text>
+          <text x="120" y="214" text-anchor="middle" font-size="9" fill="#5f5e5a">損益</text>
+          <text x="24" y="156" text-anchor="end" font-size="9" fill="#5f5e5a">資金現況</text>
+          <text x="24" y="66" text-anchor="end" font-size="9" fill="#5f5e5a">経営者</text>
+          <!-- 凡例 -->
+          <rect x="60" y="196" width="10" height="6" fill="#5DCAA5" fill-opacity="0.5" stroke="#5DCAA5" stroke-width="1"/>
+          <text x="74" y="202" font-size="8.5" fill="#5f5e5a">令7.3期（51点）</text>
+          <rect x="140" y="196" width="10" height="6" fill="#1D9E75" fill-opacity="0.5" stroke="#1D9E75" stroke-width="2"/>
+          <text x="154" y="202" font-size="8.5" fill="#085041" font-weight="700">令8.3期（推計65〜68点）</text>
+        </svg>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div class="hi" style="margin-bottom:0">
+          <h3>今すぐできるアクション</h3>
+          <p style="font-size:12px">令8.3期の試算表をもとにTDBへ再調査を依頼するだけで、評点が大幅改善する見込み。65点超は「信用程度C（51〜65点）」から「信用程度B（66〜85点）」へのランクアップを意味し、金融機関の審査基準・オーナーの与信判断に直接影響する。</p>
+        </div>
+        <div style="background:#fff;border-radius:10px;border:.5px solid #d3d1c7;padding:14px 16px">
+          <div style="font-size:11px;font-weight:700;color:#1a1917;margin-bottom:10px">評点別・信用程度の意味</div>
+          <div style="font-size:11px;color:#888;line-height:1.8">
+            <div style="display:flex;gap:8px;margin-bottom:4px"><span style="background:#FAECE7;color:#633806;padding:2px 8px;border-radius:3px;font-weight:700;white-space:nowrap">47点</span><span>SQUEEZE現在。業界下位水準。金融機関が慎重になる</span></div>
+            <div style="display:flex;gap:8px;margin-bottom:4px"><span style="background:#E6F1FB;color:#0C447C;padding:2px 8px;border-radius:3px;font-weight:700;white-space:nowrap">51点</span><span>7garden現在。信用程度D（36〜50点）の上位</span></div>
+            <div style="display:flex;gap:8px;margin-bottom:4px"><span style="background:#FAEEDA;color:#633806;padding:2px 8px;border-radius:3px;font-weight:700;white-space:nowrap">57点</span><span>カソク現在。信用程度C（51〜65点）中位</span></div>
+            <div style="display:flex;gap:8px"><span style="background:#E1F5EE;color:#085041;padding:2px 8px;border-radius:3px;font-weight:700;white-space:nowrap">65〜68点</span><span>令8期シミュ。信用程度B入り。融資・与信が格段に通りやすくなる</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">GROWTH</span><span class="sec-ttl">7gardenの成長ストーリー</span></div>
+    <div class="tl4">
+      <div class="tl"><div class="period">令5〜6期</div><div class="ttl">黒字基盤の確立</div><div class="body">売上3.8億・経常利益2,590万。宅建免許・tuna内製化。稼働率80%超維持。TDB「競争優位性を有する」</div></div>
+      <div class="tl" style="border-color:#1D9E75"><div class="period" style="color:#1D9E75">令8.3期（試算）</div><div class="ttl" style="color:#1D9E75">フェーズ転換</div><div class="body">売上7.5億（+95%）・営業利益率25.4%・土地3.6億取得・純資産2.32億。開発フェーズへ移行。</div></div>
+      <div class="tl"><div class="period">令9〜10期（計画）</div><div class="ttl">自社開発本格化</div><div class="body">TDB「令9年に自社ホテルの開発も行っていく計画」。年4棟ペース＋GP収益・AM報酬の積み上げ。</div></div>
+      <div class="tl"><div class="period">中長期（ビジョン）</div><div class="ttl">4層収益モデル</div><div class="body">運営受託フィー→企画・設計料→AM報酬→GP分配→売却益。カソク・SQUEEZEが届かない資本×運営の統合モデル。</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE: ポジショニング ═══════════════════════ -->
+<div id="position" class="page">
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">POSITIONING</span><span class="sec-ttl">7gardenの第三の道 — 競合との本質的差異</span></div>
+    <div class="hi">
+      <h3>「量産フィー競争」でも「借上げリスク」でもない、設計×AM統合モデル</h3>
+      <p>カソクは「受託×量産」で走るが粗利32%の天井から抜け出せない。SQUEEZEは「借上げ×テック」で4期欠損の末に黒字化したが借上げリスクを抱え続ける。7gardenは「企画・設計・開発ディレクション・運営・DX・仲介」の一貫バリューチェーンで粗利率95%・営業利益率25%という、両社が絶対に届かない収益構造を実現した。さらに令8期の土地取得で、カソク・SQUEEZEが「軽資産」のままである間に、7gardenは不動産資産の積み上げを開始した。</p>
+    </div>
+
+    <div class="map-wrap">
+      <svg viewBox="0 0 720 440" xmlns="http://www.w3.org/2000/svg" style="font-family:sans-serif;width:100%">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+            <path d="M2 2L8 5L2 8" fill="none" stroke="#1D9E75" stroke-width="1.5"/>
+          </marker>
+        </defs>
+        <!-- 背景 -->
+        <rect x="60" y="40" width="600" height="360" fill="none" stroke="#d3d1c7" stroke-width="0.8" rx="8"/>
+        <!-- グリッド -->
+        <line x1="60" y1="220" x2="660" y2="220" stroke="#d3d1c7" stroke-width="0.5" stroke-dasharray="4 4"/>
+        <line x1="360" y1="40" x2="360" y2="400" stroke="#d3d1c7" stroke-width="0.5" stroke-dasharray="4 4"/>
+        <!-- 軸ラベル -->
+        <text x="360" y="28" text-anchor="middle" font-size="12" fill="#5f5e5a" font-weight="600">高付加価値・高利益率</text>
+        <text x="360" y="420" text-anchor="middle" font-size="12" fill="#5f5e5a" font-weight="600">標準品・低利益率</text>
+        <text x="56" y="224" text-anchor="end" font-size="12" fill="#5f5e5a" font-weight="600">少物件</text>
+        <text x="664" y="224" text-anchor="start" font-size="12" fill="#5f5e5a" font-weight="600">多物件</text>
+        <!-- ゾーン -->
+        <rect x="66" y="46" width="288" height="168" rx="8" fill="#E1F5EE" opacity="0.4" stroke="#1D9E75" stroke-width="1" stroke-dasharray="4 3"/>
+        <text x="82" y="68" font-size="10" fill="#0F6E56" font-weight="700">7gardenゾーン（高利益率×厳選物件）</text>
+        <rect x="368" y="228" width="286" height="166" rx="8" fill="#FAEEDA" opacity="0.3" stroke="#BA7517" stroke-width="0.5" stroke-dasharray="4 3"/>
+        <text x="384" y="248" font-size="10" fill="#633806" font-weight="700">量産型受託ゾーン</text>
+        <!-- カソク -->
+        <ellipse cx="520" cy="320" rx="60" ry="30" fill="#FAEEDA" stroke="#BA7517" stroke-width="2"/>
+        <text x="520" y="315" text-anchor="middle" font-size="14" font-weight="700" fill="#633806">カソク</text>
+        <text x="520" y="333" text-anchor="middle" font-size="10" fill="#854F0B">量×フィー 利益率3.7%</text>
+        <!-- SQUEEZE -->
+        <ellipse cx="470" cy="162" rx="66" ry="30" fill="#E6F1FB" stroke="#185FA5" stroke-width="2"/>
+        <text x="470" y="157" text-anchor="middle" font-size="14" font-weight="700" fill="#0C447C">SQUEEZE</text>
+        <text x="470" y="175" text-anchor="middle" font-size="10" fill="#185FA5">借上げ×テック 利益率7.1%</text>
+        <!-- 7garden -->
+        <ellipse cx="178" cy="108" rx="78" ry="38" fill="#E1F5EE" stroke="#1D9E75" stroke-width="2.5"/>
+        <text x="178" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="#04342C">7garden</text>
+        <text x="178" y="118" text-anchor="middle" font-size="10" fill="#085041">設計×AM×DX 利益率25.4%</text>
+        <!-- 成長矢印 -->
+        <path d="M192 146 Q210 178 220 205" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-dasharray="5 3" marker-end="url(#arr)"/>
+        <text x="228" y="192" font-size="10" fill="#1D9E75" font-weight="600">成長・開発へ</text>
+        <!-- 星野系 -->
+        <ellipse cx="520" cy="85" rx="60" ry="26" fill="#F1EFE8" stroke="#888" stroke-width="0.5"/>
+        <text x="520" y="81" text-anchor="middle" font-size="12" font-weight="600" fill="#444">外資・星野系</text>
+        <text x="520" y="97" text-anchor="middle" font-size="10" fill="#888">ブランド×多拠点</text>
+        <!-- 数字メモ -->
+        <rect x="66" y="374" width="622" height="22" rx="4" fill="#f8f7f4"/>
+        <text x="76" y="389" font-size="10" fill="#888">縦軸：収益性（粗利率・利益率）　横軸：運営施設数・スケール規模　バブルサイズは売上高を示す（概念図）</text>
+      </svg>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">VS</span><span class="sec-ttl">競合別 差別化ストーリー</span></div>
+    <div class="col3">
+      <div class="issue">
+        <h3 style="color:#1D9E75">vs カソク：収益構造の質</h3>
+        <ul>
+          <li class="g">粗利率95% vs カソク32%の差が全て</li>
+          <li class="g">設計・企画料が上乗せされる多層収益</li>
+          <li class="g">固定費を変動費化（フリーランス活用）</li>
+          <li class="g">宅建内製で仲介手数料も自社完結</li>
+          <li>カソクは量産してもOTA手数料で利益が消える</li>
+        </ul>
+      </div>
+      <div class="issue">
+        <h3 style="color:#1D9E75">vs SQUEEZE：財務規律と資産形成</h3>
+        <ul>
+          <li class="g">借上げ型を回避し固定負債リスクをゼロに</li>
+          <li class="g">3期連続黒字 vs SQUEEZE4期連続欠損歴</li>
+          <li class="g">令8期に土地3.6億取得で資産積み上げ開始</li>
+          <li class="g">後継者問題なし・VC依存なし</li>
+          <li>SQUEEZEはテック投資9億+4期欠損の代償</li>
+        </ul>
+      </div>
+      <div class="issue">
+        <h3 style="color:#1D9E75">両社にない7gardenの独自優位</h3>
+        <ul>
+          <li class="g">TDB「競争優位性を有している」と明記</li>
+          <li class="g">用地選定〜設計〜開発〜運営の一貫体制</li>
+          <li class="g">平均客室単価2万〜5万円のプレミアム帯</li>
+          <li class="g">オーナー・AM会社との資本的連携</li>
+          <li>令9年以降：自社開発→GP収益へ</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <div class="sec-bar"><span class="sec-no">PRIORITY</span><span class="sec-ttl">7gardenが今すぐ取り組むべき優先課題</span></div>
+    <div class="warn-box">
+      <h3>安全余裕率の拡大と借入返済計画の策定</h3>
+      <p>令8.3期試算の損益分岐点を仮計算すると、販管費5.24億÷粗利率95%≒5.51億円が損益分岐点売上高となり、安全余裕率は約27%（売上7.5億に対して）と実は十分な水準。ただし来期以降、土地取得に伴う長期借入金4.58億円の元利返済が本格化する。年間返済額（元本＋利息）を経常利益1.81億円・減価償却1.76億円の合算キャッシュフロー（合計約3.6億円）でカバーできるかを、来期計画策定前に試算しておくこと。</p>
+    </div>
+    <div class="hi">
+      <h3>令8期の数字をTDB再調査・金融機関へ開示すれば評点が大幅改善する</h3>
+      <p>現在のTDB評点51点は令7.3期（売上3.84億・経常利益2,590万）の数字に基づく。令8.3期（売上7.5億・経常利益1.81億・純資産2.32億）が反映されれば、損益評価・資本構成評価・規模評価がそれぞれ改善し、60点台への到達が視野に入る。カソク（57点）・SQUEEZE（47点）を上回る評点は、新規オーナーや金融機関向けの信用補完として活用できる。</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  本資料は帝国データバンク調査報告書（カソク令7.4・SQUEEZE令7.4・7garden令7.5）および7garden試算表（令8.3期）をもとに7gardenが独自に分析・作成。外部への開示は禁止。7garden Strategy Team 2026.04.06
+</footer>
+
+<script>
+function show(id, tab) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  tab.classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
