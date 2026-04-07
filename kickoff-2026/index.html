@@ -138,6 +138,12 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
   .split { grid-template-columns: 1fr; }
   .change-row { grid-template-columns: 1fr; }
 }
+/* 強調バージョン用 */
+.hl{color:#1D7B4E;font-weight:600}
+.hl-big{color:#1D7B4E;font-weight:700;font-size:1.15em}
+.hl-box{display:inline;background:rgba(29,123,78,0.10);padding:1px 6px;border-radius:4px;color:#1D7B4E;font-weight:600}
+.hl-red{color:#E24B4A;font-weight:600}
+.hl-gold{color:#B8960F;font-weight:600}
 </style>
 </head>
 <body>
@@ -182,7 +188,7 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
   <span><span class="dot" style="background:var(--purple)"></span>当期純利益</span>
 </div>
 <div class="chart-wrap"><canvas id="chart1"></canvas></div>
-<p class="chart-note">※ 単位：百万円 / 11期は着地見込（当期純利益は法人税33%仮計算）</p>
+<p class="chart-note">※ 単位：百万円 / 11期は着地見込（当期純利益は法人税33%仮計算）<br><span style="color:#1D7B4E;font-weight:500">10年で売上375倍。COVIDからの復活を経て、営業利益率25%へ。</span></p>
 </div>
 
 <div class="section">
@@ -222,11 +228,11 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
 </div>
 
 <div class="section">
-<div class="section-headline">［損益計算書］当期純利益、前期比約<strong>6.9倍</strong>の<strong>121百万円</strong></div>
+<div class="section-headline">［損益計算書］当期純利益、前期比約<strong class="hl-big">6.9倍</strong>の<strong class="hl-big">121百万円</strong></div>
 <p class="unit">単位：百万円</p>
 <div style="overflow-x:auto">
 <table class="ca-table">
-<thead><tr><th class="th-lbl"></th><th class="th-cur">11期<br><span style="font-size:10px;font-weight:400">2025年度(予)</span></th><th class="th-prev">10期<br><span style="font-size:10px;font-weight:400">2024年度</span></th><th class="th-yoy">YoY</th></tr></thead>
+<thead><tr><th class="th-lbl"></th><th class="th-cur">11期<br><span style="font-size:10px;font-weight:400">2026年3月期</span></th><th class="th-prev">10期<br><span style="font-size:10px;font-weight:400">2025年3月期</span></th><th class="th-yoy">YoY</th></tr></thead>
 <tbody>
 <tr class="main"><td>売上高</td><td class="td-cur">750</td><td>384</td><td class="yp">+96%</td></tr>
 <tr class="main"><td>営業利益</td><td class="td-cur">190</td><td>28</td><td class="yp">+574%</td></tr>
@@ -236,11 +242,11 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
 </tbody></table></div></div>
 
 <div class="section">
-<div class="section-headline">［貸借対照表］総資産<strong>3.3倍</strong>、純資産<strong>4.5倍</strong>に拡大</div>
+<div class="section-headline">［貸借対照表］総資産<strong class="hl-big">3.3倍</strong>、純資産<strong class="hl-big">4.5倍</strong>に拡大</div>
 <p class="unit">単位：百万円</p>
 <div style="overflow-x:auto">
 <table class="ca-table">
-<thead><tr><th class="th-lbl"></th><th class="th-cur">11期末<br><span style="font-size:10px;font-weight:400">2026年3月(予)</span></th><th class="th-prev">10期末<br><span style="font-size:10px;font-weight:400">2025年3月</span></th><th class="th-yoy">YoY</th></tr></thead>
+<thead><tr><th class="th-lbl"></th><th class="th-cur">11期末<br><span style="font-size:10px;font-weight:400">2026年3月</span></th><th class="th-prev">10期末<br><span style="font-size:10px;font-weight:400">2025年3月</span></th><th class="th-yoy">YoY</th></tr></thead>
 <tbody>
 <tr class="main"><td>流動資産</td><td class="td-cur">400</td><td>179</td><td class="yp">+124%</td></tr>
 <tr class="sub"><td>（現預金）</td><td class="td-cur">200</td><td>80</td><td class="yp">+150%</td></tr>
@@ -257,9 +263,9 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
 <!-- ========== 月次PL＋売上構成 ========== -->
 <div class="section">
 <div class="section-label">11期 月次PL ＋ 売上構成</div>
-<div class="section-title">売上の<strong>69%</strong>がプロジェクト型。ストック収入の拡大が成長の鍵。</div>
+<div class="section-title">売上の<strong class="hl-red">69%</strong>がプロジェクト型。ストック収入の拡大が成長の鍵。</div>
 <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:0 0 28px">
-  <div style="background:rgba(29,123,78,0.08);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#1D7B4E"></div><p style="font-size:10px;color:var(--text-muted);margin:0 0 4px">運営受託料</p><p style="font-size:20px;font-weight:500;color:var(--text);margin:0;line-height:1.2">236<span style="font-size:11px;color:var(--text-muted)">M</span></p><p style="font-size:11px;font-weight:500;color:#1D7B4E;margin:3px 0 0">31% — ストック</p></div>
+  <div style="background:rgba(29,123,78,0.08);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#1D7B4E"></div><p style="font-size:10px;color:var(--text-muted);margin:0 0 4px">運営受託料</p><p style="font-size:20px;font-weight:500;color:var(--text);margin:0;line-height:1.2">236<span style="font-size:11px;color:var(--text-muted)">M</span></p><p style="font-size:11px;font-weight:500;color:#1D7B4E;margin:3px 0 0"><span class="hl">31%</span> — ストック</p></div>
   <div style="background:rgba(50,102,173,0.08);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#3266ad"></div><p style="font-size:10px;color:var(--text-muted);margin:0 0 4px">仲介手数料</p><p style="font-size:20px;font-weight:500;color:var(--text);margin:0;line-height:1.2">283<span style="font-size:11px;color:var(--text-muted)">M</span></p><p style="font-size:11px;font-weight:500;color:#3266ad;margin:3px 0 0">38% — フロー</p></div>
   <div style="background:rgba(127,119,221,0.08);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#7F77DD"></div><p style="font-size:10px;color:var(--text-muted);margin:0 0 4px">企画・DX</p><p style="font-size:20px;font-weight:500;color:var(--text);margin:0;line-height:1.2">161<span style="font-size:11px;color:var(--text-muted)">M</span></p><p style="font-size:11px;font-weight:500;color:#7F77DD;margin:3px 0 0">21% — フロー</p></div>
   <div style="background:rgba(226,75,74,0.08);border-radius:10px;padding:14px 16px;position:relative;overflow:hidden"><div style="position:absolute;top:0;left:0;right:0;height:3px;background:#E24B4A"></div><p style="font-size:10px;color:var(--text-muted);margin:0 0 4px">土地売上</p><p style="font-size:20px;font-weight:500;color:var(--text);margin:0;line-height:1.2">75<span style="font-size:11px;color:var(--text-muted)">M</span></p><p style="font-size:11px;font-weight:500;color:#E24B4A;margin:3px 0 0">10% — フロー</p></div>
@@ -283,17 +289,17 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
 <!-- ========== 業績見通し ========== -->
 <div class="section">
 <div class="section-label">業績見通し</div>
-<div class="section-title">3か年計画：EBITDA <strong>6.6億円</strong>、自社ホテル<strong>3棟</strong>保有へ</div>
+<div class="section-title">3か年計画：EBITDA <strong class="hl-big">6.6億円</strong>、自社ホテル<strong class="hl-big">3棟</strong>保有へ</div>
 <div class="kpi-row">
   <div class="kpi"><div class="accent"></div><p class="label">自社ホテル（2029年）</p><p class="val">3<span>棟</span></p><p class="sub">年1棟ペースで積上げ</p></div>
-  <div class="kpi"><div class="accent"></div><p class="label">EBITDA（2029年）</p><p class="val">6.6<span>億</span></p><p class="sub">11期比 3.1倍</p></div>
+  <div class="kpi"><div class="accent"></div><p class="label">EBITDA（2029年）</p><p class="val">6.6<span>億</span></p><p class="sub"><span class="hl">11期比 3.1倍</span></p></div>
   <div class="kpi"><div class="accent"></div><p class="label">純資産（2029年）</p><p class="val">12.0<span>億</span></p><p class="sub">自己資本比率 29%</p></div>
   <div class="kpi"><div class="accent"></div><p class="label">期末現金（2029年）</p><p class="val">6.2<span>億</span></p><p class="sub">攻めながら蓄える</p></div>
 </div>
 <p class="unit">単位：百万円</p>
 <div style="overflow-x:auto">
 <table class="ca-table">
-<thead><tr><th class="th-lbl"></th><th class="th-prev">11期<br><span style="font-size:10px;font-weight:400">2025実績</span></th><th class="th-cur">12期<br><span style="font-size:10px;font-weight:400">2027計画</span></th><th class="th-cur">13期<br><span style="font-size:10px;font-weight:400">2028計画</span></th><th class="th-cur" style="border-right:3px solid var(--green)">14期<br><span style="font-size:10px;font-weight:400">2029計画</span></th></tr></thead>
+<thead><tr><th class="th-lbl"></th><th class="th-prev">11期<br><span style="font-size:10px;font-weight:400">2026実績</span></th><th class="th-cur">12期<br><span style="font-size:10px;font-weight:400">2027計画</span></th><th class="th-cur">13期<br><span style="font-size:10px;font-weight:400">2028計画</span></th><th class="th-cur" style="border-right:3px solid var(--green)">14期<br><span style="font-size:10px;font-weight:400">2029計画</span></th></tr></thead>
 <tbody>
 <tr class="sub"><td>自社ホテル保有数</td><td>0棟</td><td class="td-cur">1棟</td><td class="td-cur">2棟</td><td class="td-cur">3棟</td></tr>
 <tr class="main"><td>売上高</td><td>750</td><td class="td-cur">1,026</td><td class="td-cur">1,657</td><td class="td-cur">2,288</td></tr>
@@ -312,7 +318,7 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
 <!-- ========== 受託 vs 自社保有 ========== -->
 <div class="section">
 <div class="section-label">なぜ自社ホテルか？</div>
-<div class="section-title">借入返済後でも、手元に残るキャッシュが<strong>2倍</strong></div>
+<div class="section-title">借入返済後でも、手元に残るキャッシュが<strong class="hl-big">2倍</strong></div>
 <p style="font-size:13px;color:var(--text-sub);margin:0 0 24px">ADR ¥40,000 / 稼働率 85% / 11室のホテルを、「運営受託」と「自社所有」で比較</p>
 <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:start;margin:0 0 24px">
   <div style="background:var(--bg-sub);border-radius:12px;padding:20px 18px">
@@ -347,7 +353,7 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
 <!-- ========== 10ヵ年成長計画 v50 ========== -->
 <div class="section">
 <div class="section-label">成長計画 2026〜2035</div>
-<div class="section-title">10年で<strong>40棟</strong>・<strong>800室</strong>、仲間は<strong>600名</strong>へ</div>
+<div class="section-title">10年で<strong class="hl-big">40棟</strong>・<strong class="hl-big">800室</strong>、仲間は<strong class="hl-big">600名</strong>へ</div>
 <p style="font-size:13px;color:var(--text-sub);margin:0 0 28px;line-height:1.7">毎年、自社ホテル1棟＋受託3棟を積み上げる。<br>Phase1（12億×3棟）で足場を固め、Phase2（16億〜）で加速。3年保有後に売却・置き換えでキャッシュを循環。</p>
 
 <p style="font-size:11px;font-weight:500;letter-spacing:0.08em;color:var(--text-muted);margin:0 0 8px">現在地 ── 2026年3月末</p>
@@ -363,7 +369,7 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
   <div style="display:contents"><div style="padding:11px 14px;background:var(--bg-sub);min-width:90px"></div><div style="padding:14px;text-align:center;background:rgba(29,123,78,0.04);border-left:0.5px solid var(--border)"><p style="font-size:10px;font-weight:500;letter-spacing:0.06em;color:var(--green)">2030年（Phase1完了）</p></div><div style="padding:14px;text-align:center;background:rgba(29,123,78,0.08);border-left:0.5px solid var(--border)"><p style="font-size:10px;font-weight:500;letter-spacing:0.06em;color:var(--green)">2035年（到達点）</p></div></div>
   <div style="display:contents"><div style="padding:11px 14px;font-size:11px;color:var(--text-muted);background:var(--bg-sub);border-top:0.5px solid var(--border)">運営棟数</div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.04);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500">20<span style="font-size:11px;color:var(--text-muted)">棟</span></p><p style="font-size:10px;color:var(--text-sub)">自社3 + 受託17</p></div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.08);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500;color:var(--green)">40<span style="font-size:11px;color:var(--text-muted)">棟</span></p><p style="font-size:10px;color:var(--text-sub)">自社8 + 受託32</p></div></div>
   <div style="display:contents"><div style="padding:11px 14px;font-size:11px;color:var(--text-muted);background:var(--bg-sub);border-top:0.5px solid var(--border)">客室数</div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.04);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500">400<span style="font-size:11px;color:var(--text-muted)">室</span></p></div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.08);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500;color:var(--green)">800<span style="font-size:11px;color:var(--text-muted)">室</span></p></div></div>
-  <div style="display:contents"><div style="padding:11px 14px;font-size:11px;color:var(--text-muted);background:var(--bg-sub);border-top:0.5px solid var(--border)">仲間の数</div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.04);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500">300<span style="font-size:11px;color:var(--text-muted)">名</span></p><p style="font-size:10px;color:var(--text-sub)">現在の6倍</p></div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.08);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500;color:var(--green)">600<span style="font-size:11px;color:var(--text-muted)">名</span></p><p style="font-size:10px;color:var(--text-sub)">現在の12倍</p></div></div>
+  <div style="display:contents"><div style="padding:11px 14px;font-size:11px;color:var(--text-muted);background:var(--bg-sub);border-top:0.5px solid var(--border)">仲間の数</div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.04);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500">300<span style="font-size:11px;color:var(--text-muted)">名</span></p><p style="font-size:10px;color:var(--text-sub)">現在の6倍</p></div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.08);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500;color:var(--green)">600<span style="font-size:11px;color:var(--text-muted)">名</span></p><p style="font-size:10px;color:var(--text-sub)" class="hl">現在の12倍</p></div></div>
   <div style="display:contents"><div style="padding:11px 14px;font-size:11px;color:var(--text-muted);background:var(--bg-sub);border-top:0.5px solid var(--border)">1拠点人数</div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.04);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500">15<span style="font-size:11px;color:var(--text-muted)">名</span></p></div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.08);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500">15<span style="font-size:11px;color:var(--text-muted)">名</span></p></div></div>
   <div style="display:contents"><div style="padding:11px 14px;font-size:11px;color:var(--text-muted);background:var(--bg-sub);border-top:0.5px solid var(--border)">EBITDA</div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.04);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500">7.4<span style="font-size:11px;color:var(--text-muted)">億</span></p></div><div style="padding:12px;text-align:center;background:rgba(29,123,78,0.08);border-top:0.5px solid var(--border);border-left:0.5px solid var(--border)"><p style="font-size:20px;font-weight:500;color:var(--green)">14.6<span style="font-size:11px;color:var(--text-muted)">億</span></p></div></div>
 </div>
@@ -380,8 +386,8 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
 <!-- 投資戦略 -->
 <p style="font-size:11px;font-weight:500;letter-spacing:0.08em;color:var(--text-muted);margin:0 0 8px">投資戦略</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:0 0 20px">
-  <div style="background:rgba(29,123,78,0.06);border:0.5px solid rgba(29,123,78,0.25);border-radius:12px;padding:18px"><p style="font-size:10px;font-weight:500;letter-spacing:0.1em;color:var(--green);margin:0 0 8px">PHASE 1 — 足場固め</p><p style="font-size:26px;font-weight:500;color:var(--green);line-height:1">12<span style="font-size:13px;color:var(--text-sub)">億 × </span>3<span style="font-size:13px;color:var(--text-sub)">棟</span></p><p style="font-size:11px;color:var(--text-sub);margin:6px 0 0;line-height:1.5">2028〜2030年3月期<br>自己資金2.4億/棟・借入9.6億/棟</p></div>
-  <div style="background:rgba(226,75,74,0.06);border:0.5px solid rgba(226,75,74,0.25);border-radius:12px;padding:18px"><p style="font-size:10px;font-weight:500;letter-spacing:0.1em;color:var(--red);margin:0 0 8px">PHASE 2 — スケールアップ</p><p style="font-size:26px;font-weight:500;color:var(--red);line-height:1">16<span style="font-size:13px;color:var(--text-sub)">億〜</span></p><p style="font-size:11px;color:var(--text-sub);margin:6px 0 0;line-height:1.5">2031年3月期〜<br>自己資金3.2億/棟・借入12.8億/棟</p></div>
+  <div style="background:rgba(29,123,78,0.06);border:0.5px solid rgba(29,123,78,0.25);border-radius:12px;padding:18px"><p style="font-size:10px;font-weight:500;letter-spacing:0.1em;color:var(--green);margin:0 0 8px">PHASE 1 — 足場固め</p><p style="font-size:26px;font-weight:500;color:var(--green);line-height:1" class="hl-big">12<span style="font-size:13px;color:var(--text-sub)">億 × </span>3<span style="font-size:13px;color:var(--text-sub)">棟</span></p><p style="font-size:11px;color:var(--text-sub);margin:6px 0 0;line-height:1.5">2028〜2030年3月期<br>自己資金2.4億/棟・借入9.6億/棟</p></div>
+  <div style="background:rgba(226,75,74,0.06);border:0.5px solid rgba(226,75,74,0.25);border-radius:12px;padding:18px"><p style="font-size:10px;font-weight:500;letter-spacing:0.1em;color:var(--red);margin:0 0 8px">PHASE 2 — スケールアップ</p><p style="font-size:26px;font-weight:500;color:var(--red);line-height:1" class="hl-big">16<span style="font-size:13px;color:var(--text-sub)">億〜</span></p><p style="font-size:11px;color:var(--text-sub);margin:6px 0 0;line-height:1.5">2031年3月期〜<br>自己資金3.2億/棟・借入12.8億/棟</p></div>
 </div>
 <div style="background:rgba(212,180,78,0.06);border:0.5px solid rgba(212,180,78,0.2);border-radius:12px;padding:14px 18px;margin:0 0 28px"><p style="font-size:10px;font-weight:500;letter-spacing:0.1em;color:#B8960F;margin:0 0 4px">EXIT戦略</p><p style="font-size:14px;font-weight:500;margin:0 0 4px">3年保有後に売却、同フェーズで新規取得</p><p style="font-size:12px;color:var(--text-sub)">Ph1 Cap 5.0% / Ph2 Cap 4.5%で売却。売却と同時に同フェーズの新規取得コストを計上し、棟数を維持しながらキャッシュを循環。</p></div>
 
@@ -438,14 +444,14 @@ body { font-family: system-ui, -apple-system, sans-serif; color: var(--text); ba
   <div class="col col-human"><h3>私たちが得意</h3><ul>
     <li>「あのトキに戻りたい」と思える瞬間をつくる</li><li>表情・声・目線で安心感を届ける</li><li>街と空間の文脈を、自分の言葉で伝える</li><li>場の空気・光・温度を五感で感じ取る</li><li>予想外の体験を即興で演出する</li><li>チームの感情に気づき、ケアする</li><li>「あの場所に、また帰りたい」と思わせる存在になる</li></ul></div>
 </div>
-<div class="msg-box"><p>AIが得意なことは、AIに。<br>私たちは<span class="em">「ゲストの記憶に残る体験」</span>をつくることに集中する。</p></div>
+<div class="msg-box"><p><span class="hl">AIが得意なことは、AIに。</span><br>私たちは<span class="em"><span class="hl-box">ゲストの記憶に残る体験</span></span>をつくることに集中する。</p></div>
 </div>
 
 <!-- ========== 4.1 AI × 業務 Before→After ========== -->
 <div class="section">
 <div class="section-label">4.1 AI投資</div>
 <div class="section-title">7gardenで、すでに始まっていること</div>
-<p style="font-size:13px;color:var(--text-sub);margin:0 0 24px;line-height:1.6">AIは未来の話ではない。今期、7gardenの業務はこう変わり始めている。</p>
+<p style="font-size:13px;color:var(--text-sub);margin:0 0 24px;line-height:1.6"><span class="hl" style="font-size:14px">AIは未来の話ではない。今期、7gardenの業務はこう変わり始めている。</span></p>
 
 <div style="display:grid;gap:10px;margin:0 0 24px">
 
@@ -518,7 +524,7 @@ AIは、私たちをより豊かなトキに導いてくれる。<br>
 高い当事者意識でやり抜く。<br>
 知恵を結集し共創する。<br><br>
 このバリューは何も変わらない。<br>
-<span class="em">AIという最強の仲間</span>が加わるだけだ。
+<span class="em">AIという最強の仲間</span>が加わるだけだ。</span>
 </p>
 <p class="sig">— 7garden　代表取締役　北野賢</p>
 </div></div>
