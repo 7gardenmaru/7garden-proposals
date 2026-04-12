@@ -641,9 +641,13 @@ body {
   .brand-mark { position: static; margin-top: 20px; display: block; }
   .page-num { position: static; text-align: right; margin-top: 4px; }
 
-  /* 運営戦略 */
-  .page-inner > div[style*="grid-template-columns:220px"] {
-    grid-template-columns: 1fr !important;
+  /* 運営戦略 - 横スクロールで元レイアウト維持 */
+  .ops-strategy-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .ops-strategy-wrap > div {
+    min-width: 520px;
   }
 
   /* フロー矢印 */
@@ -1012,7 +1016,7 @@ body {
     <div class="page-heading">ADR・稼働率を上げる<br>7gardenの運営構造</div>
     <div class="page-lead">商品企画力×集客力×生産性向上の好循環を、内製チームが一気通貫で担います。外部委託では生まれないスピードと精度で、PDCAを継続的に実践いたします。</div>
 
-    <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;margin-bottom:16px">
+    <div class="ops-strategy-wrap"><div style="display:grid;grid-template-columns:220px 1fr;gap:16px;margin-bottom:16px">
 
       <!-- 左：生産性向上 -->
       <div style="border:0.5px solid var(--border);border-radius:6px;padding:14px 16px">
@@ -1067,8 +1071,7 @@ body {
         <div style="margin-top:10px;font-size:9.5px;color:var(--text-muted);text-align:center">（※）内製チームによる一気通貫のトライ・アンド・エラー</div>
       </div>
 
-    </div>
-
+</div></div>
     <!-- 下部フロー -->
     <div style="display:flex;align-items:center;justify-content:center;gap:8px">
       <div style="background:#E8E8E5;border-radius:4px;padding:8px 14px;font-size:11px;color:var(--navy);font-weight:500;text-align:center">ホテルサイト（OTA）<br><span style="font-size:9px;font-weight:400;color:var(--text-muted)">Booking / Expedia / じゃらん / 楽天</span></div>
@@ -1221,208 +1224,112 @@ body {
   <div class="page-inner">
     <div class="section-label">Appendix</div>
     <div class="page-heading">収支比較サマリー</div>
-    <div class="page-lead">土地代・解体費を除く建築投資額ベースの利回り比較。元プラン（105室）と7gardenプラン（56室）の4シナリオ対比。</div>
+    <div class="page-lead">安定稼働時（3年目ベース・稼働率85%）を中心に、元プランと7gardenプランを比較。NOI利回りは建築投資額（土地除く）ベース。</div>
 
+    <!-- 前提条件 -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
-      <div style="border:0.5px solid var(--border);border-radius:6px;padding:14px 18px">
+      <div style="border:0.5px solid var(--border);border-radius:6px;padding:12px 16px">
         <div style="font-size:10px;font-weight:500;color:var(--warm-gray);letter-spacing:.08em;margin-bottom:8px">元プラン（事業主案）</div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500">105室</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500">約17㎡</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500">2,556万円</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500">約29.5億円</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500">105室</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500">約17㎡</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500">2,556万円</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500">約29.5億円</span></div>
       </div>
-      <div style="border:1.5px solid var(--navy);border-radius:6px;padding:14px 18px;background:#F2F7F4">
+      <div style="border:1.5px solid var(--navy);border-radius:6px;padding:12px 16px;background:#F2F7F4">
         <div style="font-size:10px;font-weight:500;color:var(--navy);letter-spacing:.08em;margin-bottom:8px">7gardenプラン</div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500;color:var(--navy)">56室</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500;color:var(--navy)">約25.5㎡</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500;color:var(--navy)">1,452万円</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500;color:var(--navy)">約32.7億円</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500;color:var(--navy)">56室</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500;color:var(--navy)">約25.5㎡</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500;color:var(--navy)">1,452万円</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:11.5px;padding:3px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500;color:var(--navy)">約32.7億円</span></div>
       </div>
     </div>
 
+    <!-- ★ 安定稼働時メイン比較 -->
+    <div style="border:1.5px solid var(--navy);border-radius:8px;overflow:hidden;margin-bottom:16px">
+      <div style="background:var(--navy);padding:10px 16px">
+        <div style="font-size:10px;color:var(--gold);letter-spacing:.08em;font-weight:500">安定稼働時（3年目ベース・稼働率85%）</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr">
+
+        <div style="padding:16px 18px;border-right:0.5px solid var(--border)">
+          <div style="font-size:10px;color:var(--warm-gray);font-weight:500;margin-bottom:12px">元プラン</div>
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">宿泊売上</div>
+            <div style="font-size:18px;font-weight:500;color:var(--text)">5.5億円</div>
+          </div>
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">オーナー手残り（NOI）</div>
+            <div style="font-size:22px;font-weight:500;color:var(--text)">2.7億円</div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">NOI利回り</div>
+            <div style="font-size:22px;font-weight:500;color:var(--text)">9.1%</div>
+          </div>
+        </div>
+
+        <div style="padding:16px 18px;background:#EDF5F0">
+          <div style="font-size:10px;color:var(--navy);font-weight:500;margin-bottom:12px">7gardenプラン</div>
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">宿泊売上</div>
+            <div style="font-size:18px;font-weight:500;color:var(--navy)">6.1億円</div>
+          </div>
+          <div style="margin-bottom:10px">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">オーナー手残り（NOI）</div>
+            <div style="display:flex;align-items:baseline;gap:6px">
+              <div style="font-size:22px;font-weight:500;color:var(--navy)">3.0億円</div>
+              <div style="font-size:11px;color:#2A7A4A;font-weight:500">+0.3億</div>
+            </div>
+          </div>
+          <div>
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px">NOI利回り</div>
+            <div style="font-size:22px;font-weight:500;color:var(--navy)">9.1%</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 参考：4シナリオ詳細（小さく） -->
+    <div style="font-size:9px;font-weight:500;color:var(--warm-gray);letter-spacing:.08em;margin-bottom:6px">参考｜4シナリオ詳細</div>
     <div style="overflow-x:auto">
-    <table style="width:100%;border-collapse:collapse;font-size:12px">
+    <table style="width:100%;border-collapse:collapse;font-size:10px">
       <thead>
         <tr>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;letter-spacing:.04em;padding:8px 12px;text-align:left;width:18%">シナリオ</th>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:left;width:16%">項目</th>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:center">元プラン</th>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:center">7gardenプラン</th>
+          <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:9px;padding:5px 8px;text-align:left;border-bottom:1px solid var(--navy)">シナリオ</th>
+          <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:9px;padding:5px 8px;text-align:left;border-bottom:1px solid var(--navy)">項目</th>
+          <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:9px;padding:5px 8px;text-align:center;border-bottom:1px solid var(--navy)">元プラン</th>
+          <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:9px;padding:5px 8px;text-align:center;border-bottom:1px solid var(--navy)">7gardenプラン</th>
         </tr>
       </thead>
       <tbody>
-        <tr style="background:#FAFAF6">
-          <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">初年<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 69%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">4.0億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">4.1億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.9億円（49.0%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.1億円（51.2%）</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">6.1%</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">5.6%</td>
-        </tr>
-        <tr>
-          <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">2年目<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.2億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.6億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.8億円（53.3%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.1億円（55.4%）</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.5億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">8.5%</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">8.2%</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">3年目ベース<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.5億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">6.1億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.0億円（54.2%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.4億円（56.6%）</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.0億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.1%</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.1%</td>
-        </tr>
-        <tr>
-          <td rowspan="4" style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">3年目ポジ<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.8億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">6.6億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.2億円（55.2%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.8億円（57.7%）</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.9億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.3億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.7%</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">10.0%</td>
-        </tr>
+        <tr><td rowspan="3" style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-size:9px;vertical-align:middle">初年<br>69%</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">4.0億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">4.1億円</td></tr>
+        <tr><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td></tr>
+        <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text-muted)">NOI利回り</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:500">6.1%</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:500">5.6%</td></tr>
+
+        <tr><td rowspan="3" style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text-muted);font-size:9px;vertical-align:middle">2年目<br>85%</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">5.2億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">5.6億円</td></tr>
+        <tr><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">2.5億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td></tr>
+        <tr><td style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text-muted)">NOI利回り</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:500">8.5%</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:500">8.2%</td></tr>
+
+        <tr style="background:#EDF5F0"><td rowspan="3" style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--navy);font-size:9px;font-weight:500;vertical-align:middle">3年目<br>ベース<br>85%<br><span style="font-size:8px;background:var(--navy);color:white;padding:1px 5px;border-radius:10px">安定</span></td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">5.5億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:var(--navy)">6.1億円</td></tr>
+        <tr style="background:#EDF5F0"><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:var(--navy)">3.0億円</td></tr>
+        <tr style="background:#EDF5F0"><td style="padding:5px 8px;border-bottom:1px solid var(--border);color:var(--text-muted)">NOI利回り</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.1%</td><td style="padding:5px 8px;border-bottom:1px solid var(--border);text-align:center;font-weight:500;color:var(--navy)">9.1%</td></tr>
+
+        <tr><td rowspan="3" style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted);font-size:9px;vertical-align:middle">3年目<br>ポジ<br>85%</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">5.8億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">6.6億円</td></tr>
+        <tr><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">2.9億円</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center">3.3億円</td></tr>
+        <tr><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI利回り</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.7%</td><td style="padding:5px 8px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">10.0%</td></tr>
       </tbody>
     </table>
     </div>
 
-    <div style="margin-top:14px;background:#F5F5F2;border-radius:6px;padding:10px 16px">
-      <div style="font-size:11px;color:var(--text-muted);line-height:1.7">
-        ※ NOI利回りは建築投資額（土地・解体費除く）ベース。元プラン約29.5億円、7gardenプラン約32.7億円で算出。<br>
-        ※ 元プランの固定賃料はテナントA・B満額（2,556万円/年）。7gardenプランは自社入居賃料（1,452万円/年）。
-      </div>
-    
-
-    <div style="margin-top:24px">
-      <div style="font-size:11px;font-weight:500;color:var(--navy);letter-spacing:.06em;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid var(--border)">開発費比較（土地除く・税込）</div>
-      <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:11.5px">
-        <thead>
-          <tr>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:left;border-bottom:1.5px solid var(--navy)">項目</th>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">元プラン</th>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">7gardenプラン</th>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">差額</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">建築工事（本体）</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">21.7億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">24.2億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+2.5億</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted);padding-left:20px;font-size:10.5px">　うち大浴場・プール・レストラン</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">—</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">含む</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">—</td>
-          </tr>
-          <tr>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">解体・立退き</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">—</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">設計フィー</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">0.8億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">0.8億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">—</td>
-          </tr>
-          <tr>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">共用部・外装<br><span style="font-size:10px">（エントランス・エクステリア等）</span></td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.5億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.3億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+1.1億</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">客室FFE / OSE</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.4億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+0.5億</td>
-          </tr>
-          <tr>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">デザインFee・一般管理費・予備費</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.4億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+0.3億</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);color:var(--text-muted)">7garden費用<br><span style="font-size:10px">（ブランド構築・人件費・集客）</span></td>
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center">0.6億円</td>
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center">0.7億円</td>
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center;color:var(--text-muted)">+0.1億</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 12px;font-weight:500;color:var(--navy)">合計（土地除く）</td>
-            <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">29.5億円</td>
-            <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">32.7億円</td>
-            <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">+3.2億</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      <div style="margin-top:8px;font-size:10.5px;color:var(--text-muted);line-height:1.7">
-        ※ 差額+3.2億円の主な内訳：建築工事（大浴場・プール・レストラン）+2.5億、共用部仕様強化+0.8億。7gardenプランは客室FFEを厳選（元プラン比-0.3億）。
-      </div>
+    <div style="margin-top:8px;font-size:10px;color:var(--text-muted);line-height:1.7">
+      ※ NOI利回りは建築投資額（土地除く）ベース。元プラン約29.5億円、7gardenプラン約32.7億円で算出。<br>
+      ※ 元プランの固定賃料はテナントA・B満額（2,556万円/年）。7gardenプランは自社入居賃料（1,452万円/年）。
     </div>
-</div>
 
   </div>
+  <div class="brand-mark">7garden</div>
+  <div class="page-num">A-1</div>
+</div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">A-1</div>
 </div>
