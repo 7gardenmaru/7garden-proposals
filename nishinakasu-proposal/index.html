@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
@@ -8,680 +9,681 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap');
 
 :root {
-  --navy: #1C3829;
-  --navy-light: #2A5038;
-  --gold: #B8943F;
-  --gold-light: #D4B060;
-  --off-white: #F5F0E8;
-  --warm-gray: #8A8580;
-  --light-bg: #FAFAF7;
-  --text: #1A1A1A;
-  --text-muted: #6B6560;
-  --border: rgba(26,47,74,0.12);
-  --water: #3D7A5C;
-  --water-light: #E8F4ED;
+–navy: #1C3829;
+–navy-light: #2A5038;
+–gold: #B8943F;
+–gold-light: #D4B060;
+–off-white: #F5F0E8;
+–warm-gray: #8A8580;
+–light-bg: #FAFAF7;
+–text: #1A1A1A;
+–text-muted: #6B6560;
+–border: rgba(26,47,74,0.12);
+–water: #3D7A5C;
+–water-light: #E8F4ED;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+- { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  font-family: 'Noto Sans JP', sans-serif;
-  background: var(--light-bg);
-  color: var(--text);
-  font-weight: 300;
-  line-height: 1.7;
+font-family: ‘Noto Sans JP’, sans-serif;
+background: var(–light-bg);
+color: var(–text);
+font-weight: 300;
+line-height: 1.7;
 }
 
 /* ── Page system ── */
 .page {
-  width: 210mm;
-  min-height: 148mm;
-  margin: 0 auto 3px;
-  background: white;
-  position: relative;
-  overflow: hidden;
-  page-break-after: always;
+width: 210mm;
+min-height: 148mm;
+margin: 0 auto 3px;
+background: white;
+position: relative;
+overflow: hidden;
+page-break-after: always;
 }
 
 /* ── Cover ── */
 .cover {
-  background: var(--navy);
-  min-height: 148mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 48px 56px;
-  position: relative;
+background: var(–navy);
+min-height: 148mm;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 48px 56px;
+position: relative;
 }
 .cover::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(44,110,138,0.18) 0%, transparent 60%);
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+background: linear-gradient(135deg, rgba(44,110,138,0.18) 0%, transparent 60%);
 }
 .cover-eyebrow {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 12px;
-  letter-spacing: .18em;
-  color: var(--gold);
-  margin-bottom: 20px;
-  position: relative;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 12px;
+letter-spacing: .18em;
+color: var(–gold);
+margin-bottom: 20px;
+position: relative;
 }
 .cover-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 38px;
-  font-weight: 300;
-  color: white;
-  line-height: 1.25;
-  margin-bottom: 10px;
-  position: relative;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 38px;
+font-weight: 300;
+color: white;
+line-height: 1.25;
+margin-bottom: 10px;
+position: relative;
 }
 .cover-title em {
-  font-style: italic;
-  color: var(--gold-light);
+font-style: italic;
+color: var(–gold-light);
 }
 .cover-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: .04em;
-  position: relative;
-  margin-top: 6px;
+font-size: 13px;
+color: rgba(255,255,255,0.55);
+letter-spacing: .04em;
+position: relative;
+margin-top: 6px;
 }
 .cover-line {
-  width: 48px;
-  height: 1px;
-  background: var(--gold);
-  margin: 28px 0;
-  position: relative;
+width: 48px;
+height: 1px;
+background: var(–gold);
+margin: 28px 0;
+position: relative;
 }
 .cover-meta {
-  font-size: 11px;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: .06em;
-  position: relative;
+font-size: 11px;
+color: rgba(255,255,255,0.4);
+letter-spacing: .06em;
+position: relative;
 }
 .cover-watermark {
-  position: absolute;
-  right: -20px;
-  bottom: -20px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 120px;
-  color: rgba(255,255,255,0.04);
-  line-height: 1;
-  font-weight: 300;
-  letter-spacing: -.02em;
-  pointer-events: none;
+position: absolute;
+right: -20px;
+bottom: -20px;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 120px;
+color: rgba(255,255,255,0.04);
+line-height: 1;
+font-weight: 300;
+letter-spacing: -.02em;
+pointer-events: none;
 }
 
 /* ── Common layout ── */
 .page-inner {
-  padding: 40px 52px;
+padding: 40px 52px;
 }
 .section-label {
-  font-size: 9px;
-  letter-spacing: .14em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  font-weight: 500;
+font-size: 9px;
+letter-spacing: .14em;
+color: var(–gold);
+text-transform: uppercase;
+margin-bottom: 6px;
+font-weight: 500;
 }
 .page-heading {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 26px;
-  font-weight: 400;
-  color: var(--navy);
-  line-height: 1.3;
-  margin-bottom: 6px;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 26px;
+font-weight: 400;
+color: var(–navy);
+line-height: 1.3;
+margin-bottom: 6px;
 }
 .page-lead {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  line-height: 1.8;
-  margin-bottom: 28px;
-  max-width: 560px;
+font-size: 12.5px;
+color: var(–text-muted);
+line-height: 1.8;
+margin-bottom: 28px;
+max-width: 560px;
 }
 .rule {
-  width: 100%;
-  height: 0.5px;
-  background: var(--border);
-  margin: 20px 0;
+width: 100%;
+height: 0.5px;
+background: var(–border);
+margin: 20px 0;
 }
 .page-num {
-  position: absolute;
-  bottom: 18px;
-  right: 52px;
-  font-size: 9px;
-  color: var(--warm-gray);
-  letter-spacing: .08em;
+position: absolute;
+bottom: 18px;
+right: 52px;
+font-size: 9px;
+color: var(–warm-gray);
+letter-spacing: .08em;
 }
 .brand-mark {
-  position: absolute;
-  bottom: 18px;
-  left: 52px;
-  font-size: 9px;
-  color: var(--warm-gray);
-  letter-spacing: .1em;
-  text-transform: none;
+position: absolute;
+bottom: 18px;
+left: 52px;
+font-size: 9px;
+color: var(–warm-gray);
+letter-spacing: .1em;
+text-transform: none;
 }
 
 /* ── Problem page ── */
 .problem-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+margin-bottom: 20px;
 }
 .problem-card {
-  background: #F9F6F0;
-  border-radius: 6px;
-  padding: 18px 20px;
-  border-left: 3px solid var(--border);
+background: #F9F6F0;
+border-radius: 6px;
+padding: 18px 20px;
+border-left: 3px solid var(–border);
 }
-.problem-card.accent { border-left-color: var(--navy); }
+.problem-card.accent { border-left-color: var(–navy); }
 .problem-icon {
-  font-size: 22px;
-  margin-bottom: 8px;
+font-size: 22px;
+margin-bottom: 8px;
 }
 .problem-title {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--navy);
-  margin-bottom: 6px;
+font-size: 13px;
+font-weight: 500;
+color: var(–navy);
+margin-bottom: 6px;
 }
 .problem-body {
-  font-size: 11.5px;
-  color: var(--text-muted);
-  line-height: 1.7;
+font-size: 11.5px;
+color: var(–text-muted);
+line-height: 1.7;
 }
 .big-number {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 52px;
-  font-weight: 300;
-  color: var(--navy);
-  line-height: 1;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 52px;
+font-weight: 300;
+color: var(–navy);
+line-height: 1;
 }
-.big-unit { font-size: 16px; color: var(--text-muted); }
+.big-unit { font-size: 16px; color: var(–text-muted); }
 .arrow-down {
-  text-align: center;
-  font-size: 20px;
-  color: var(--gold);
-  margin: 12px 0;
+text-align: center;
+font-size: 20px;
+color: var(–gold);
+margin: 12px 0;
 }
 .solution-banner {
-  background: var(--navy);
-  border-radius: 6px;
-  padding: 16px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+background: var(–navy);
+border-radius: 6px;
+padding: 16px 24px;
+display: flex;
+align-items: center;
+gap: 16px;
 }
 .solution-banner-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 19px;
-  font-weight: 400;
-  color: white;
-  line-height: 1.4;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 19px;
+font-weight: 400;
+color: white;
+line-height: 1.4;
 }
-.solution-banner-text em { color: var(--gold-light); font-style: italic; }
+.solution-banner-text em { color: var(–gold-light); font-style: italic; }
 
 /* ── Concept page ── */
 .concept-hero {
-  background: var(--navy);
-  border-radius: 8px;
-  padding: 30px 36px;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
+background: var(–navy);
+border-radius: 8px;
+padding: 30px 36px;
+margin-bottom: 20px;
+position: relative;
+overflow: hidden;
 }
 .concept-hero::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: linear-gradient(135deg, rgba(44,110,138,0.25) 0%, transparent 70%);
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0; bottom: 0;
+background: linear-gradient(135deg, rgba(44,110,138,0.25) 0%, transparent 70%);
 }
 .concept-en {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 42px;
-  font-weight: 300;
-  font-style: italic;
-  color: white;
-  line-height: 1.1;
-  position: relative;
-  margin-bottom: 6px;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 42px;
+font-weight: 300;
+font-style: italic;
+color: white;
+line-height: 1.1;
+position: relative;
+margin-bottom: 6px;
 }
 .concept-jp {
-  font-size: 13px;
-  color: var(--gold-light);
-  letter-spacing: .1em;
-  position: relative;
+font-size: 13px;
+color: var(–gold-light);
+letter-spacing: .1em;
+position: relative;
 }
 .concept-pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
 }
 .pillar {
-  border: 0.5px solid var(--border);
-  border-radius: 6px;
-  padding: 16px;
+border: 0.5px solid var(–border);
+border-radius: 6px;
+padding: 16px;
 }
 .pillar-en {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--water);
-  margin-bottom: 4px;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 16px;
+font-weight: 400;
+color: var(–water);
+margin-bottom: 4px;
 }
 .pillar-jp {
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--navy);
-  margin-bottom: 8px;
+font-size: 11px;
+font-weight: 500;
+color: var(–navy);
+margin-bottom: 8px;
 }
 .pillar-body {
-  font-size: 11.5px;
-  color: var(--text-muted);
-  line-height: 1.7;
+font-size: 11.5px;
+color: var(–text-muted);
+line-height: 1.7;
 }
 
 /* ── Target page ── */
 .target-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 16px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+margin-bottom: 16px;
 }
 .target-card {
-  border: 0.5px solid var(--border);
-  border-radius: 6px;
-  padding: 18px 20px;
+border: 0.5px solid var(–border);
+border-radius: 6px;
+padding: 18px 20px;
 }
 .target-badge {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 500;
-  background: var(--water-light);
-  color: var(--water);
-  border-radius: 20px;
-  padding: 3px 10px;
-  margin-bottom: 10px;
-  letter-spacing: .04em;
+display: inline-block;
+font-size: 10px;
+font-weight: 500;
+background: var(–water-light);
+color: var(–water);
+border-radius: 20px;
+padding: 3px 10px;
+margin-bottom: 10px;
+letter-spacing: .04em;
 }
 .target-title {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--navy);
-  margin-bottom: 8px;
+font-size: 14px;
+font-weight: 500;
+color: var(–navy);
+margin-bottom: 8px;
 }
 .target-body {
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.75;
+font-size: 12px;
+color: var(–text-muted);
+line-height: 1.75;
 }
 .value-tag {
-  display: inline-block;
-  background: var(--navy);
-  color: white;
-  font-size: 13px;
-  padding: 8px 20px;
-  border-radius: 4px;
-  letter-spacing: .05em;
+display: inline-block;
+background: var(–navy);
+color: white;
+font-size: 13px;
+padding: 8px 20px;
+border-radius: 4px;
+letter-spacing: .05em;
 }
 .synergy-box {
-  background: #EBF5EF;
-  border-radius: 6px;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+background: #EBF5EF;
+border-radius: 6px;
+padding: 14px 20px;
+display: flex;
+align-items: center;
+gap: 12px;
 }
-.synergy-text { font-size: 12px; color: var(--water); line-height: 1.6; font-weight: 500; }
+.synergy-text { font-size: 12px; color: var(–water); line-height: 1.6; font-weight: 500; }
 
 /* ── Plan page ── */
 .plan-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 16px;
+margin-bottom: 20px;
 }
 .plan-card {
-  border: 0.5px solid var(--border);
-  border-radius: 6px;
-  padding: 18px 20px;
+border: 0.5px solid var(–border);
+border-radius: 6px;
+padding: 18px 20px;
 }
 .plan-card.featured {
-  border-color: var(--navy);
-  background: #F2F7F4;
+border-color: var(–navy);
+background: #F2F7F4;
 }
 .plan-badge {
-  display: inline-block;
-  font-size: 9px;
-  font-weight: 500;
-  background: var(--navy);
-  color: white;
-  border-radius: 20px;
-  padding: 3px 10px;
-  margin-bottom: 10px;
-  letter-spacing: .06em;
+display: inline-block;
+font-size: 9px;
+font-weight: 500;
+background: var(–navy);
+color: white;
+border-radius: 20px;
+padding: 3px 10px;
+margin-bottom: 10px;
+letter-spacing: .06em;
 }
 .plan-badge.outline {
-  background: transparent;
-  border: 0.5px solid var(--border);
-  color: var(--text-muted);
+background: transparent;
+border: 0.5px solid var(–border);
+color: var(–text-muted);
 }
 .plan-name {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--navy);
-  margin-bottom: 12px;
+font-size: 14px;
+font-weight: 500;
+color: var(–navy);
+margin-bottom: 12px;
 }
 .spec-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  font-size: 12px;
-  padding: 5px 0;
-  border-bottom: 0.5px solid var(--border);
+display: flex;
+justify-content: space-between;
+align-items: baseline;
+font-size: 12px;
+padding: 5px 0;
+border-bottom: 0.5px solid var(–border);
 }
 .spec-row:last-child { border-bottom: none; }
-.spec-label { color: var(--text-muted); }
-.spec-val { font-weight: 500; color: var(--navy); }
+.spec-label { color: var(–text-muted); }
+.spec-val { font-weight: 500; color: var(–navy); }
 .spec-val.up { color: #2A7A4A; }
 
 /* ── Tenant page ── */
 .versus-grid {
-  display: grid;
-  grid-template-columns: 1fr 32px 1fr;
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 20px;
+display: grid;
+grid-template-columns: 1fr 32px 1fr;
+gap: 12px;
+align-items: center;
+margin-bottom: 20px;
 }
 .vs-col {
-  border: 0.5px solid var(--border);
-  border-radius: 6px;
-  padding: 16px 18px;
+border: 0.5px solid var(–border);
+border-radius: 6px;
+padding: 16px 18px;
 }
 .vs-col.accent {
-  border-color: var(--navy);
-  background: #EDF5F0;
+border-color: var(–navy);
+background: #EDF5F0;
 }
 .vs-col-label {
-  font-size: 9px;
-  letter-spacing: .1em;
-  color: var(--warm-gray);
-  text-transform: uppercase;
-  margin-bottom: 6px;
+font-size: 9px;
+letter-spacing: .1em;
+color: var(–warm-gray);
+text-transform: uppercase;
+margin-bottom: 6px;
 }
-.vs-col-label.blue { color: var(--navy); text-transform: none; }
+.vs-col-label.blue { color: var(–navy); text-transform: none; }
 .vs-col-title {
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--navy);
-  margin-bottom: 10px;
+font-size: 12.5px;
+font-weight: 500;
+color: var(–navy);
+margin-bottom: 10px;
 }
 .vs-item {
-  font-size: 11.5px;
-  color: var(--text-muted);
-  padding: 3px 0;
-  padding-left: 12px;
-  position: relative;
-  line-height: 1.5;
+font-size: 11.5px;
+color: var(–text-muted);
+padding: 3px 0;
+padding-left: 12px;
+position: relative;
+line-height: 1.5;
 }
 .vs-item::before {
-  content: '';
-  position: absolute;
-  left: 0; top: 8px;
-  width: 5px; height: 5px;
-  border-radius: 50%;
-  background: var(--border);
+content: ‘’;
+position: absolute;
+left: 0; top: 8px;
+width: 5px; height: 5px;
+border-radius: 50%;
+background: var(–border);
 }
-.vs-col.accent .vs-item { color: var(--navy-light); }
-.vs-col.accent .vs-item::before { background: var(--navy); }
+.vs-col.accent .vs-item { color: var(–navy-light); }
+.vs-col.accent .vs-item::before { background: var(–navy); }
 .vs-divider-text {
-  font-size: 10px;
-  color: var(--warm-gray);
-  text-align: center;
-  font-weight: 500;
+font-size: 10px;
+color: var(–warm-gray);
+text-align: center;
+font-weight: 500;
 }
 .numbers-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-bottom: 16px;
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 12px;
+margin-bottom: 16px;
 }
 .num-box {
-  background: #F5F5F2;
-  border-radius: 6px;
-  padding: 12px 14px;
+background: #F5F5F2;
+border-radius: 6px;
+padding: 12px 14px;
 }
-.num-box-label { font-size: 10px; color: var(--text-muted); line-height: 1.4; margin-bottom: 4px; }
-.num-box-val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--navy); }
-.num-box-val.blue { color: var(--water); }
-.num-box-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.num-box-label { font-size: 10px; color: var(–text-muted); line-height: 1.4; margin-bottom: 4px; }
+.num-box-val { font-family: ‘Cormorant Garamond’, serif; font-size: 24px; font-weight: 400; color: var(–navy); }
+.num-box-val.blue { color: var(–water); }
+.num-box-sub { font-size: 10px; color: var(–text-muted); margin-top: 2px; }
 .logic-strip {
-  background: var(--navy);
-  border-radius: 6px;
-  padding: 14px 20px;
+background: var(–navy);
+border-radius: 6px;
+padding: 14px 20px;
 }
 .logic-strip p { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.8; }
-.logic-strip strong { color: var(--gold-light); font-weight: 500; }
+.logic-strip strong { color: var(–gold-light); font-weight: 500; }
 
 /* ── KPI page ── */
 .kpi-header {
-  background: #F2F7F3;
-  border-radius: 6px;
-  padding: 14px 20px;
-  margin-bottom: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+background: #F2F7F3;
+border-radius: 6px;
+padding: 14px 20px;
+margin-bottom: 16px;
+display: flex;
+align-items: center;
+justify-content: space-between;
 }
 .kpi-header-label { font-size: 11px; color: #2A7A4A; font-weight: 500; }
 .kpi-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  margin-bottom: 16px;
+width: 100%;
+border-collapse: collapse;
+font-size: 12px;
+margin-bottom: 16px;
 }
 .kpi-table th {
-  background: var(--navy);
-  color: rgba(255,255,255,0.8);
-  font-weight: 400;
-  font-size: 10px;
-  letter-spacing: .04em;
-  padding: 8px 12px;
-  text-align: center;
+background: var(–navy);
+color: rgba(255,255,255,0.8);
+font-weight: 400;
+font-size: 10px;
+letter-spacing: .04em;
+padding: 8px 12px;
+text-align: center;
 }
 .kpi-table th:first-child { text-align: left; }
 .kpi-table td {
-  padding: 9px 12px;
-  border-bottom: 0.5px solid var(--border);
-  text-align: center;
-  color: var(--text-muted);
+padding: 9px 12px;
+border-bottom: 0.5px solid var(–border);
+text-align: center;
+color: var(–text-muted);
 }
 .kpi-table td:first-child {
-  text-align: left;
-  color: var(--text);
-  font-weight: 400;
+text-align: left;
+color: var(–text);
+font-weight: 400;
 }
-.kpi-table td.highlight { color: var(--navy); font-weight: 500; }
+.kpi-table td.highlight { color: var(–navy); font-weight: 500; }
 .kpi-table td.green { color: #2A7A4A; font-weight: 500; }
 .kpi-table tr:last-child td { border-bottom: none; }
 .kpi-table tr.key-row { background: #FAFAF6; }
 .note-box {
-  background: #FFFBF0;
-  border-left: 3px solid var(--gold);
-  border-radius: 0 6px 6px 0;
-  padding: 12px 16px;
+background: #FFFBF0;
+border-left: 3px solid var(–gold);
+border-radius: 0 6px 6px 0;
+padding: 12px 16px;
 }
 .note-text { font-size: 11px; color: #7A6020; line-height: 1.7; }
 .note-text strong { font-weight: 500; }
 
 /* ── Summary page ── */
 .summary-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 20px;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 14px;
+margin-bottom: 20px;
 }
 .summary-card {
-  border: 0.5px solid var(--border);
-  border-radius: 6px;
-  padding: 18px 20px;
+border: 0.5px solid var(–border);
+border-radius: 6px;
+padding: 18px 20px;
 }
 .summary-card.featured {
-  border-color: var(--gold);
-  background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E8 100%);
+border-color: var(–gold);
+background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E8 100%);
 }
 .summary-section-title {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .1em;
-  color: var(--warm-gray);
-  margin-bottom: 10px;
+font-size: 10px;
+font-weight: 500;
+letter-spacing: .1em;
+color: var(–warm-gray);
+margin-bottom: 10px;
 }
-.summary-section-title.gold { color: var(--gold); }
+.summary-section-title.gold { color: var(–gold); }
 .summary-item {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin-bottom: 6px;
-  font-size: 12px;
+display: flex;
+align-items: baseline;
+gap: 6px;
+margin-bottom: 6px;
+font-size: 12px;
 }
 .summary-bullet {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  background: var(--navy);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 8px;
-  color: white;
-  font-weight: 500;
-  margin-top: 1px;
+width: 14px;
+height: 14px;
+border-radius: 50%;
+background: var(–navy);
+flex-shrink: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 8px;
+color: white;
+font-weight: 500;
+margin-top: 1px;
 }
-.summary-bullet.gold { background: var(--gold); }
-.summary-text { color: var(--text-muted); line-height: 1.5; }
+.summary-bullet.gold { background: var(–gold); }
+.summary-text { color: var(–text-muted); line-height: 1.5; }
 .cta-box {
-  background: var(--navy);
-  border-radius: 8px;
-  padding: 22px 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
+background: var(–navy);
+border-radius: 8px;
+padding: 22px 28px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 20px;
 }
 .cta-text {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 18px;
-  font-weight: 400;
-  color: white;
-  line-height: 1.5;
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 18px;
+font-weight: 400;
+color: white;
+line-height: 1.5;
 }
-.cta-text em { color: var(--gold-light); font-style: italic; }
+.cta-text em { color: var(–gold-light); font-style: italic; }
 .cta-by {
-  font-size: 10px;
-  color: rgba(255,255,255,0.4);
-  letter-spacing: .1em;
-  text-align: right;
-  white-space: nowrap;
+font-size: 10px;
+color: rgba(255,255,255,0.4);
+letter-spacing: .1em;
+text-align: right;
+white-space: nowrap;
 }
 
 @media print {
-  body { background: white; }
-  .page { box-shadow: none; margin: 0; }
+body { background: white; }
+.page { box-shadow: none; margin: 0; }
 }
 
 /* ── Responsive: Mobile ──────────────────────── */
 @media screen and (max-width: 768px) {
 
-  body { background: white; }
+body { background: white; }
 
-  .page {
-    width: 100%;
-    min-height: unset;
-    margin: 0;
-    padding-bottom: 32px;
-    border-bottom: 4px solid var(--off-white);
-  }
+.page {
+width: 100%;
+min-height: unset;
+margin: 0;
+padding-bottom: 32px;
+border-bottom: 4px solid var(–off-white);
+}
 
-  .page-inner { padding: 28px 20px; }
+.page-inner { padding: 28px 20px; }
 
-  /* Cover */
-  .cover { padding: 48px 24px; min-height: unset; }
-  .cover-title { font-size: 26px; }
-  .cover-watermark { display: none; }
+/* Cover */
+.cover { padding: 48px 24px; min-height: unset; }
+.cover-title { font-size: 26px; }
+.cover-watermark { display: none; }
 
-  /* Headings */
-  .page-heading { font-size: 20px; }
-  .page-lead { font-size: 13px; max-width: 100%; }
+/* Headings */
+.page-heading { font-size: 20px; }
+.page-lead { font-size: 13px; max-width: 100%; }
 
-  /* 2-col grids → stack */
-  .problem-grid,
-  .plan-grid,
-  .target-grid,
-  .versus-grid,
-  .numbers-row,
-  .summary-grid { grid-template-columns: 1fr !important; }
+/* 2-col grids → stack */
+.problem-grid,
+.plan-grid,
+.target-grid,
+.versus-grid,
+.numbers-row,
+.summary-grid { grid-template-columns: 1fr !important; }
 
-  /* vs divider非表示 */
-  .vs-divider-text { display: none; }
+/* vs divider非表示 */
+.vs-divider-text { display: none; }
 
-  /* concept pillars → stack */
-  .concept-pillars { grid-template-columns: 1fr !important; }
+/* concept pillars → stack */
+.concept-pillars { grid-template-columns: 1fr !important; }
 
-  /* KPI table scroll */
-  .kpi-table { font-size: 11px; }
-  .kpi-table th, .kpi-table td { padding: 7px 8px; }
-  .page-inner > div:has(.kpi-table) { overflow-x: auto; }
+/* KPI table scroll */
+.kpi-table { font-size: 11px; }
+.kpi-table th, .kpi-table td { padding: 7px 8px; }
+.page-inner > div:has(.kpi-table) { overflow-x: auto; }
 
-  /* brand mark & page num */
-  .brand-mark { position: static; margin-top: 20px; display: block; }
-  .page-num { position: static; text-align: right; margin-top: 4px; }
+/* brand mark & page num */
+.brand-mark { position: static; margin-top: 20px; display: block; }
+.page-num { position: static; text-align: right; margin-top: 4px; }
 
-  /* 運営戦略 */
-  .page-inner > div[style*="grid-template-columns:220px"] {
-    grid-template-columns: 1fr !important;
-  }
+/* 運営戦略 */
+.page-inner > div[style*=“grid-template-columns:220px”] {
+grid-template-columns: 1fr !important;
+}
 
-  /* フロー矢印 */
-  .page-inner > div[style*="align-items:center;justify-content:center;gap:8px"] {
-    flex-wrap: wrap;
-    gap: 6px;
-  }
+/* フロー矢印 */
+.page-inner > div[style*=“align-items:center;justify-content:center;gap:8px”] {
+flex-wrap: wrap;
+gap: 6px;
+}
 
-  /* note box */
-  .note-box { padding: 12px 14px; }
-  .logic-strip { padding: 14px 16px; }
+/* note box */
+.note-box { padding: 12px 14px; }
+.logic-strip { padding: 14px 16px; }
 
-  /* CTA box */
-  .cta-box { flex-direction: column; gap: 12px; }
-  .cta-by { text-align: left; }
+/* CTA box */
+.cta-box { flex-direction: column; gap: 12px; }
+.cta-by { text-align: left; }
 
-  /* solution banner */
-  .solution-banner { flex-direction: column; }
+/* solution banner */
+.solution-banner { flex-direction: column; }
 
-  /* case study grid */
-  .page-inner > div[style*="grid-template-columns:1fr 1fr"] {
-    grid-template-columns: 1fr !important;
-  }
+/* case study grid */
+.page-inner > div[style*=“grid-template-columns:1fr 1fr”] {
+grid-template-columns: 1fr !important;
+}
 }
 
 @media screen and (min-width: 769px) {
-  .page {
-    width: 210mm;
-    min-height: 148mm;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
-  }
+.page {
+width: 210mm;
+min-height: 148mm;
+box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
 }
 </style>
+
 </head>
 <body>
 
-
 <!-- ①表紙 -->
+
 <div class="page cover">
   <div class="cover-eyebrow">NISHI-NAKASU HOTEL PROJECT</div>
   <div class="cover-title">
@@ -695,339 +697,415 @@ body {
 </div>
 
 <!-- ②課題と方向性 -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Point — 課題認識</div>
     <div class="page-heading">機能性競合が多数の市場で、<br>どう戦うか</div>
     <div class="page-lead">天神南駅1km圏に200施設・推定20,000室超。本物件は「徒歩5分」フィルターからも脱落してしまう立地条件です。OTA上での価格競争に参入すると、収益性の確保が困難となります。</div>
 
-    <div class="problem-grid">
-      <div class="problem-card accent">
-        <div class="problem-icon" style="font-size:13px;font-weight:500;color:var(--navy)">207施設</div>
-        <div class="problem-title">Booking.com・天神南駅1km圏</div>
-        <div class="problem-body">競合は量・価格ともに圧倒的であり、OTAのフィルター検索では本物件が上位に表示されにくい立地です。</div>
-      </div>
-      <div class="problem-card">
-        <div class="problem-icon" style="font-size:13px;font-weight:500;color:var(--text-muted)">価格競争</div>
-        <div class="problem-title">機能性重視の競合が価格を下げる</div>
-        <div class="problem-body">「駅近・安い・清潔」だけでの訴求では差別化が困難です。ADRを引き上げるためには、強いコンセプトが不可欠です。</div>
-      </div>
-    </div>
+```
+<div class="problem-grid">
+  <div class="problem-card accent">
+    <div class="problem-icon" style="font-size:13px;font-weight:500;color:var(--navy)">207施設</div>
+    <div class="problem-title">Booking.com・天神南駅1km圏</div>
+    <div class="problem-body">競合は量・価格ともに圧倒的であり、OTAのフィルター検索では本物件が上位に表示されにくい立地です。</div>
+  </div>
+  <div class="problem-card">
+    <div class="problem-icon" style="font-size:13px;font-weight:500;color:var(--text-muted)">価格競争</div>
+    <div class="problem-title">機能性重視の競合が価格を下げる</div>
+    <div class="problem-body">「駅近・安い・清潔」だけでの訴求では差別化が困難です。ADRを引き上げるためには、強いコンセプトが不可欠です。</div>
+  </div>
+</div>
 
-    <div class="arrow-down">↓</div>
+<div class="arrow-down">↓</div>
 
-    <div class="solution-banner">
-      <div class="solution-banner-text">
-        OTAのフィルターに加えて、<em>SNS・口コミで動く人たちに指名検索</em>されるホテルになる
-      </div>
-    </div>
+<div class="solution-banner">
+  <div class="solution-banner-text">
+    OTAのフィルターに加えて、<em>SNS・口コミで動く人たちに指名検索</em>されるホテルになる
+  </div>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">02</div>
 </div>
 
 <!-- ③コンセプト -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Grand Concept</div>
     <div class="page-heading">コンセプト</div>
 
-    <div class="concept-hero">
-      <div class="concept-en">Nature Luxury</div>
-      <div class="concept-jp">自然・普遍的な心地よさの追求</div>
-    </div>
+```
+<div class="concept-hero">
+  <div class="concept-en">Nature Luxury</div>
+  <div class="concept-jp">自然・普遍的な心地よさの追求</div>
+</div>
 
-    <div class="concept-pillars">
-      <div class="pillar">
-        <div class="pillar-en">Water</div>
-        <div class="pillar-jp">水辺の体験</div>
-        <div class="pillar-body">那珂川に面した全室リバービュー。水・風・光が建物に入り込む。川沿いを行き交う人の目に留まる一枚絵。</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-en">Open</div>
-        <div class="pillar-jp">街に溶け出す</div>
-        <div class="pillar-body">1階は地域に開かれた空間。地元民と旅行者が自然に共存する場。シグネチャードリンクを片手に橋を行き交う人々が絵になる。</div>
-      </div>
-      <div class="pillar">
-        <div class="pillar-en">Comfort</div>
-        <div class="pillar-jp">普遍の心地よさ</div>
-        <div class="pillar-body">トレンドに乗らない、時間が経っても色褪せない空間。「ここにいるだけで気持ちいい」という感覚を整える。</div>
-      </div>
-    </div>
+<div class="concept-pillars">
+  <div class="pillar">
+    <div class="pillar-en">Water</div>
+    <div class="pillar-jp">水辺の体験</div>
+    <div class="pillar-body">那珂川に面した全室リバービュー。水・風・光が建物に入り込む。川沿いを行き交う人の目に留まる一枚絵。</div>
+  </div>
+  <div class="pillar">
+    <div class="pillar-en">Open</div>
+    <div class="pillar-jp">街に溶け出す</div>
+    <div class="pillar-body">1階は地域に開かれた空間。地元民と旅行者が自然に共存する場。シグネチャードリンクを片手に橋を行き交う人々が絵になる。</div>
+  </div>
+  <div class="pillar">
+    <div class="pillar-en">Comfort</div>
+    <div class="pillar-jp">普遍の心地よさ</div>
+    <div class="pillar-body">トレンドに乗らない、時間が経っても色褪せない空間。「ここにいるだけで気持ちいい」という感覚を整える。</div>
+  </div>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">03</div>
 </div>
 
 <!-- ④ターゲット -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Target</div>
     <div class="page-heading">誰のためのホテルか</div>
     <div class="page-lead">ターゲットはデモグラフィックではなく「価値観」で定義。この価値観は年代・国籍を超えて存在します。</div>
 
-    <div style="text-align:center;margin-bottom:16px">
-      <div class="value-tag">自然の中の心地よさ・安らぎ・心の豊かさ</div>
-    </div>
+```
+<div style="text-align:center;margin-bottom:16px">
+  <div class="value-tag">自然の中の心地よさ・安らぎ・心の豊かさ</div>
+</div>
 
-    <div class="target-grid">
-      <div class="target-card">
-        <div class="target-badge">旅行者</div>
-        <div class="target-title">SNSで見た、緑あふれるラウンジが予約の決め手</div>
-        <div class="target-body">西中洲という地名は知らなくても、心が安らぐ滞在を求めて「ここしかない」と予約を取る。OTA経由ではなく、SNS・口コミで動く層。</div>
-      </div>
-      <div class="target-card">
-        <div class="target-badge">地元民</div>
-        <div class="target-title">「泊まらなくても使う場所」として日常に溶け込む</div>
-        <div class="target-body">仕事帰りのバー、週末のテラス、記念日のディナー。落ち着いた大人の街・西中洲に、お気に入りの場所ができた感覚。</div>
-      </div>
-    </div>
+<div class="target-grid">
+  <div class="target-card">
+    <div class="target-badge">旅行者</div>
+    <div class="target-title">SNSで見た、緑あふれるラウンジが予約の決め手</div>
+    <div class="target-body">西中洲という地名は知らなくても、心が安らぐ滞在を求めて「ここしかない」と予約を取る。OTA経由ではなく、SNS・口コミで動く層。</div>
+  </div>
+  <div class="target-card">
+    <div class="target-badge">地元民</div>
+    <div class="target-title">「泊まらなくても使う場所」として日常に溶け込む</div>
+    <div class="target-body">仕事帰りのバー、週末のテラス、記念日のディナー。落ち着いた大人の街・西中洲に、お気に入りの場所ができた感覚。</div>
+  </div>
+</div>
 
-    <div class="synergy-box">
-      <div style="font-size:20px;flex-shrink:0">⇄</div>
-      <div class="synergy-text">両者が同じ空間にいることで、相互の価値向上につながります。「地元の人たちも来る本物の場所」という認知が、旅行者の信頼へとつながります。</div>
-    </div>
+<div class="synergy-box">
+  <div style="font-size:20px;flex-shrink:0">⇄</div>
+  <div class="synergy-text">両者が同じ空間にいることで、相互の価値向上につながります。「地元の人たちも来る本物の場所」という認知が、旅行者の信頼へとつながります。</div>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">04</div>
 </div>
 
 <!-- ⑤ホテルプラン概要 -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Plan</div>
     <div class="page-heading">7gardenが提案するホテルプラン</div>
     <div class="page-lead">丸善様ご検討のプランとの比較です。客室数を厳選し、ADRを引き上げることで、収益性と体験品質を両立いたします。</div>
 
-    <div class="plan-grid">
-      <div class="plan-card">
-        <div class="plan-badge outline">元プラン（事業主案）</div>
-        <div class="plan-name">105室・機能重視型</div>
-        <div class="spec-row"><span class="spec-label">客室数</span><span class="spec-val">105室</span></div>
-        <div class="spec-row"><span class="spec-label">主要客室面積</span><span class="spec-val">約17㎡</span></div>
-        <div class="spec-row"><span class="spec-label">大浴場・プール</span><span class="spec-val">なし</span></div>
-        <div class="spec-row"><span class="spec-label">ADR 初年</span><span class="spec-val">約¥14,800 <span style="font-size:10px;color:var(--text-muted)">（¥869/㎡）</span></span></div>
-        <div class="spec-row"><span class="spec-label">ADR 2年目</span><span class="spec-val">約¥15,600 <span style="font-size:10px;color:var(--text-muted)">（¥920/㎡）</span></span></div>
-        <div class="spec-row"><span class="spec-label">ADR 3年目ベース</span><span class="spec-val">約¥16,500 <span style="font-size:10px;color:var(--text-muted)">（¥971/㎡）</span></span></div>
-        <div class="spec-row"><span class="spec-label">ADR 3年目ポジ</span><span class="spec-val">約¥17,400 <span style="font-size:10px;color:var(--text-muted)">（¥1,023/㎡）</span></span></div>
-      </div>
-      <div class="plan-card featured">
-        <div class="plan-badge">7garden提案プラン</div>
-        <div class="plan-name">56室・Nature Luxury型</div>
-        <div class="spec-row"><span class="spec-label">客室数</span><span class="spec-val highlight">56室</span></div>
-        <div class="spec-row"><span class="spec-label">主要客室面積</span><span class="spec-val highlight">約25.5㎡</span></div>
-        <div class="spec-row"><span class="spec-label">大浴場・プール・レストラン</span><span class="spec-val up">あり</span></div>
-        <div class="spec-row"><span class="spec-label">ADR 初年</span><span class="spec-val up">約¥25,500 <span style="font-size:10px;color:var(--text-muted)">（¥1,000/㎡）</span></span></div>
-        <div class="spec-row"><span class="spec-label">ADR 2年目</span><span class="spec-val up">約¥28,050 <span style="font-size:10px;color:var(--text-muted)">（¥1,100/㎡）</span></span></div>
-        <div class="spec-row"><span class="spec-label">ADR 3年目ベース</span><span class="spec-val up">約¥30,600 <span style="font-size:10px;color:var(--text-muted)">（¥1,200/㎡）</span></span></div>
-        <div class="spec-row"><span class="spec-label">ADR 3年目ポジ</span><span class="spec-val up">約¥33,150 <span style="font-size:10px;color:var(--text-muted)">（¥1,300/㎡）</span></span></div>
-      </div>
-    </div>
+```
+<div class="plan-grid">
+  <div class="plan-card">
+    <div class="plan-badge outline">元プラン（事業主案）</div>
+    <div class="plan-name">105室・機能重視型</div>
+    <div class="spec-row"><span class="spec-label">客室数</span><span class="spec-val">105室</span></div>
+    <div class="spec-row"><span class="spec-label">主要客室面積</span><span class="spec-val">約17㎡</span></div>
+    <div class="spec-row"><span class="spec-label">大浴場・プール</span><span class="spec-val">なし</span></div>
+    <div class="spec-row"><span class="spec-label">ADR 初年</span><span class="spec-val">約¥14,800 <span style="font-size:10px;color:var(--text-muted)">（¥869/㎡）</span></span></div>
+    <div class="spec-row"><span class="spec-label">ADR 2年目</span><span class="spec-val">約¥15,600 <span style="font-size:10px;color:var(--text-muted)">（¥920/㎡）</span></span></div>
+    <div class="spec-row"><span class="spec-label">ADR 3年目ベース</span><span class="spec-val">約¥16,500 <span style="font-size:10px;color:var(--text-muted)">（¥971/㎡）</span></span></div>
+    <div class="spec-row"><span class="spec-label">ADR 3年目ポジ</span><span class="spec-val">約¥17,400 <span style="font-size:10px;color:var(--text-muted)">（¥1,023/㎡）</span></span></div>
+  </div>
+  <div class="plan-card featured">
+    <div class="plan-badge">7garden提案プラン</div>
+    <div class="plan-name">56室・Nature Luxury型</div>
+    <div class="spec-row"><span class="spec-label">客室数</span><span class="spec-val highlight">56室</span></div>
+    <div class="spec-row"><span class="spec-label">主要客室面積</span><span class="spec-val highlight">約25.5㎡</span></div>
+    <div class="spec-row"><span class="spec-label">大浴場・プール・レストラン</span><span class="spec-val up">あり</span></div>
+    <div class="spec-row"><span class="spec-label">ADR 初年</span><span class="spec-val up">約¥25,500 <span style="font-size:10px;color:var(--text-muted)">（¥1,000/㎡）</span></span></div>
+    <div class="spec-row"><span class="spec-label">ADR 2年目</span><span class="spec-val up">約¥28,050 <span style="font-size:10px;color:var(--text-muted)">（¥1,100/㎡）</span></span></div>
+    <div class="spec-row"><span class="spec-label">ADR 3年目ベース</span><span class="spec-val up">約¥30,600 <span style="font-size:10px;color:var(--text-muted)">（¥1,200/㎡）</span></span></div>
+    <div class="spec-row"><span class="spec-label">ADR 3年目ポジ</span><span class="spec-val up">約¥33,150 <span style="font-size:10px;color:var(--text-muted)">（¥1,300/㎡）</span></span></div>
+  </div>
+</div>
 
-    <div class="note-box">
-      <div class="note-text">
-        <strong>追加投資の考え方：</strong>　3年目以降の収益性の差があるため、投資回収が可能です。共用部分がもたらす資産価値・ブランド価値の向上は、数値では測れない付加価値です。
-      </div>
-    </div>
+<div class="note-box">
+  <div class="note-text">
+    <strong>追加投資の考え方：</strong>　3年目以降の収益性の差があるため、投資回収が可能です。共用部分がもたらす資産価値・ブランド価値の向上は、数値では測れない付加価値です。
+  </div>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">05</div>
 </div>
 
 <!-- ⑥テナント提案 -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Tenant Strategy</div>
     <div class="page-heading">なぜ7gardenがテナントに<br>自ら入るのか</div>
     <div class="page-lead">外部テナントに委ねることは、ホテル価値のコントロールを手放すことと同義です。7gardenは固定賃料をお支払いしながら、建物全体の価値を設計・管理いたします。</div>
 
-    <div class="versus-grid">
-      <div class="vs-col">
-        <div class="vs-col-label">外部テナント</div>
-        <div class="vs-col-title">業態・品質・世界観すべて他者依存</div>
-        <div class="vs-item">業態・クオリティをコントロールできない</div>
-        <div class="vs-item">宿泊客フォーカスの設計ができない</div>
-        <div class="vs-item">コンセプトとの世界観が分断される</div>
-        <div class="vs-item">撤退リスクあり、長期安定性に不安</div>
-      </div>
-      <div style="text-align:center">
-        <div class="vs-divider-text">vs</div>
-      </div>
-      <div class="vs-col accent">
-        <div class="vs-col-label blue">7garden 自社運営</div>
-        <div class="vs-col-title">ホテルと飲食を一体設計で価値最大化</div>
-        <div class="vs-item">業態・世界観をホテルと一体で設計</div>
-        <div class="vs-item">宿泊客・地元民双方に最適化した体験</div>
-        <div class="vs-item">Nature Luxuryを1階から体現</div>
-        <div class="vs-item">ADR・リピート・口コミを意図的に設計</div>
-      </div>
-    </div>
+```
+<div class="versus-grid">
+  <div class="vs-col">
+    <div class="vs-col-label">外部テナント</div>
+    <div class="vs-col-title">業態・品質・世界観すべて他者依存</div>
+    <div class="vs-item">業態・クオリティをコントロールできない</div>
+    <div class="vs-item">宿泊客フォーカスの設計ができない</div>
+    <div class="vs-item">コンセプトとの世界観が分断される</div>
+    <div class="vs-item">撤退リスクあり、長期安定性に不安</div>
+  </div>
+  <div style="text-align:center">
+    <div class="vs-divider-text">vs</div>
+  </div>
+  <div class="vs-col accent">
+    <div class="vs-col-label blue">7garden 自社運営</div>
+    <div class="vs-col-title">ホテルと飲食を一体設計で価値最大化</div>
+    <div class="vs-item">業態・世界観をホテルと一体で設計</div>
+    <div class="vs-item">宿泊客・地元民双方に最適化した体験</div>
+    <div class="vs-item">Nature Luxuryを1階から体現</div>
+    <div class="vs-item">ADR・リピート・口コミを意図的に設計</div>
+  </div>
+</div>
 
-    <div class="numbers-row">
-      <div class="num-box">
-        <div class="num-box-label">外部テナント満額賃料（年）</div>
-        <div class="num-box-val">2,520<span style="font-size:13px">万円</span></div>
-        <div class="num-box-sub">約70坪 × ¥3万 × 12ヶ月</div>
-      </div>
-      <div class="num-box">
-        <div class="num-box-label">7garden賃料（年）</div>
-        <div class="num-box-val blue">1,440<span style="font-size:13px">万円</span></div>
-        <div class="num-box-sub">60坪 × ¥2万 × 12ヶ月</div>
-      </div>
-      <div class="num-box">
-        <div class="num-box-label">ADR+1,000円の効果（年）</div>
-        <div class="num-box-val" style="color:#2A7A4A">+1,740<span style="font-size:13px">万円</span></div>
-        <div class="num-box-sub">テナント部分の賃料差額の約1.6倍に相当する</div>
-      </div>
-    </div>
+<!-- 賃料比較 -->
+<div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:16px;border:0.5px solid var(--border);border-radius:8px;overflow:hidden">
 
-    <div class="logic-strip">
-      <p>賃料を約7割にご設定いただく代わりに、<strong>建物全体の価値を高め、ADR向上分を丸善様へ還元いたします。</strong><br>
-      7gardenがテナントに入ることは、コスト削減ではなく、<strong>ホテル価値への長期投資</strong>です。</p>
+  <!-- 外部テナント -->
+  <div style="padding:18px 20px;background:#F9F6F0">
+    <div style="font-size:9px;letter-spacing:.1em;color:var(--warm-gray);margin-bottom:8px;font-weight:500">外部テナント（満額）</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--text);margin-bottom:4px">2,520<span style="font-size:15px">万円</span><span style="font-size:11px;color:var(--text-muted)"> /年</span></div>
+    <div style="font-size:11px;color:var(--text-muted)">約70坪 × ¥3万 × 12ヶ月</div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
+      <div style="font-size:10.5px;color:var(--text-muted);line-height:1.6">・業態・世界観のコントロール不可<br>・宿泊客フォーカスができない<br>・撤退リスクあり</div>
     </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid var(--border)">
+      <div style="font-size:9px;letter-spacing:.06em;color:var(--warm-gray);margin-bottom:6px">3年目（安定稼働時）</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+        <span style="font-size:11px;color:var(--text-muted)">オーナー手残り（NOI）</span>
+        <span style="font-size:16px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--text)">2.9億円</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-size:11px;color:var(--text-muted)">NOI利回り（建築費ベース）</span>
+        <span style="font-size:16px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--text)">9.7%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VS -->
+  <div style="display:flex;align-items:center;justify-content:center;background:#F0F0EC;padding:0 16px">
+    <div style="font-size:11px;font-weight:500;color:var(--warm-gray);writing-mode:vertical-rl;letter-spacing:.1em">vs</div>
+  </div>
+
+  <!-- 7garden -->
+  <div style="padding:18px 20px;background:#EDF5F0">
+    <div style="font-size:9px;letter-spacing:.1em;color:var(--navy);margin-bottom:8px;font-weight:500">7garden 自社運営</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:300;color:var(--navy);margin-bottom:4px">1,440<span style="font-size:15px">万円</span><span style="font-size:11px;color:var(--water)"> /年</span></div>
+    <div style="font-size:11px;color:var(--text-muted)">60坪 × ¥2万 × 12ヶ月</div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid rgba(26,56,41,0.15)">
+      <div style="font-size:10.5px;color:var(--navy);line-height:1.6">・ホテルと飲食を一体設計<br>・ADR・口コミを意図的に設計<br>・長期安定・ブランド毀損リスクゼロ</div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:0.5px solid rgba(26,56,41,0.15)">
+      <div style="font-size:9px;letter-spacing:.06em;color:var(--navy);margin-bottom:6px;font-weight:500">3年目（安定稼働時）</div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px">
+        <span style="font-size:11px;color:var(--text-muted)">オーナー手残り（NOI）</span>
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span style="font-size:16px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--navy)">3.3億円</span>
+          <span style="font-size:10px;color:#2A7A4A;font-weight:500">+0.4億</span>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-size:11px;color:var(--text-muted)">NOI利回り（建築費ベース）</span>
+        <div style="display:flex;align-items:baseline;gap:4px">
+          <span style="font-size:16px;font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--navy)">10.0%</span>
+          <span style="font-size:10px;color:#2A7A4A;font-weight:500">▲優位</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ADR効果 -->
+<div style="background:#F2F7F4;border-radius:6px;padding:12px 18px;display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">
+  <div style="font-size:12px;color:var(--text-muted)">ADR+1,000円の効果（年間）</div>
+  <div style="display:flex;align-items:baseline;gap:6px">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:#2A7A4A">+1,740<span style="font-size:13px">万円</span></div>
+    <div style="font-size:10px;color:var(--text-muted)">賃料差額の約1.6倍</div>
+  </div>
+</div>
+
+<div class="logic-strip">
+  <p>賃料を約7割にご設定いただく代わりに、<strong>建物全体の価値を高め、ADR向上分を丸善様へ還元いたします。</strong><br>
+  7gardenがテナントに入ることは、コスト削減ではなく、<strong>ホテル価値への長期投資</strong>です。</p>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">06</div>
 </div>
 
 <!-- ⑦自社飲食実績 -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Track Record — 自社飲食実績</div>
     <div class="page-heading">実現可能性</div>
     <div class="page-lead">7gardenはグループ会社・株式会社8gardenを通じ、ホテル内カフェ・飲食業態の自社開発・運営を実践してまいりました。宿泊者だけでなく、地域の方々が目的をもってご来店されるラウンジを、複数拠点で実現しております。</div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+```
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
 
-      <!-- Case 1 -->
-      <div style="border:0.5px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="background:var(--navy);padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:nowrap">
-          <div style="font-size:9px;letter-spacing:.1em;color:var(--gold);font-weight:500;white-space:nowrap">CASE 1</div>
-          <div style="font-size:13px;font-weight:500;color:white;font-family:'Cormorant Garamond',serif;white-space:nowrap">Mei Cafe</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.5);white-space:nowrap">Hotel Mei・福岡 博多</div>
-        </div>
-        <div style="padding:14px 16px">
-          <div style="margin-bottom:12px">
-            <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ モーニング｜博多薬膳粥</div>
-            <div style="font-size:11px;color:var(--text-muted);line-height:1.7">30種類の薬膳をカスタムできるモーニング。ビジネスユーザーも含む幅広い層に支持され、連泊のお客様を飽きさせないラインナップで高リピート率を実現。</div>
-          </div>
-          <div style="border-top:0.5px solid var(--border);padding-top:12px">
-            <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ カフェ・バータイム</div>
-            <div style="font-size:11px;color:var(--text-muted);line-height:1.7">ローカルアイデンティティがテーマ。地元の甘味処とコラボしたフルーツサンドは圧倒的な集客力を誇り、バータイムはオリジナルスパイスバーを営業。</div>
-          </div>
-          <div style="margin-top:12px;background:#F0F7F4;border-radius:4px;padding:8px 12px">
-            <div style="font-size:10px;color:#1A6A4A;font-weight:500">地元客が目的来店する「ホテル内の名店」を実現</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Case 2 -->
-      <div style="border:0.5px solid var(--border);border-radius:8px;overflow:hidden">
-        <div style="background:var(--navy);padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:nowrap">
-          <div style="font-size:9px;letter-spacing:.1em;color:var(--gold);font-weight:500;white-space:nowrap">CASE 2</div>
-          <div style="font-size:12px;font-weight:500;color:white;font-family:'Cormorant Garamond',serif;white-space:nowrap">ORDY THE BAKERY</div>
-          <div style="font-size:9px;color:rgba(255,255,255,0.5);white-space:nowrap">Hotel Vintage・東京 目黒不動前</div>
-        </div>
-        <div style="padding:14px 16px">
-          <div style="margin-bottom:12px">
-            <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ モーニング｜豊富なセットメニュー</div>
-            <div style="font-size:11px;color:var(--text-muted);line-height:1.7">連泊のお客様を飽きさせない豊富なラインナップ。宿泊者はもちろん、一般の方にも開放することで、街の人々から愛され地域のまちづくりに寄与する空間を目指しています。</div>
-          </div>
-          <div style="border-top:0.5px solid var(--border);padding-top:12px">
-            <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ カフェ・ランチタイム</div>
-            <div style="font-size:11px;color:var(--text-muted);line-height:1.7">クロワッサン、スリランカカレー、デニッシュ、プリンほか。国産小麦・無添加・100%天然酵母など、本物の素材にこだわったプロダクトを提供。</div>
-          </div>
-          <div style="margin-top:12px;background:#F0F7F4;border-radius:4px;padding:8px 12px">
-            <div style="font-size:10px;color:#1A6A4A;font-weight:500">「宿泊しなくても使う場所」として地域に根付く</div>
-          </div>
-        </div>
-      </div>
-
+  <!-- Case 1 -->
+  <div style="border:0.5px solid var(--border);border-radius:8px;overflow:hidden">
+    <div style="background:var(--navy);padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:nowrap">
+      <div style="font-size:9px;letter-spacing:.1em;color:var(--gold);font-weight:500;white-space:nowrap">CASE 1</div>
+      <div style="font-size:13px;font-weight:500;color:white;font-family:'Cormorant Garamond',serif;white-space:nowrap">Mei Cafe</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.5);white-space:nowrap">Hotel Mei・福岡 博多</div>
     </div>
-
-    <div style="margin-top:16px;background:var(--navy);border-radius:6px;padding:14px 20px">
-      <div style="font-size:12px;color:rgba(255,255,255,0.85);line-height:1.8">
-        「ホテルの価値観を体現した飲食業態が、地元客の目的来店を生む」という構造を、<br>
-        西中洲でも構築し、那珂川・自然・地域性をテーマに展開いたします。
+    <div style="padding:14px 16px">
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ モーニング｜博多薬膳粥</div>
+        <div style="font-size:11px;color:var(--text-muted);line-height:1.7">30種類の薬膳をカスタムできるモーニング。ビジネスユーザーも含む幅広い層に支持され、連泊のお客様を飽きさせないラインナップで高リピート率を実現。</div>
+      </div>
+      <div style="border-top:0.5px solid var(--border);padding-top:12px">
+        <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ カフェ・バータイム</div>
+        <div style="font-size:11px;color:var(--text-muted);line-height:1.7">ローカルアイデンティティがテーマ。地元の甘味処とコラボしたフルーツサンドは圧倒的な集客力を誇り、バータイムはオリジナルスパイスバーを営業。</div>
+      </div>
+      <div style="margin-top:12px;background:#F0F7F4;border-radius:4px;padding:8px 12px">
+        <div style="font-size:10px;color:#1A6A4A;font-weight:500">地元客が目的来店する「ホテル内の名店」を実現</div>
       </div>
     </div>
+  </div>
+
+  <!-- Case 2 -->
+  <div style="border:0.5px solid var(--border);border-radius:8px;overflow:hidden">
+    <div style="background:var(--navy);padding:10px 16px;display:flex;align-items:center;gap:8px;flex-wrap:nowrap">
+      <div style="font-size:9px;letter-spacing:.1em;color:var(--gold);font-weight:500;white-space:nowrap">CASE 2</div>
+      <div style="font-size:12px;font-weight:500;color:white;font-family:'Cormorant Garamond',serif;white-space:nowrap">ORDY THE BAKERY</div>
+      <div style="font-size:9px;color:rgba(255,255,255,0.5);white-space:nowrap">Hotel Vintage・東京 目黒不動前</div>
+    </div>
+    <div style="padding:14px 16px">
+      <div style="margin-bottom:12px">
+        <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ モーニング｜豊富なセットメニュー</div>
+        <div style="font-size:11px;color:var(--text-muted);line-height:1.7">連泊のお客様を飽きさせない豊富なラインナップ。宿泊者はもちろん、一般の方にも開放することで、街の人々から愛され地域のまちづくりに寄与する空間を目指しています。</div>
+      </div>
+      <div style="border-top:0.5px solid var(--border);padding-top:12px">
+        <div style="font-size:11px;font-weight:500;color:var(--navy);margin-bottom:4px">■ カフェ・ランチタイム</div>
+        <div style="font-size:11px;color:var(--text-muted);line-height:1.7">クロワッサン、スリランカカレー、デニッシュ、プリンほか。国産小麦・無添加・100%天然酵母など、本物の素材にこだわったプロダクトを提供。</div>
+      </div>
+      <div style="margin-top:12px;background:#F0F7F4;border-radius:4px;padding:8px 12px">
+        <div style="font-size:10px;color:#1A6A4A;font-weight:500">「宿泊しなくても使う場所」として地域に根付く</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div style="margin-top:16px;background:var(--navy);border-radius:6px;padding:14px 20px">
+  <div style="font-size:12px;color:rgba(255,255,255,0.85);line-height:1.8">
+    「ホテルの価値観を体現した飲食業態が、地元客の目的来店を生む」という構造を、<br>
+    西中洲でも構築し、那珂川・自然・地域性をテーマに展開いたします。
+  </div>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">07</div>
 </div>
 
 <!-- ⑧運営戦略 -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Operations Strategy</div>
     <div class="page-heading">ADR・稼働率を上げる<br>7gardenの運営構造</div>
     <div class="page-lead">商品企画力×集客力×生産性向上の好循環を、内製チームが一気通貫で担います。外部委託では生まれないスピードと精度で、PDCAを継続的に実践いたします。</div>
 
-    <div style="display:grid;grid-template-columns:220px 1fr;gap:16px;margin-bottom:16px">
+```
+<div style="display:grid;grid-template-columns:220px 1fr;gap:16px;margin-bottom:16px">
 
-      <!-- 左：生産性向上 -->
-      <div style="border:0.5px solid var(--border);border-radius:6px;padding:14px 16px">
-        <div style="font-size:11px;font-weight:500;color:var(--navy);text-align:center;margin-bottom:12px;padding-bottom:8px;border-bottom:0.5px solid var(--border)">生産性向上</div>
-        <div style="margin-bottom:10px">
-          <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:5px;display:inline-block">サービス力の強化</div>
-          <div style="font-size:10.5px;color:var(--text-muted);line-height:1.6">・フロント<br>・コンシェルジュ</div>
-        </div>
-        <div style="margin-bottom:10px">
-          <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:5px;display:inline-block">技術力の強化</div>
-          <div style="font-size:10.5px;color:var(--text-muted);line-height:1.6">・システムの自社開発<br>・最新ツールの活用</div>
-        </div>
-        <div>
-          <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:5px;display:inline-block">業務の最適化</div>
-          <div style="font-size:10.5px;color:var(--text-muted);line-height:1.6">・対面・非対面機能の分業制</div>
+  <!-- 左：生産性向上 -->
+  <div style="border:0.5px solid var(--border);border-radius:6px;padding:14px 16px">
+    <div style="font-size:11px;font-weight:500;color:var(--navy);text-align:center;margin-bottom:12px;padding-bottom:8px;border-bottom:0.5px solid var(--border)">生産性向上</div>
+    <div style="margin-bottom:10px">
+      <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:5px;display:inline-block">サービス力の強化</div>
+      <div style="font-size:10.5px;color:var(--text-muted);line-height:1.6">・フロント<br>・コンシェルジュ</div>
+    </div>
+    <div style="margin-bottom:10px">
+      <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:5px;display:inline-block">技術力の強化</div>
+      <div style="font-size:10.5px;color:var(--text-muted);line-height:1.6">・システムの自社開発<br>・最新ツールの活用</div>
+    </div>
+    <div>
+      <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:5px;display:inline-block">業務の最適化</div>
+      <div style="font-size:10.5px;color:var(--text-muted);line-height:1.6">・対面・非対面機能の分業制</div>
+    </div>
+  </div>
+
+  <!-- 右：売上向上 -->
+  <div style="border:0.5px solid var(--navy);border-radius:6px;padding:14px 16px;background:#F8FAFB">
+    <div style="font-size:11px;font-weight:500;color:var(--navy);text-align:center;margin-bottom:12px;padding-bottom:8px;border-bottom:0.5px solid var(--border)">売上向上（単価・稼働率UP）</div>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:start">
+
+      <div>
+        <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:8px;display:inline-block">クリエイティビティ｜商品企画力</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">客室の広さ</div>
+          <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">意匠性の高さ</div>
+          <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">共用部の充実（飲食・大浴場等）</div>
         </div>
       </div>
 
-      <!-- 右：売上向上 -->
-      <div style="border:0.5px solid var(--navy);border-radius:6px;padding:14px 16px;background:#F8FAFB">
-        <div style="font-size:11px;font-weight:500;color:var(--navy);text-align:center;margin-bottom:12px;padding-bottom:8px;border-bottom:0.5px solid var(--border)">売上向上（単価・稼働率UP）</div>
-        <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:start">
-
-          <div>
-            <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:8px;display:inline-block">クリエイティビティ｜商品企画力</div>
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">客室の広さ</div>
-              <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">意匠性の高さ</div>
-              <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">共用部の充実（飲食・大浴場等）</div>
-            </div>
-          </div>
-
-          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding-top:24px">
-            <div style="font-size:9px;color:var(--text-muted);text-align:center;line-height:1.5">仮説検証<br>（PDCA）</div>
-            <div style="font-size:16px;color:var(--gold)">⇄</div>
-            <div style="border:1.5px solid var(--gold);border-radius:20px;padding:6px 12px">
-              <div style="font-size:11px;font-weight:500;color:var(--navy);text-align:center">好循環</div>
-            </div>
-            <div style="font-size:9px;color:var(--text-muted);text-align:center;line-height:1.5">Webマーケティングに<br>基づく空間設計</div>
-          </div>
-
-          <div>
-            <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:8px;display:inline-block">技術（AI）｜集客力</div>
-            <div style="display:flex;flex-direction:column;gap:5px">
-              <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">OTA運用（最適化）</div>
-              <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">SNSマーケティング</div>
-              <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">ブランディング</div>
-            </div>
-          </div>
-
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding-top:24px">
+        <div style="font-size:9px;color:var(--text-muted);text-align:center;line-height:1.5">仮説検証<br>（PDCA）</div>
+        <div style="font-size:16px;color:var(--gold)">⇄</div>
+        <div style="border:1.5px solid var(--gold);border-radius:20px;padding:6px 12px">
+          <div style="font-size:11px;font-weight:500;color:var(--navy);text-align:center">好循環</div>
         </div>
-        <div style="margin-top:10px;font-size:9.5px;color:var(--text-muted);text-align:center">（※）内製チームによる一気通貫のトライ・アンド・エラー</div>
+        <div style="font-size:9px;color:var(--text-muted);text-align:center;line-height:1.5">Webマーケティングに<br>基づく空間設計</div>
+      </div>
+
+      <div>
+        <div style="font-size:10px;font-weight:500;background:var(--water);color:white;border-radius:3px;padding:3px 8px;margin-bottom:8px;display:inline-block">技術（AI）｜集客力</div>
+        <div style="display:flex;flex-direction:column;gap:5px">
+          <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">OTA運用（最適化）</div>
+          <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">SNSマーケティング</div>
+          <div style="font-size:10.5px;border:0.5px solid var(--border);border-radius:3px;padding:5px 8px;background:white;color:var(--navy)">ブランディング</div>
+        </div>
       </div>
 
     </div>
+    <div style="margin-top:10px;font-size:9.5px;color:var(--text-muted);text-align:center">（※）内製チームによる一気通貫のトライ・アンド・エラー</div>
+  </div>
 
-    <!-- 下部フロー -->
-    <div style="display:flex;align-items:center;justify-content:center;gap:8px">
-      <div style="background:#E8E8E5;border-radius:4px;padding:8px 14px;font-size:11px;color:var(--navy);font-weight:500;text-align:center">ホテルサイト（OTA）<br><span style="font-size:9px;font-weight:400;color:var(--text-muted)">Booking / Expedia / じゃらん / 楽天</span></div>
-      <div style="font-size:14px;color:var(--gold)">→</div>
-      <div style="background:#E8E8E5;border-radius:4px;padding:8px 14px;font-size:11px;color:var(--navy);font-weight:500;text-align:center">単価（ADR）UP<br>稼働率（OCC）UP</div>
-      <div style="font-size:14px;color:var(--gold)">→</div>
-      <div style="background:var(--gold);border-radius:4px;padding:8px 16px;font-size:12px;color:white;font-weight:500;text-align:center">丸善様の利益最大化</div>
-    </div>
+</div>
+
+<!-- 下部フロー -->
+<div style="display:flex;align-items:center;justify-content:center;gap:8px">
+  <div style="background:#E8E8E5;border-radius:4px;padding:8px 14px;font-size:11px;color:var(--navy);font-weight:500;text-align:center">ホテルサイト（OTA）<br><span style="font-size:9px;font-weight:400;color:var(--text-muted)">Booking / Expedia / じゃらん / 楽天</span></div>
+  <div style="font-size:14px;color:var(--gold)">→</div>
+  <div style="background:#E8E8E5;border-radius:4px;padding:8px 14px;font-size:11px;color:var(--navy);font-weight:500;text-align:center">単価（ADR）UP<br>稼働率（OCC）UP</div>
+  <div style="font-size:14px;color:var(--gold)">→</div>
+  <div style="background:var(--gold);border-radius:4px;padding:8px 16px;font-size:12px;color:white;font-weight:500;text-align:center">丸善様の利益最大化</div>
+</div>
+```
 
   </div>
   <div class="brand-mark">7garden</div>
@@ -1035,138 +1113,145 @@ body {
 </div>
 
 <!-- ⑨収支サマリー -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Financials</div>
     <div class="page-heading">収支シミュレーション（7gardenプラン）</div>
     <div class="page-lead">56室・Nature Luxury型。7garden自社によるテナント固定賃料（1,452万円/年）を含みます。</div>
 
-    <div style="overflow-x:auto"><table class="kpi-table">
-      <thead>
-        <tr>
-          <th style="text-align:left;width:30%">項目</th>
-          <th>初年</th>
-          <th>2年目</th>
-          <th>3年目ベース</th>
-          <th>3年目ポジ</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>稼働率</td>
-          <td>69%</td>
-          <td>85%</td>
-          <td>85%</td>
-          <td>85%</td>
-        </tr>
-        <tr>
-          <td>平均ADR（税込）</td>
-          <td>¥25,500〜</td>
-          <td>¥28,050〜</td>
-          <td>¥30,600〜</td>
-          <td>¥33,150〜</td>
-        </tr>
-        <tr>
-          <td>宿泊売上</td>
-          <td>4.1億円</td>
-          <td>5.6億円</td>
-          <td>6.1億円</td>
-          <td>6.6億円</td>
-        </tr>
-        <tr>
-          <td>固定賃料収入</td>
-          <td>1,452万円</td>
-          <td>1,452万円</td>
-          <td>1,452万円</td>
-          <td>1,452万円</td>
-        </tr>
-        <tr class="key-row">
-          <td class="highlight">GOP</td>
-          <td class="highlight">2.1億円（51.2%）</td>
-          <td class="highlight">3.1億円（55.4%）</td>
-          <td class="highlight">3.4億円（56.6%）</td>
-          <td class="highlight">3.8億円（57.7%）</td>
-        </tr>
-        <tr class="key-row">
-          <td class="highlight">NOI</td>
-          <td class="highlight">1.8億円</td>
-          <td class="highlight">2.7億円</td>
-          <td class="highlight">3.0億円</td>
-          <td class="highlight">3.3億円</td>
-        </tr>
-        
-      </tbody>
-    </table></div>
+```
+<div style="overflow-x:auto"><table class="kpi-table">
+  <thead>
+    <tr>
+      <th style="text-align:left;width:30%">項目</th>
+      <th>初年</th>
+      <th>2年目</th>
+      <th>3年目ベース</th>
+      <th>3年目ポジ</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>稼働率</td>
+      <td>69%</td>
+      <td>85%</td>
+      <td>85%</td>
+      <td>85%</td>
+    </tr>
+    <tr>
+      <td>平均ADR（税込）</td>
+      <td>¥25,500〜</td>
+      <td>¥28,050〜</td>
+      <td>¥30,600〜</td>
+      <td>¥33,150〜</td>
+    </tr>
+    <tr>
+      <td>宿泊売上</td>
+      <td>4.1億円</td>
+      <td>5.6億円</td>
+      <td>6.1億円</td>
+      <td>6.6億円</td>
+    </tr>
+    <tr>
+      <td>固定賃料収入</td>
+      <td>1,452万円</td>
+      <td>1,452万円</td>
+      <td>1,452万円</td>
+      <td>1,452万円</td>
+    </tr>
+    <tr class="key-row">
+      <td class="highlight">GOP</td>
+      <td class="highlight">2.1億円（51.2%）</td>
+      <td class="highlight">3.1億円（55.4%）</td>
+      <td class="highlight">3.4億円（56.6%）</td>
+      <td class="highlight">3.8億円（57.7%）</td>
+    </tr>
+    <tr class="key-row">
+      <td class="highlight">NOI</td>
+      <td class="highlight">1.8億円</td>
+      <td class="highlight">2.7億円</td>
+      <td class="highlight">3.0億円</td>
+      <td class="highlight">3.3億円</td>
+    </tr>
+    
+  </tbody>
+</table></div>
 
-    <div class="note-box">
-      <div class="note-text">
-        <strong>テナント賃料の考え方：</strong>　外部テナント満額（2,520万円/年）に対し、7garden自社入居により1,440万円/年でご設定いただきます。差額1,080万円/年をご負担いただく代わりに、ADR・ブランド・体験品質の向上を通じた収益増をお届けする設計です。
-      </div>
-    </div>
+<div class="note-box">
+  <div class="note-text">
+    <strong>テナント賃料の考え方：</strong>　外部テナント満額（2,520万円/年）に対し、7garden自社入居により1,440万円/年でご設定いただきます。差額1,080万円/年をご負担いただく代わりに、ADR・ブランド・体験品質の向上を通じた収益増をお届けする設計です。
+  </div>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">09</div>
 </div>
 
 <!-- ⑩まとめ -->
+
 <div class="page">
   <div class="page-inner">
     <div class="section-label">Summary</div>
     <div class="page-heading">提案のまとめ</div>
 
-    <div class="summary-grid">
-      <div class="summary-card">
-        <div class="summary-section-title">戦略</div>
-        <div class="summary-item">
-          <div class="summary-bullet">1</div>
-          <div class="summary-text">OTAのフィルターに加えて、指名検索・目的来店を実現</div>
-        </div>
-        <div class="summary-item">
-          <div class="summary-bullet">2</div>
-          <div class="summary-text">「Nature Luxury」で空白ポジションを取る</div>
-        </div>
-        <div class="summary-item">
-          <div class="summary-bullet">3</div>
-          <div class="summary-text">旅行者×地元民の共存で「本物の場所」を実現</div>
-        </div>
-      </div>
-      <div class="summary-card featured">
-        <div class="summary-section-title gold">7gardenの役割</div>
-        <div class="summary-item">
-          <div class="summary-bullet gold">▶</div>
-          <div class="summary-text">ホテル企画・ブランド設計・運営管理を一括受託</div>
-        </div>
-        <div class="summary-item">
-          <div class="summary-bullet gold">▶</div>
-          <div class="summary-text">共用部分を自社運営し、建物全体の価値を設計</div>
-        </div>
-        <div class="summary-item">
-          <div class="summary-bullet gold">▶</div>
-          <div class="summary-text">固定賃料をお支払いしながらADR向上により丸善様へ還元</div>
-        </div>
-      </div>
+```
+<div class="summary-grid">
+  <div class="summary-card">
+    <div class="summary-section-title">戦略</div>
+    <div class="summary-item">
+      <div class="summary-bullet">1</div>
+      <div class="summary-text">OTAのフィルターに加えて、指名検索・目的来店を実現</div>
     </div>
-
-    <div class="rule"></div>
-
-    <div class="cta-box">
-      <div class="cta-text">
-        <em>建物全体の価値を設計し、運営し、改善・進化し続けます。</em>
-      </div>
-      <div class="cta-by">
-        株式会社7garden<br>
-        7garden Co., Ltd.<br>
-        2026.04
-      </div>
+    <div class="summary-item">
+      <div class="summary-bullet">2</div>
+      <div class="summary-text">「Nature Luxury」で空白ポジションを取る</div>
     </div>
+    <div class="summary-item">
+      <div class="summary-bullet">3</div>
+      <div class="summary-text">旅行者×地元民の共存で「本物の場所」を実現</div>
+    </div>
+  </div>
+  <div class="summary-card featured">
+    <div class="summary-section-title gold">7gardenの役割</div>
+    <div class="summary-item">
+      <div class="summary-bullet gold">▶</div>
+      <div class="summary-text">ホテル企画・ブランド設計・運営管理を一括受託</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-bullet gold">▶</div>
+      <div class="summary-text">共用部分を自社運営し、建物全体の価値を設計</div>
+    </div>
+    <div class="summary-item">
+      <div class="summary-bullet gold">▶</div>
+      <div class="summary-text">固定賃料をお支払いしながらADR向上により丸善様へ還元</div>
+    </div>
+  </div>
+</div>
+
+<div class="rule"></div>
+
+<div class="cta-box">
+  <div class="cta-text">
+    <em>建物全体の価値を設計し、運営し、改善・進化し続けます。</em>
+  </div>
+  <div class="cta-by">
+    株式会社7garden<br>
+    7garden Co., Ltd.<br>
+    2026.04
+  </div>
+</div>
+```
+
   </div>
   <div class="brand-mark">7garden</div>
   <div class="page-num">10</div>
 </div>
 
-
-
 <!-- Appendix -->
+
 <div id="appendix">
 <div class="page">
   <div class="page-inner">
@@ -1174,203 +1259,206 @@ body {
     <div class="page-heading">収支比較サマリー</div>
     <div class="page-lead">土地代・解体費を除く建築投資額ベースの利回り比較。元プラン（105室）と7gardenプラン（56室）の4シナリオ対比。</div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
-      <div style="border:0.5px solid var(--border);border-radius:6px;padding:14px 18px">
-        <div style="font-size:10px;font-weight:500;color:var(--warm-gray);letter-spacing:.08em;margin-bottom:8px">元プラン（事業主案）</div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500">105室</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500">約17㎡</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500">2,556万円</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500">約29.5億円</span></div>
-      </div>
-      <div style="border:1.5px solid var(--navy);border-radius:6px;padding:14px 18px;background:#F2F7F4">
-        <div style="font-size:10px;font-weight:500;color:var(--navy);letter-spacing:.08em;margin-bottom:8px">7gardenプラン</div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500;color:var(--navy)">56室</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500;color:var(--navy)">約25.5㎡</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500;color:var(--navy)">1,452万円</span></div>
-        <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500;color:var(--navy)">約32.7億円</span></div>
-      </div>
-    </div>
+```
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+  <div style="border:0.5px solid var(--border);border-radius:6px;padding:14px 18px">
+    <div style="font-size:10px;font-weight:500;color:var(--warm-gray);letter-spacing:.08em;margin-bottom:8px">元プラン（事業主案）</div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500">105室</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500">約17㎡</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500">2,556万円</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500">約29.5億円</span></div>
+  </div>
+  <div style="border:1.5px solid var(--navy);border-radius:6px;padding:14px 18px;background:#F2F7F4">
+    <div style="font-size:10px;font-weight:500;color:var(--navy);letter-spacing:.08em;margin-bottom:8px">7gardenプラン</div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">客室数</span><span style="font-weight:500;color:var(--navy)">56室</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">主要客室面積</span><span style="font-weight:500;color:var(--navy)">約25.5㎡</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:0.5px solid var(--border)"><span style="color:var(--text-muted)">固定賃料収入（年）</span><span style="font-weight:500;color:var(--navy)">1,452万円</span></div>
+    <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0"><span style="color:var(--text-muted)">総事業費（建築・土地除く）</span><span style="font-weight:500;color:var(--navy)">約32.7億円</span></div>
+  </div>
+</div>
 
-    <div style="overflow-x:auto">
-    <table style="width:100%;border-collapse:collapse;font-size:12px">
-      <thead>
-        <tr>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;letter-spacing:.04em;padding:8px 12px;text-align:left;width:18%">シナリオ</th>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:left;width:16%">項目</th>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:center">元プラン</th>
-          <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:center">7gardenプラン</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:#FAFAF6">
-          <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">初年<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 69%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">4.0億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">4.1億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.9億円（49.0%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.1億円（51.2%）</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">6.1%</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">5.6%</td>
-        </tr>
-        <tr>
-          <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">2年目<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.2億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.6億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.8億円（53.3%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.1億円（55.4%）</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.5億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">8.5%</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">8.2%</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">3年目ベース<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.5億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">6.1億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.0億円（54.2%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.4億円（56.6%）</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.0億円</td>
-        </tr>
-        <tr style="background:#FAFAF6">
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.1%</td>
-          <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.1%</td>
-        </tr>
-        <tr>
-          <td rowspan="4" style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">3年目ポジ<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.8億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">6.6億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.2億円（55.2%）</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.8億円（57.7%）</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.9億円</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.3億円</td>
-        </tr>
-        <tr>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI利回り</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.7%</td>
-          <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">10.0%</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
+<div style="overflow-x:auto">
+<table style="width:100%;border-collapse:collapse;font-size:12px">
+  <thead>
+    <tr>
+      <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;letter-spacing:.04em;padding:8px 12px;text-align:left;width:18%">シナリオ</th>
+      <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:left;width:16%">項目</th>
+      <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:center">元プラン</th>
+      <th style="background:var(--navy);color:rgba(255,255,255,0.8);font-weight:400;font-size:10px;padding:8px 12px;text-align:center">7gardenプラン</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="background:#FAFAF6">
+      <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">初年<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 69%</span></td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">4.0億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">4.1億円</td>
+    </tr>
+    <tr style="background:#FAFAF6">
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.9億円（49.0%）</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.1億円（51.2%）</td>
+    </tr>
+    <tr style="background:#FAFAF6">
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.8億円</td>
+    </tr>
+    <tr style="background:#FAFAF6">
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">6.1%</td>
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">5.6%</td>
+    </tr>
+    <tr>
+      <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">2年目<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.2億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.6億円</td>
+    </tr>
+    <tr>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.8億円（53.3%）</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.1億円（55.4%）</td>
+    </tr>
+    <tr>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.5億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td>
+    </tr>
+    <tr>
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">8.5%</td>
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500">8.2%</td>
+    </tr>
+    <tr style="background:#FAFAF6">
+      <td rowspan="4" style="padding:8px 12px;border-bottom:2px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">3年目ベース<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.5億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">6.1億円</td>
+    </tr>
+    <tr style="background:#FAFAF6">
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.0億円（54.2%）</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.4億円（56.6%）</td>
+    </tr>
+    <tr style="background:#FAFAF6">
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.7億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.0億円</td>
+    </tr>
+    <tr style="background:#FAFAF6">
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);color:var(--text-muted)">NOI利回り</td>
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.1%</td>
+      <td style="padding:7px 12px;border-bottom:2px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.1%</td>
+    </tr>
+    <tr>
+      <td rowspan="4" style="padding:8px 12px;border-bottom:0.5px solid var(--border);font-weight:500;color:var(--navy);vertical-align:middle">3年目ポジ<br><span style="font-size:10px;color:var(--text-muted);font-weight:400">稼働率 85%</span></td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">宿泊売上</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">5.8億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">6.6億円</td>
+    </tr>
+    <tr>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">GOP</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.2億円（55.2%）</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.8億円（57.7%）</td>
+    </tr>
+    <tr>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.9億円</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">3.3億円</td>
+    </tr>
+    <tr>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">NOI利回り</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">9.7%</td>
+      <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-weight:500;color:#2A7A4A">10.0%</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-    <div style="margin-top:14px;background:#F5F5F2;border-radius:6px;padding:10px 16px">
-      <div style="font-size:11px;color:var(--text-muted);line-height:1.7">
-        ※ NOI利回りは建築投資額（土地・解体費除く）ベース。元プラン約29.5億円、7gardenプラン約32.7億円で算出。<br>
-        ※ 元プランの固定賃料はテナントA・B満額（2,556万円/年）。7gardenプランは自社入居賃料（1,452万円/年）。
-      </div>
-    
+<div style="margin-top:14px;background:#F5F5F2;border-radius:6px;padding:10px 16px">
+  <div style="font-size:11px;color:var(--text-muted);line-height:1.7">
+    ※ NOI利回りは建築投資額（土地・解体費除く）ベース。元プラン約29.5億円、7gardenプラン約32.7億円で算出。<br>
+    ※ 元プランの固定賃料はテナントA・B満額（2,556万円/年）。7gardenプランは自社入居賃料（1,452万円/年）。
+  </div>
 
-    <div style="margin-top:24px">
-      <div style="font-size:11px;font-weight:500;color:var(--navy);letter-spacing:.06em;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid var(--border)">開発費比較（土地除く・税込）</div>
-      <div style="overflow-x:auto">
-      <table style="width:100%;border-collapse:collapse;font-size:11.5px">
-        <thead>
-          <tr>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:left;border-bottom:1.5px solid var(--navy)">項目</th>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">元プラン</th>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">7gardenプラン</th>
-            <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">差額</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">建築工事（本体）</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">21.7億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">24.2億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+2.5億</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted);padding-left:20px;font-size:10.5px">　うち大浴場・プール・レストラン</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">—</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">含む</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">—</td>
-          </tr>
-          <tr>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">解体・立退き</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">—</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">設計フィー</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">0.8億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">0.8億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">—</td>
-          </tr>
-          <tr>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">共用部・外装<br><span style="font-size:10px">（エントランス・エクステリア等）</span></td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.5億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.3億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+1.1億</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">客室FFE / OSE</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.4億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+0.5億</td>
-          </tr>
-          <tr>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">デザインFee・一般管理費・予備費</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.4億円</td>
-            <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+0.3億</td>
-          </tr>
-          <tr style="background:#FAFAF6">
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);color:var(--text-muted)">7garden費用<br><span style="font-size:10px">（ブランド構築・人件費・集客）</span></td>
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center">0.6億円</td>
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center">0.7億円</td>
-            <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center;color:var(--text-muted)">+0.1億</td>
-          </tr>
-          <tr>
-            <td style="padding:8px 12px;font-weight:500;color:var(--navy)">合計（土地除く）</td>
-            <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">29.5億円</td>
-            <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">32.7億円</td>
-            <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">+3.2億</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-      <div style="margin-top:8px;font-size:10.5px;color:var(--text-muted);line-height:1.7">
-        ※ 差額+3.2億円の主な内訳：建築工事（大浴場・プール・レストラン）+2.5億、共用部仕様強化+0.8億。7gardenプランは客室FFEを厳選（元プラン比-0.3億）。
-      </div>
-    </div>
+
+<div style="margin-top:24px">
+  <div style="font-size:11px;font-weight:500;color:var(--navy);letter-spacing:.06em;margin-bottom:12px;padding-bottom:6px;border-bottom:1.5px solid var(--border)">開発費比較（土地除く・税込）</div>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:11.5px">
+    <thead>
+      <tr>
+        <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:left;border-bottom:1.5px solid var(--navy)">項目</th>
+        <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">元プラン</th>
+        <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">7gardenプラン</th>
+        <th style="background:#F2F7F4;color:var(--navy);font-weight:500;font-size:10px;padding:7px 12px;text-align:center;border-bottom:1.5px solid var(--navy)">差額</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="background:#FAFAF6">
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">建築工事（本体）</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">21.7億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">24.2億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+2.5億</td>
+      </tr>
+      <tr style="background:#FAFAF6">
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted);padding-left:20px;font-size:10.5px">　うち大浴場・プール・レストラン</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">—</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">含む</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;font-size:10.5px;color:var(--text-muted)">—</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">解体・立退き</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">—</td>
+      </tr>
+      <tr style="background:#FAFAF6">
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">設計フィー</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">0.8億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">0.8億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">—</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">共用部・外装<br><span style="font-size:10px">（エントランス・エクステリア等）</span></td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.5億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.3億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+1.1億</td>
+      </tr>
+      <tr style="background:#FAFAF6">
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">客室FFE / OSE</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.4億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">2.1億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+0.5億</td>
+      </tr>
+      <tr>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);color:var(--text-muted)">デザインFee・一般管理費・予備費</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.1億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center">1.4億円</td>
+        <td style="padding:7px 12px;border-bottom:0.5px solid var(--border);text-align:center;color:var(--text-muted)">+0.3億</td>
+      </tr>
+      <tr style="background:#FAFAF6">
+        <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);color:var(--text-muted)">7garden費用<br><span style="font-size:10px">（ブランド構築・人件費・集客）</span></td>
+        <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center">0.6億円</td>
+        <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center">0.7億円</td>
+        <td style="padding:7px 12px;border-bottom:1.5px solid var(--navy);text-align:center;color:var(--text-muted)">+0.1億</td>
+      </tr>
+      <tr>
+        <td style="padding:8px 12px;font-weight:500;color:var(--navy)">合計（土地除く）</td>
+        <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">29.5億円</td>
+        <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">32.7億円</td>
+        <td style="padding:8px 12px;text-align:center;font-weight:500;color:var(--navy)">+3.2億</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="margin-top:8px;font-size:10.5px;color:var(--text-muted);line-height:1.7">
+    ※ 差額+3.2億円の主な内訳：建築工事（大浴場・プール・レストラン）+2.5億、共用部仕様強化+0.8億。7gardenプランは客室FFEを厳選（元プラン比-0.3億）。
+  </div>
+</div>
+```
+
 </div>
 
   </div>
