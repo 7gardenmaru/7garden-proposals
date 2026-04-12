@@ -593,6 +593,89 @@ body {
   body { background: white; }
   .page { box-shadow: none; margin: 0; }
 }
+
+/* ── Responsive: Mobile ──────────────────────── */
+@media screen and (max-width: 768px) {
+
+  body { background: white; }
+
+  .page {
+    width: 100%;
+    min-height: unset;
+    margin: 0;
+    padding-bottom: 32px;
+    border-bottom: 4px solid var(--off-white);
+  }
+
+  .page-inner { padding: 28px 20px; }
+
+  /* Cover */
+  .cover { padding: 48px 24px; min-height: unset; }
+  .cover-title { font-size: 26px; }
+  .cover-watermark { display: none; }
+
+  /* Headings */
+  .page-heading { font-size: 20px; }
+  .page-lead { font-size: 13px; max-width: 100%; }
+
+  /* 2-col grids → stack */
+  .problem-grid,
+  .plan-grid,
+  .target-grid,
+  .versus-grid,
+  .numbers-row,
+  .summary-grid { grid-template-columns: 1fr !important; }
+
+  /* vs divider非表示 */
+  .vs-divider-text { display: none; }
+
+  /* concept pillars → stack */
+  .concept-pillars { grid-template-columns: 1fr !important; }
+
+  /* KPI table scroll */
+  .kpi-table { font-size: 11px; }
+  .kpi-table th, .kpi-table td { padding: 7px 8px; }
+  .page-inner > div:has(.kpi-table) { overflow-x: auto; }
+
+  /* brand mark & page num */
+  .brand-mark { position: static; margin-top: 20px; display: block; }
+  .page-num { position: static; text-align: right; margin-top: 4px; }
+
+  /* 運営戦略 */
+  .page-inner > div[style*="grid-template-columns:220px"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* フロー矢印 */
+  .page-inner > div[style*="align-items:center;justify-content:center;gap:8px"] {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  /* note box */
+  .note-box { padding: 12px 14px; }
+  .logic-strip { padding: 14px 16px; }
+
+  /* CTA box */
+  .cta-box { flex-direction: column; gap: 12px; }
+  .cta-by { text-align: left; }
+
+  /* solution banner */
+  .solution-banner { flex-direction: column; }
+
+  /* case study grid */
+  .page-inner > div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .page {
+    width: 210mm;
+    min-height: 148mm;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  }
+}
 </style>
 </head>
 <body>
@@ -958,7 +1041,7 @@ body {
     <div class="page-heading">収支シミュレーション（7gardenプラン）</div>
     <div class="page-lead">56室・Nature Luxury型。7garden自社によるテナント固定賃料（1,452万円/年）を含みます。</div>
 
-    <table class="kpi-table">
+    <div style="overflow-x:auto"><table class="kpi-table">
       <thead>
         <tr>
           <th style="text-align:left;width:30%">項目</th>
@@ -1013,7 +1096,7 @@ body {
         </tr>
         
       </tbody>
-    </table>
+    </table></div>
 
     <div class="note-box">
       <div class="note-text">
