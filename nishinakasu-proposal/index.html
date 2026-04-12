@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>西中洲ホテルプロジェクト提案書 | 7garden</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&display=swap');
+
+:root {
+  --navy: #1A2F4A;
+  --navy-light: #2A4060;
+  --gold: #B8943F;
+  --gold-light: #D4B060;
+  --off-white: #F5F0E8;
+  --warm-gray: #8A8580;
+  --light-bg: #FAFAF7;
+  --text: #1A1A1A;
+  --text-muted: #6B6560;
+  --border: rgba(26,47,74,0.12);
+  --water: #2C6E8A;
+  --water-light: #E8F4F8;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--light-bg);
+  color: var(--text);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+/* ── Page system ── */
+.page {
+  width: 210mm;
+  min-height: 148mm;
+  margin: 0 auto 3px;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  page-break-after: always;
+}
+
+/* ── Cover ── */
+.cover {
+  background: var(--navy);
+  min-height: 148mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 56px;
+  position: relative;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(44,110,138,0.18) 0%, transparent 60%);
+}
+.cover-eyebrow {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 12px;
+  letter-spacing: .18em;
+  color: var(--gold);
+  margin-bottom: 20px;
+  position: relative;
+}
+.cover-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 38px;
+  font-weight: 300;
+  color: white;
+  line-height: 1.25;
+  margin-bottom: 10px;
+  position: relative;
+}
+.cover-title em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.cover-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: .04em;
+  position: relative;
+  margin-top: 6px;
+}
+.cover-line {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin: 28px 0;
+  position: relative;
+}
+.cover-meta {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: .06em;
+  position: relative;
+}
+.cover-watermark {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 120px;
+  color: rgba(255,255,255,0.04);
+  line-height: 1;
+  font-weight: 300;
+  letter-spacing: -.02em;
+  pointer-events: none;
+}
+
+/* ── Common layout ── */
+.page-inner {
+  padding: 40px 52px;
+}
+.section-label {
+  font-size: 9px;
+  letter-spacing: .14em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.page-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.3;
+  margin-bottom: 6px;
+}
+.page-lead {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 28px;
+  max-width: 460px;
+}
+.rule {
+  width: 100%;
+  height: 0.5px;
+  background: var(--border);
+  margin: 20px 0;
+}
+.page-num {
+  position: absolute;
+  bottom: 18px;
+  right: 52px;
+  font-size: 9px;
+  color: var(--warm-gray);
+  letter-spacing: .08em;
+}
+.brand-mark {
+  position: absolute;
+  bottom: 18px;
+  left: 52px;
+  font-size: 9px;
+  color: var(--warm-gray);
+  letter-spacing: .1em;
+}
+
+/* ── Problem page ── */
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.problem-card {
+  background: #F9F6F0;
+  border-radius: 6px;
+  padding: 18px 20px;
+  border-left: 3px solid var(--border);
+}
+.problem-card.accent { border-left-color: var(--navy); }
+.problem-icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+.problem-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.problem-body {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.big-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 52px;
+  font-weight: 300;
+  color: var(--navy);
+  line-height: 1;
+}
+.big-unit { font-size: 16px; color: var(--text-muted); }
+.arrow-down {
+  text-align: center;
+  font-size: 20px;
+  color: var(--gold);
+  margin: 12px 0;
+}
+.solution-banner {
+  background: var(--navy);
+  border-radius: 6px;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.solution-banner-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  line-height: 1.4;
+}
+.solution-banner-text em { color: var(--gold-light); font-style: italic; }
+
+/* ── Concept page ── */
+.concept-hero {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 30px 36px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.concept-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, rgba(44,110,138,0.25) 0%, transparent 70%);
+}
+.concept-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 42px;
+  font-weight: 300;
+  font-style: italic;
+  color: white;
+  line-height: 1.1;
+  position: relative;
+  margin-bottom: 6px;
+}
+.concept-jp {
+  font-size: 13px;
+  color: var(--gold-light);
+  letter-spacing: .1em;
+  position: relative;
+}
+.concept-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+.pillar {
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+}
+.pillar-en {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--water);
+  margin-bottom: 4px;
+}
+.pillar-jp {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.pillar-body {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ── Target page ── */
+.target-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.target-card {
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.target-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  background: var(--water-light);
+  color: var(--water);
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  letter-spacing: .04em;
+}
+.target-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.target-body {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+.value-tag {
+  display: inline-block;
+  background: var(--navy);
+  color: white;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  letter-spacing: .05em;
+}
+.synergy-box {
+  background: #F0F6FA;
+  border-radius: 6px;
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.synergy-text { font-size: 12px; color: var(--water); line-height: 1.6; font-weight: 500; }
+
+/* ── Plan page ── */
+.plan-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.plan-card {
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.plan-card.featured {
+  border-color: var(--navy);
+  background: #F8FAFB;
+}
+.plan-badge {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 500;
+  background: var(--navy);
+  color: white;
+  border-radius: 20px;
+  padding: 3px 10px;
+  margin-bottom: 10px;
+  letter-spacing: .06em;
+}
+.plan-badge.outline {
+  background: transparent;
+  border: 0.5px solid var(--border);
+  color: var(--text-muted);
+}
+.plan-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 11.5px;
+  padding: 5px 0;
+  border-bottom: 0.5px solid var(--border);
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-label { color: var(--text-muted); }
+.spec-val { font-weight: 500; color: var(--navy); }
+.spec-val.up { color: #2A7A4A; }
+
+/* ── Tenant page ── */
+.versus-grid {
+  display: grid;
+  grid-template-columns: 1fr 32px 1fr;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.vs-col {
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 18px;
+}
+.vs-col.accent {
+  border-color: var(--navy);
+  background: #F3F7FB;
+}
+.vs-col-label {
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: var(--warm-gray);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.vs-col-label.blue { color: var(--navy); }
+.vs-col-title {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.vs-item {
+  font-size: 11px;
+  color: var(--text-muted);
+  padding: 3px 0;
+  padding-left: 12px;
+  position: relative;
+  line-height: 1.5;
+}
+.vs-item::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--border);
+}
+.vs-col.accent .vs-item { color: var(--navy-light); }
+.vs-col.accent .vs-item::before { background: var(--navy); }
+.vs-divider-text {
+  font-size: 10px;
+  color: var(--warm-gray);
+  text-align: center;
+  font-weight: 500;
+}
+.numbers-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.num-box {
+  background: #F5F5F2;
+  border-radius: 6px;
+  padding: 12px 14px;
+}
+.num-box-label { font-size: 10px; color: var(--text-muted); line-height: 1.4; margin-bottom: 4px; }
+.num-box-val { font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; color: var(--navy); }
+.num-box-val.blue { color: var(--water); }
+.num-box-sub { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+.logic-strip {
+  background: var(--navy);
+  border-radius: 6px;
+  padding: 14px 20px;
+}
+.logic-strip p { font-size: 12px; color: rgba(255,255,255,0.85); line-height: 1.8; }
+.logic-strip strong { color: var(--gold-light); font-weight: 500; }
+
+/* ── KPI page ── */
+.kpi-header {
+  background: #F2F7F3;
+  border-radius: 6px;
+  padding: 14px 20px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.kpi-header-label { font-size: 11px; color: #2A7A4A; font-weight: 500; }
+.kpi-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+  margin-bottom: 16px;
+}
+.kpi-table th {
+  background: var(--navy);
+  color: rgba(255,255,255,0.8);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: .04em;
+  padding: 8px 12px;
+  text-align: center;
+}
+.kpi-table th:first-child { text-align: left; }
+.kpi-table td {
+  padding: 9px 12px;
+  border-bottom: 0.5px solid var(--border);
+  text-align: center;
+  color: var(--text-muted);
+}
+.kpi-table td:first-child {
+  text-align: left;
+  color: var(--text);
+  font-weight: 400;
+}
+.kpi-table td.highlight { color: var(--navy); font-weight: 500; }
+.kpi-table td.green { color: #2A7A4A; font-weight: 500; }
+.kpi-table tr:last-child td { border-bottom: none; }
+.kpi-table tr.key-row { background: #FAFAF6; }
+.note-box {
+  background: #FFFBF0;
+  border-left: 3px solid var(--gold);
+  border-radius: 0 6px 6px 0;
+  padding: 12px 16px;
+}
+.note-text { font-size: 11px; color: #7A6020; line-height: 1.7; }
+.note-text strong { font-weight: 500; }
+
+/* ── Summary page ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.summary-card {
+  border: 0.5px solid var(--border);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.summary-card.featured {
+  border-color: var(--gold);
+  background: linear-gradient(135deg, #FFFBF0 0%, #FFF8E8 100%);
+}
+.summary-section-title {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--warm-gray);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.summary-section-title.gold { color: var(--gold); }
+.summary-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 6px;
+  font-size: 11.5px;
+}
+.summary-bullet {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--navy);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: white;
+  font-weight: 500;
+  margin-top: 1px;
+}
+.summary-bullet.gold { background: var(--gold); }
+.summary-text { color: var(--text-muted); line-height: 1.5; }
+.cta-box {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 22px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.cta-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  line-height: 1.5;
+}
+.cta-text em { color: var(--gold-light); font-style: italic; }
+.cta-by {
+  font-size: 10px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: .1em;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media print {
+  body { background: white; }
+  .page { box-shadow: none; margin: 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ①表紙 -->
+<div class="page cover">
+  <div class="cover-eyebrow">NISHI-NAKASU HOTEL PROJECT</div>
+  <div class="cover-title">
+    西中洲ホテルプロジェクト<br>
+    <em>Proposal</em>
+  </div>
+  <div class="cover-sub">株式会社セブンガーデン（7garden）　|　2026.04</div>
+  <div class="cover-line"></div>
+  <div class="cover-meta">CONFIDENTIAL — 丸善様 御中</div>
+  <div class="cover-watermark">7g</div>
+</div>
+
+<!-- ②課題と方向性 -->
+<div class="page">
+  <div class="page-inner">
+    <div class="section-label">Point — 課題認識</div>
+    <div class="page-heading">機能性競合が多数の市場で、<br>どう戦うか</div>
+    <div class="page-lead">天神南駅1km圏に200施設・推定20,000室超。本件は「徒歩5分」フィルターからも脱落する立地。OTAの土俵で戦うと、価格競争に巻き込まれる。</div>
+
+    <div class="problem-grid">
+      <div class="problem-card accent">
+        <div class="problem-icon" style="font-size:13px;font-weight:500;color:var(--navy)">207施設</div>
+        <div class="problem-title">Booking.com・天神南駅1km圏</div>
+        <div class="problem-body">競合は量・価格ともに圧倒的。OTAのフィルター検索では本件が上位に現れにくい立地条件。</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon" style="font-size:13px;font-weight:500;color:var(--text-muted)">価格競争</div>
+        <div class="problem-title">機能性重視の競合が価格を下げる</div>
+        <div class="problem-body">「駅近・安い・清潔」の訴求では差別化できない。ADRを上げる根拠がコンセプト以外にない。</div>
+      </div>
+    </div>
+
+    <div class="arrow-down">↓</div>
+
+    <div class="solution-banner">
+      <div style="font-size:24px;flex-shrink:0">🎯</div>
+      <div class="solution-banner-text">
+        OTAのフィルターではなく、<em>SNS・口コミで動く人たちに指名検索</em>されるホテルになる
+      </div>
+    </div>
+  </div>
+  <div class="brand-mark">7GARDEN</div>
+  <div class="page-num">02</div>
+</div>
+
+<!-- ③コンセプト -->
+<div class="page">
+  <div class="page-inner">
+    <div class="section-label">Grand Concept</div>
+    <div class="page-heading">コンセプト</div>
+
+    <div class="concept-hero">
+      <div class="concept-en">Nature Luxury</div>
+      <div class="concept-jp">自然・普遍的な心地よさの追求</div>
+    </div>
+
+    <div class="concept-pillars">
+      <div class="pillar">
+        <div class="pillar-en">Water</div>
+        <div class="pillar-jp">水辺の体験</div>
+        <div class="pillar-body">那珂川に面した全室リバービュー。水・風・光が建物に入り込む。川沿いを行き交う人の目に留まる一枚絵。</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-en">Open</div>
+        <div class="pillar-jp">街に溶け出す</div>
+        <div class="pillar-body">1階は地域に開かれた空間。地元民と旅行者が自然に共存する場。シグネチャードリンクを片手に橋を行き交う人々が絵になる。</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-en">Comfort</div>
+        <div class="pillar-jp">普遍の心地よさ</div>
+        <div class="pillar-body">トレンドに乗らない、時間が経っても色褪せない空間。「ここにいるだけで気持ちいい」という感覚を整える。</div>
+      </div>
+    </div>
+  </div>
+  <div class="brand-mark">7GARDEN</div>
+  <div class="page-num">03</div>
+</div>
+
+<!-- ④ターゲット -->
+<div class="page">
+  <div class="page-inner">
+    <div class="section-label">Target</div>
+    <div class="page-heading">誰のためのホテルか</div>
+    <div class="page-lead">ターゲットはデモグラフィックではなく「価値観」で定義。この価値観は年代・国籍を超えて存在する。</div>
+
+    <div style="text-align:center;margin-bottom:16px">
+      <div class="value-tag">自然の中の心地よさ・安らぎ・心の豊かさ</div>
+    </div>
+
+    <div class="target-grid">
+      <div class="target-card">
+        <div class="target-badge">旅行者</div>
+        <div class="target-title">SNSで見た、緑あふれるラウンジが予約の決め手</div>
+        <div class="target-body">西中洲という地名は知らなくても、心が安らぐ滞在を求めて「ここしかない」と予約を取る。OTA経由ではなく、SNS・口コミで動く層。</div>
+      </div>
+      <div class="target-card">
+        <div class="target-badge">地元民</div>
+        <div class="target-title">「泊まらなくても使う場所」として日常に溶け込む</div>
+        <div class="target-body">仕事帰りのバー、週末のテラス、記念日のディナー。落ち着いた大人の街・西中洲に、お気に入りの場所ができた感覚。</div>
+      </div>
+    </div>
+
+    <div class="synergy-box">
+      <div style="font-size:20px;flex-shrink:0">⇄</div>
+      <div class="synergy-text">両者が同じ空間にいることで相互に価値UP。「地元の人たちも来る本物の場所」という認知が旅行者の信頼につながる。</div>
+    </div>
+  </div>
+  <div class="brand-mark">7GARDEN</div>
+  <div class="page-num">04</div>
+</div>
+
+<!-- ⑤ホテルプラン概要 -->
+<div class="page">
+  <div class="page-inner">
+    <div class="section-label">Plan</div>
+    <div class="page-heading">7gardenが提案するホテルプラン</div>
+    <div class="page-lead">事業主様の元プランとの比較。客室数を絞り込み、ADRを引き上げることで、収益性と体験品質を両立する。</div>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-badge outline">元プラン（事業主案）</div>
+        <div class="plan-name">105室・機能重視型</div>
+        <div class="spec-row"><span class="spec-label">客室数</span><span class="spec-val">105室</span></div>
+        <div class="spec-row"><span class="spec-label">主要客室面積</span><span class="spec-val">15〜17㎡</span></div>
+        <div class="spec-row"><span class="spec-label">大浴場・プール</span><span class="spec-val">なし</span></div>
+        <div class="spec-row"><span class="spec-label">初年ADR（平均）</span><span class="spec-val">約¥15,600</span></div>
+        <div class="spec-row"><span class="spec-label">総事業費</span><span class="spec-val">約44.4億円</span></div>
+        <div class="spec-row"><span class="spec-label">3年目NOI利回り</span><span class="spec-val">6.8%（ポジ）</span></div>
+      </div>
+      <div class="plan-card featured">
+        <div class="plan-badge">7garden提案プラン</div>
+        <div class="plan-name">56室・Nature Luxury型</div>
+        <div class="spec-row"><span class="spec-label">客室数</span><span class="spec-val highlight">56室</span></div>
+        <div class="spec-row"><span class="spec-label">主要客室面積</span><span class="spec-val highlight">25.5〜51㎡</span></div>
+        <div class="spec-row"><span class="spec-label">大浴場・プール・レストラン</span><span class="spec-val up">あり</span></div>
+        <div class="spec-row"><span class="spec-label">初年ADR（平均）</span><span class="spec-val up">約¥25,500</span></div>
+        <div class="spec-row"><span class="spec-label">総事業費</span><span class="spec-val highlight">約48.9億円</span></div>
+        <div class="spec-row"><span class="spec-label">3年目NOI利回り</span><span class="spec-val up">6.7%（ポジ）</span></div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <div class="note-text">
+        <strong>追加投資4.5億円の考え方：</strong>　3年目以降のNOI差は年間+0.4億円以上。追加投資分は約11年で回収。さらに大浴場・レストランによる資産価値・ブランド価値の向上は数字に表れない付加価値。
+      </div>
+    </div>
+  </div>
+  <div class="brand-mark">7GARDEN</div>
+  <div class="page-num">05</div>
+</div>
+
+<!-- ⑥テナント提案 -->
+<div class="page">
+  <div class="page-inner">
+    <div class="section-label">Tenant Strategy</div>
+    <div class="page-heading">なぜ7gardenがテナントに<br>自ら入るのか</div>
+    <div class="page-lead">外部テナントに任せることは、ホテル価値のコントロールを手放すことと同義。7gardenは固定賃料を払いながら、建物全体の価値を設計する。</div>
+
+    <div class="versus-grid">
+      <div class="vs-col">
+        <div class="vs-col-label">外部テナント</div>
+        <div class="vs-col-title">業態・品質・世界観すべて他者依存</div>
+        <div class="vs-item">業態・クオリティをコントロールできない</div>
+        <div class="vs-item">宿泊客フォーカスの設計ができない</div>
+        <div class="vs-item">コンセプトとの世界観が分断される</div>
+        <div class="vs-item">撤退リスクあり、長期安定性に不安</div>
+      </div>
+      <div style="text-align:center">
+        <div class="vs-divider-text">vs</div>
+      </div>
+      <div class="vs-col accent">
+        <div class="vs-col-label blue">7garden 自社運営</div>
+        <div class="vs-col-title">ホテルと飲食を一体設計で価値最大化</div>
+        <div class="vs-item">業態・世界観をホテルと一体で設計</div>
+        <div class="vs-item">宿泊客・地元民双方に最適化した体験</div>
+        <div class="vs-item">Nature Luxuryを1Fから体現</div>
+        <div class="vs-item">ADR・リピート・口コミを意図的に設計</div>
+      </div>
+    </div>
+
+    <div class="numbers-row">
+      <div class="num-box">
+        <div class="num-box-label">外部テナント満額賃料（年）</div>
+        <div class="num-box-val">2,556<span style="font-size:13px">万円</span></div>
+        <div class="num-box-sub">71坪 × ¥3万 × 12ヶ月</div>
+      </div>
+      <div class="num-box">
+        <div class="num-box-label">7garden賃料（年・7割）</div>
+        <div class="num-box-val blue">1,789<span style="font-size:13px">万円</span></div>
+        <div class="num-box-sub">同 × ¥2.1万 × 12ヶ月</div>
+      </div>
+      <div class="num-box">
+        <div class="num-box-label">ADR+1,000円の効果（年）</div>
+        <div class="num-box-val" style="color:#2A7A4A">+1,740<span style="font-size:13px">万円</span></div>
+        <div class="num-box-sub">賃料差額の2.3倍を上回る</div>
+      </div>
+    </div>
+
+    <div class="logic-strip">
+      <p>賃料を7割に抑えてもらう代わりに、<strong>建物全体の価値を上げ、ADR上昇分で倍返しする。</strong><br>
+      7gardenがテナントに入ることは、コスト削減ではなく、<strong>ホテル価値への長期投資</strong>です。</p>
+    </div>
+  </div>
+  <div class="brand-mark">7GARDEN</div>
+  <div class="page-num">06</div>
+</div>
+
+<!-- ⑦収支サマリー -->
+<div class="page">
+  <div class="page-inner">
+    <div class="section-label">Financials</div>
+    <div class="page-heading">収支シミュレーション（7gardenプラン）</div>
+    <div class="page-lead">56室・Nature Luxury型。テナント固定賃料（7garden自社・1,789万円/年）込み。総事業費約48.9億円ベース。</div>
+
+    <table class="kpi-table">
+      <thead>
+        <tr>
+          <th style="text-align:left;width:30%">項目</th>
+          <th>初年</th>
+          <th>2年目</th>
+          <th>3年目ベース</th>
+          <th>3年目ポジ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>稼働率</td>
+          <td>69%</td>
+          <td>85%</td>
+          <td>85%</td>
+          <td>85%</td>
+        </tr>
+        <tr>
+          <td>平均ADR（税込）</td>
+          <td>¥25,500〜</td>
+          <td>¥28,050〜</td>
+          <td>¥30,600〜</td>
+          <td>¥33,150〜</td>
+        </tr>
+        <tr>
+          <td>宿泊売上</td>
+          <td>4.1億円</td>
+          <td>5.6億円</td>
+          <td>6.1億円</td>
+          <td>6.6億円</td>
+        </tr>
+        <tr>
+          <td>固定賃料収入</td>
+          <td>1,789万円</td>
+          <td>1,789万円</td>
+          <td>1,789万円</td>
+          <td>1,789万円</td>
+        </tr>
+        <tr class="key-row">
+          <td class="highlight">GOP</td>
+          <td class="highlight">2.1億円（51%）</td>
+          <td class="highlight">3.1億円（55%）</td>
+          <td class="highlight">3.4億円（57%）</td>
+          <td class="highlight">3.8億円（58%）</td>
+        </tr>
+        <tr class="key-row">
+          <td class="highlight">NOI</td>
+          <td class="highlight">1.8億円</td>
+          <td class="highlight">2.7億円</td>
+          <td class="highlight">3.0億円</td>
+          <td class="highlight">3.3億円</td>
+        </tr>
+        <tr class="key-row">
+          <td class="highlight">NOI利回り</td>
+          <td>3.8%</td>
+          <td>5.5%</td>
+          <td class="green">6.1%</td>
+          <td class="green">6.7%</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <div class="note-text">
+        <strong>テナント賃料の考え方：</strong>　外部テナント満額（¥2,556万/年）から7割（¥1,789万/年）に設定。差額¥767万/年をオーナーが負担することで、ADR・ブランド・体験品質の向上による収益増を享受いただく設計。
+      </div>
+    </div>
+  </div>
+  <div class="brand-mark">7GARDEN</div>
+  <div class="page-num">07</div>
+</div>
+
+<!-- ⑧まとめ -->
+<div class="page">
+  <div class="page-inner">
+    <div class="section-label">Summary</div>
+    <div class="page-heading">提案のまとめ</div>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="summary-section-title">戦略</div>
+        <div class="summary-item">
+          <div class="summary-bullet">1</div>
+          <div class="summary-text">OTA競争を避け、指名検索・目的来店を設計</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-bullet">2</div>
+          <div class="summary-text">「Nature Luxury」で空白ポジションを取る</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-bullet">3</div>
+          <div class="summary-text">旅行者×地元民の共存で「本物の場所」を実現</div>
+        </div>
+      </div>
+      <div class="summary-card featured">
+        <div class="summary-section-title gold">7gardenの役割</div>
+        <div class="summary-item">
+          <div class="summary-bullet gold">▶</div>
+          <div class="summary-text">ホテル企画・ブランド設計・運営管理を一括受託</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-bullet gold">▶</div>
+          <div class="summary-text">1F飲食を自社運営し、建物全体の価値を設計</div>
+        </div>
+        <div class="summary-item">
+          <div class="summary-bullet gold">▶</div>
+          <div class="summary-text">固定賃料を払いながらADR向上でオーナーに還元</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rule"></div>
+
+    <div class="cta-box">
+      <div class="cta-text">
+        賃料7割で入居し、<em>建物全体の価値を設計する。</em><br>
+        それが7gardenの、この物件への本気の答えです。
+      </div>
+      <div class="cta-by">
+        株式会社セブンガーデン<br>
+        7GARDEN Co., Ltd.<br>
+        2026.04
+      </div>
+    </div>
+  </div>
+  <div class="brand-mark">7GARDEN</div>
+  <div class="page-num">08</div>
+</div>
+
+</body>
+</html>
